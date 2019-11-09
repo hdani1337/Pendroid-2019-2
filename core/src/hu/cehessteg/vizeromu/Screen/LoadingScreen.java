@@ -45,7 +45,7 @@ public class LoadingScreen extends MyScreen {
         spriteBatch.end();
         if (Assets.manager.update()) {
             Assets.afterLoaded();
-            game.setScreen(new MenuScreen(game));
+            game.setScreen(new GameScreen(game));
         }
     }
 

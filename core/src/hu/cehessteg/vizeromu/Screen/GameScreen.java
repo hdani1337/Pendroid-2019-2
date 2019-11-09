@@ -1,26 +1,28 @@
 package hu.cehessteg.vizeromu.Screen;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyScreen;
-import hu.cehessteg.vizeromu.Stage.MenuStage;
+import hu.cehessteg.vizeromu.Stage.GameStage;
 
 import static hu.cehessteg.vizeromu.Vizeromu.keparanySzelesvaszonra;
 
-public class MenuScreen extends MyScreen {
-    MenuStage menuStage;
+public class GameScreen extends MyScreen {
+    GameStage gameStage;
 
-    public MenuScreen(MyGame game) {
+    public GameScreen(MyGame game) {
         super(game);
-        menuStage = new MenuStage(new FitViewport(keparanySzelesvaszonra(),720),spriteBatch,game);
+        gameStage = new GameStage(new FitViewport(keparanySzelesvaszonra()/80.0f,720/80.0f),spriteBatch,game);
     }
 
     @Override
     public void show() {
         super.show();
-        Gdx.input.setInputProcessor(menuStage);
+        Gdx.input.setInputProcessor(gameStage);
     }
 
     @Override
@@ -31,7 +33,7 @@ public class MenuScreen extends MyScreen {
     @Override
     public void render(float delta) {
         super.render(delta);
-        menuStage.act(delta);
-        menuStage.draw();
+        gameStage.act(delta);
+        gameStage.draw();
     }
 }
