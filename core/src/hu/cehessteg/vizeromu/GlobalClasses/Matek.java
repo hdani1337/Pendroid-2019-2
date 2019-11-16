@@ -1,4 +1,4 @@
-package hu.cehessteg.vizeromu;
+package hu.cehessteg.vizeromu.GlobalClasses;
 
 import java.util.Random;
 
@@ -52,7 +52,7 @@ public class Matek {
         openek = a;
     }
 
-    public void main(String[] args) {
+    public void step() {
         if (eso) {
             vizmennyiseg += 50;
             if (!volteso) { volteso = true; } //animation trigger
@@ -81,5 +81,8 @@ public class Matek {
         if (vizmennyiseg <= minviz || vizmennyiseg >= maxviz) {}//gameover trigger
     }
 
+    public boolean isVolteso() {
+        return volteso;
+    }
 }
 

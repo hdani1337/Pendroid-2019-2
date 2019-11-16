@@ -1,4 +1,4 @@
-package hu.cehessteg.vizeromu;
+package hu.cehessteg.vizeromu.GlobalClasses;
 
 public class Kiomlonyilas {
     public boolean isOpen;

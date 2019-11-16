@@ -11,26 +11,26 @@ import hu.cehessteg.vizeromu.Vizeromu;
 public class Fuggvenyek {
     static float pElapsedTime = 0;
 
-    public static void vizcseppThread(final World world, final MyStage stage, final float elapsedTime)
+    public static void vizcseppThread(final World world, final MyStage stage, final float elapsedTime, final Matek matek)
     {
         if (Vizeromu.getMultitasking()) {
             new Thread(new Runnable() {
                 public void run() {
-                    addVizcsepp(world, stage, elapsedTime);
+                    addVizcsepp(world, stage, elapsedTime, matek);
                     removeVizcsepp(stage);
                 }
             }).start();
         }
         else
         {
-            addVizcsepp(world, stage, elapsedTime);
+            addVizcsepp(world, stage, elapsedTime, matek);
             removeVizcsepp(stage);
         }
     }
 
-        private static void addVizcsepp(World world, MyStage stage, float elapsedTime)
+        private static void addVizcsepp(World world, MyStage stage, float elapsedTime, Matek matek)
         {
-            if (elapsedTime > pElapsedTime) {
+            if (elapsedTime > pElapsedTime && matek.isVolteso()) {
                 WorldActorGroup vizcsepp2 = new Vizcsepp(world);
                 if(vizcsepp2 == null) return;
                 vizcsepp2.addToWorld();
