@@ -15,7 +15,7 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		new LwjglApplication(new Vizeromu(), config);
 		config.width = 1280;
-		config.height = 360;
+		config.height = 720;
 		config.vSyncEnabled = true;
 		config.fullscreen = false;
 	}

@@ -51,6 +51,8 @@ public class Assets {
     public static final AssetDescriptor<Texture> MAXVIZ = new AssetDescriptor<Texture>("colors/maxViz.png", Texture.class);
     public static final AssetDescriptor<Texture> GOMB_HATTER = new AssetDescriptor<Texture>("colors/gombhatter1.png", Texture.class);
     public static final AssetDescriptor<Texture> GOMB_HATTER2 = new AssetDescriptor<Texture>("colors/gombhatter2.png", Texture.class);
+    public static final AssetDescriptor<Texture> GAT = new AssetDescriptor<Texture>("gat.png", Texture.class);
+    public static final AssetDescriptor<Texture> GAT_ALJA = new AssetDescriptor<Texture>("gat_alja.png", Texture.class);
 
     public static void prepare() {
 		manager = new AssetManager();
@@ -83,6 +85,8 @@ public class Assets {
         manager.load(MAXVIZ);
         manager.load(GOMB_HATTER);
         manager.load(GOMB_HATTER2);
+        manager.load(GAT);
+        manager.load(GAT_ALJA);
 	}
 
     public static void afterLoaded() {

@@ -61,6 +61,7 @@ public class Matek {
         else {
             if (sec == 0 && rnd.nextInt(100) == 13) { eso = false; } //eso megered 1% eséllyel.
         }
+        opencounter();
         vizmennyiseg += beviz;
         vizmennyiseg -= kiviz * openek;
         //ido
@@ -83,6 +84,14 @@ public class Matek {
 
     public boolean isVolteso() {
         return volteso;
+    }
+
+    public float getVizmennyiseg() {
+        return vizmennyiseg;
+    }
+
+    public int getMaxviz() {
+        return maxviz;
     }
 }
 

@@ -5,6 +5,9 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import hu.cehessteg.vizeromu.Actor.Gat;
+import hu.cehessteg.vizeromu.Actor.GatAlja;
+import hu.cehessteg.vizeromu.Actor.Viz;
 import hu.cehessteg.vizeromu.GlobalClasses.Matek;
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyStage;
@@ -13,21 +16,33 @@ import static hu.cehessteg.vizeromu.GlobalClasses.Fuggvenyek.vizcseppThread;
 
 public class GameStage extends MyStage {
     World world;
-    Matek matek;
-    //WorldBodyEditorLoader loader;
+    public static Matek matek;
+    Gat gat;
+    GatAlja gatAlja;
+    Viz viz;
 
     public GameStage(Viewport viewport, Batch batch, MyGame game) {
         super(viewport, batch, game);
         assignment();
+        addActors();
     }
 
     void assignment()
     {
-        System.out.println("World Width: " + getViewport().getWorldWidth());
-        System.out.println("World Height: " + getViewport().getWorldHeight());
         world = new World(new Vector2(0,-1), false);
         matek = new Matek();
-        //loader = new WorldBodyEditorLoader(Gdx.files.internal("fizika"));
+        gat = new Gat();
+        gatAlja = new GatAlja();
+        viz = new Viz();
+    }
+
+    void addActors()
+    {
+        addActor(viz);
+        addActor(gat);
+        addActor(gatAlja);
+        gat.setZIndex(1);
+        gatAlja.setZIndex(3);
     }
 
     @Override

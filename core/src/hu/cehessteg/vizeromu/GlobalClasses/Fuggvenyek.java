@@ -2,6 +2,9 @@ package hu.cehessteg.vizeromu.GlobalClasses;
 
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.utils.GdxRuntimeException;
+
+import java.util.Random;
 
 import hu.cehessteg.vizeromu.Actor.Vizcsepp;
 import hu.cehessteg.vizeromu.ParentClasses.Box2dWorld.WorldActorGroup;
@@ -34,9 +37,9 @@ public class Fuggvenyek {
                 WorldActorGroup vizcsepp2 = new Vizcsepp(world);
                 if(vizcsepp2 == null) return;
                 vizcsepp2.addToWorld();
-                vizcsepp2.setPosition((float)(Math.random() * stage.getViewport().getWorldWidth()),stage.getViewport().getWorldHeight()+1);
+                vizcsepp2.setPosition((float) (Math.random()*10.3f),stage.getViewport().getWorldHeight()+1);
                 stage.addActor(vizcsepp2);
-                vizcsepp2.setZIndex(5);
+                vizcsepp2.setZIndex(2);
                 pElapsedTime = elapsedTime;
 
             }
@@ -44,14 +47,25 @@ public class Fuggvenyek {
 
         private static void removeVizcsepp(MyStage stage)
         {
-            for (Actor actor : stage.getActors()) {
-                if (actor instanceof Vizcsepp) {
-                    if(actor.getY() < -actor.getHeight())//Ne egyből tűnjön el, legyen egy kis átmenet
-                    {
-                        if(actor == null) return;
-                        ((WorldActorGroup) actor).remove();
+            try {
+                for (Actor actor : stage.getActors()) {
+                    if (actor == null) return;
+                    else {
+                        if (actor instanceof Vizcsepp) {
+                            if (actor.getY() < 3.6)
+                            {
+                                actor.remove();
+                            }
+                        }
                     }
                 }
+            }
+            catch (GdxRuntimeException e) {
+                e.printStackTrace();
+            }
+            catch (NullPointerException e)
+            {
+                e.printStackTrace();
             }
         }
 }
