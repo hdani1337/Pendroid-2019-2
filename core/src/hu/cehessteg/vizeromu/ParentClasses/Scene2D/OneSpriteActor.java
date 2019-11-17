@@ -8,7 +8,7 @@ import hu.cehessteg.vizeromu.ParentClasses.Game.InitableInterface;
  * Created by tuskeb on 2016. 09. 30..
  */
 abstract public class OneSpriteActor extends MyActor implements InitableInterface {
-    protected Sprite sprite;
+    public Sprite sprite;
 
     public OneSpriteActor(Sprite sprite) {
         if (sprite!=null) {

@@ -5,12 +5,14 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyScreen;
+import hu.cehessteg.vizeromu.ParentClasses.Scene2D.OneSpriteActor;
 import hu.cehessteg.vizeromu.Stage.MenuStage;
 
 import static hu.cehessteg.vizeromu.Vizeromu.keparanySzelesvaszonra;
 
 public class MenuScreen extends MyScreen {
     MenuStage menuStage;
+    float alpha = 0;
 
     public MenuScreen(MyGame game) {
         super(game);
@@ -31,6 +33,12 @@ public class MenuScreen extends MyScreen {
     @Override
     public void render(float delta) {
         super.render(delta);
+        if(alpha < 0.99) alpha += 0.02;
+        if (alpha >= 0.99) alpha = 1;
+        for (OneSpriteActor actor : menuStage.getMyActors())
+        {
+            actor.sprite.setAlpha(alpha);
+        }
         menuStage.act(delta);
         menuStage.draw();
     }
