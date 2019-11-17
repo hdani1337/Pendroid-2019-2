@@ -14,16 +14,16 @@ public class KifeleVizcsepp extends WorldActorGroup {
     public KifeleVizcsepp(World world) {
         super(world, ShapeType.Circle, BodyDef.BodyType.DynamicBody, new FixtureDef());
         getFixtureDef().shape = new CircleShape();
-        getFixtureDef().density = 1500.0f; // A vízcsepp tömege
+        getFixtureDef().density = 3000.0f; // A vízcsepp tömege
         getFixtureDef().friction = 0.0f; // Súrlódás
         getFixtureDef().restitution = 0f; // Pattanás
 
         OneSpriteStaticActor water = new OneSpriteStaticActor(Assets.manager.get(Assets.VIZ_TEXTURE));
-        water.setSize(0.2f,0.2f);
+        water.setSize(0.6f,0.6f);
         water.setDebug(false);
 
         addActor(water);
-        setSize(0.2f,0.2f);
+        setSize(0.6f,0.6f);
         setColor(0,0,255,1);
     }
 }

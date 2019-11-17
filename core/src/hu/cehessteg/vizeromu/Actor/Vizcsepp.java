@@ -14,16 +14,16 @@ public class Vizcsepp extends WorldActorGroup {
     public Vizcsepp(World world) {
         super(world, ShapeType.Circle, BodyDef.BodyType.DynamicBody, new FixtureDef());
         getFixtureDef().shape = new CircleShape();
-        getFixtureDef().density = 1000.0f; // A vízcsepp tömege
+        getFixtureDef().density = 2000.0f; // A vízcsepp tömege
         getFixtureDef().friction = 0.0f; // Súrlódás
-        getFixtureDef().restitution = 0.5f; // Pattanás
+        getFixtureDef().restitution = 0.0f; // Pattanás
 
         OneSpriteStaticActor water = new OneSpriteStaticActor(Assets.manager.get(Assets.VIZ_TEXTURE));
-        water.setSize(0.1f,0.1f);
+        water.setSize(0.4f,0.4f);
         water.setDebug(false);
 
         addActor(water);
-        setSize(0.1f,0.1f);
+        setSize(0.4f,0.4f);
         setColor(0,0,255,1);
     }
 }

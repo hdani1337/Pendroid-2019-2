@@ -32,6 +32,7 @@ public class Matek {
     int sec = 0;
     boolean eso = false;
     boolean volteso = false;
+    boolean gameover = false;
     Kiomlonyilas[] nyilasok = new Kiomlonyilas[5];
     int openek = 0; // mennyi van nyitva
 
@@ -59,7 +60,7 @@ public class Matek {
             else {
                 if (rnd.nextInt(2) == 1) { eso = false; }}} //eso elmegy 50% eséllyel.
         else {
-            if (sec == 0 && rnd.nextInt(100) == 13) { eso = false; } //eso megered 1% eséllyel.
+            if (sec == 0 && rnd.nextInt(100) <= 10) { eso = false; } //eso megered 10% eséllyel.
         }
         opencounter();
         vizmennyiseg += beviz;
@@ -79,7 +80,7 @@ public class Matek {
         }
 
         //gameover trigger
-        if (vizmennyiseg <= minviz || vizmennyiseg >= maxviz) {}//gameover trigger
+        if (vizmennyiseg <= minviz || vizmennyiseg >= maxviz) { gameover = true; }//gameover trigger
     }
 
     public boolean isVolteso() {
@@ -96,6 +97,26 @@ public class Matek {
 
     public Kiomlonyilas[] getNyilasok() {
         return nyilasok;
+    }
+
+    public boolean isGameover() {
+        return gameover;
+    }
+
+    public String getHour()
+    {
+        String s = "";
+
+        if (ora < 10) s += "0" + ora + ":";
+        else s += ora + ":";
+
+        if (perc < 10) s += "0" + perc + ":";
+        else s += perc + ":";
+
+        if (sec < 10) s += "0" + sec;
+        else s += sec;
+
+        return s;
     }
 }
 

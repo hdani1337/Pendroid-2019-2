@@ -7,13 +7,13 @@ import static hu.cehessteg.vizeromu.Stage.GameStage.matek;
 public class Viz extends OneSpriteStaticActor {
     public Viz() {
         super(Assets.manager.get(Assets.VIZ));
-        setWidth(Assets.manager.get(Assets.GAT).getWidth()/80.0f);
+        setWidth(Assets.manager.get(Assets.GAT).getWidth()/20.0f);
         setDebug(false);
     }
 
     @Override
     public void act(float delta) {
         super.act(delta);
-        if(getHeight() != (6.0f/matek.getMaxviz())*matek.getVizmennyiseg()) setHeight((6.0f/matek.getMaxviz())*matek.getVizmennyiseg());
+        if(getHeight() != (24.0f/matek.getMaxviz())*matek.getVizmennyiseg()) setHeight((24.0f/matek.getMaxviz())*matek.getVizmennyiseg());
     }
 }

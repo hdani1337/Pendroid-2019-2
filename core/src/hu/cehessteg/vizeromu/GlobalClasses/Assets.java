@@ -32,7 +32,16 @@ public class Assets {
 		fontParameter.fontParameters.characters = CHARS;
 		fontParameter.fontParameters.color = Color.WHITE;
 	}
-	public static final AssetDescriptor<BitmapFont> ALEGREYAREGULAR_FONT = new AssetDescriptor<BitmapFont>(fontParameter.fontFileName, BitmapFont.class, fontParameter);
+	public static final AssetDescriptor<BitmapFont> CALIBRI_FONT = new AssetDescriptor<BitmapFont>(fontParameter.fontFileName, BitmapFont.class, fontParameter);
+
+    static final FreetypeFontLoader.FreeTypeFontLoaderParameter fontParameter2 = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
+    static {
+        fontParameter2.fontFileName = "fonts/consolas.ttf";
+        fontParameter2.fontParameters.size = 50;
+        fontParameter2.fontParameters.characters = CHARS;
+        fontParameter2.fontParameters.color = Color.WHITE;
+    }
+    public static final AssetDescriptor<BitmapFont> CONSOLAS_FONT = new AssetDescriptor<BitmapFont>(fontParameter2.fontFileName, BitmapFont.class, fontParameter2);
 
     public static final AssetDescriptor<Texture> BLUE_TEXTURE = new AssetDescriptor<Texture>("colors/blue.png", Texture.class);
     public static final AssetDescriptor<Texture> GREEN_TEXTURE = new AssetDescriptor<Texture>("colors/green.png", Texture.class);
@@ -67,7 +76,8 @@ public class Assets {
 
 		manager.load(WALLPAPER_TEXTURE);
 
-		manager.load(ALEGREYAREGULAR_FONT);
+		manager.load(CALIBRI_FONT);
+		manager.load(CONSOLAS_FONT);
 
         manager.load(BLUE_TEXTURE);
         manager.load(GREEN_TEXTURE);

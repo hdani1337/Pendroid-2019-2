@@ -7,7 +7,7 @@ public class GatAlja extends OneSpriteStaticActor {
     public GatAlja() {
         super(Assets.manager.get(Assets.GAT_ALJA));
         setDebug(false);
-        setSize(getWidth()/80.0f,getHeight()/80.0f);
+        setSize(getWidth()/20.0f,getHeight()/20.0f);
         //Ő azért kell, hogy a gát mögött és a hegyek előtt legyenek a vízcseppek
     }
 }

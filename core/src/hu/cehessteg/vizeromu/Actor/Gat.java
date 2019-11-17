@@ -7,7 +7,7 @@ public class Gat extends OneSpriteStaticActor {
     public Gat() {
         super(Assets.manager.get(Assets.GAT));
         setPosition(0,0);
-        setSize(getWidth()/80,getHeight()/80);
+        setSize(getWidth()/20,getHeight()/20);
         setDebug(false);
     }
 }

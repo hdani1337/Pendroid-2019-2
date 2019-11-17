@@ -1,28 +1,26 @@
 package hu.cehessteg.vizeromu.Screen;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyScreen;
-import hu.cehessteg.vizeromu.Stage.GameStage;
+import hu.cehessteg.vizeromu.Stage.GameOverStage;
 
 import static hu.cehessteg.vizeromu.Vizeromu.keparanySzelesvaszonra;
 
-public class GameScreen extends MyScreen {
-    GameStage gameStage;
+public class GameOverScreen extends MyScreen {
+    GameOverStage gameOverStage;
 
-    public GameScreen(MyGame game) {
+    public GameOverScreen(MyGame game) {
         super(game);
-        gameStage = new GameStage(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20.0f),spriteBatch,game);
+        gameOverStage = new GameOverStage(new FitViewport(keparanySzelesvaszonra(),720),spriteBatch,game);
     }
 
     @Override
     public void show() {
         super.show();
-        Gdx.input.setInputProcessor(gameStage);
+        Gdx.input.setInputProcessor(gameOverStage);
     }
 
     @Override
@@ -33,7 +31,7 @@ public class GameScreen extends MyScreen {
     @Override
     public void render(float delta) {
         super.render(delta);
-        gameStage.act(delta);
-        gameStage.draw();
+        gameOverStage.draw();
+        gameOverStage.act(delta);
     }
 }
