@@ -55,6 +55,6 @@ public class GameStage extends MyStage {
         super.act(delta);
         world.step(delta,10,10);
         matek.step();
-        vizcseppThread(world,this,elapsedTime,matek);
+        vizcseppThread(world,this,matek,elapsedTime);
     }
 }

@@ -93,5 +93,9 @@ public class Matek {
     public int getMaxviz() {
         return maxviz;
     }
+
+    public Kiomlonyilas[] getNyilasok() {
+        return nyilasok;
+    }
 }
 

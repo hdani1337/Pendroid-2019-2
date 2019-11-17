@@ -14,6 +14,6 @@ public class Viz extends OneSpriteStaticActor {
     @Override
     public void act(float delta) {
         super.act(delta);
-        setHeight((6.0f/matek.getMaxviz())*matek.getVizmennyiseg());
+        if(getHeight() != (6.0f/matek.getMaxviz())*matek.getVizmennyiseg()) setHeight((6.0f/matek.getMaxviz())*matek.getVizmennyiseg());
     }
 }
