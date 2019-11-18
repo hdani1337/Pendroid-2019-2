@@ -64,4 +64,14 @@ abstract public class OneSpriteActor extends MyActor implements InitableInterfac
         super.originChanged();
         sprite.setOrigin(getOriginX(), getOriginY());
     }
+
+    @Override
+    public void setColor(float r, float g, float b, float a) {
+        super.setColor(r, g, b, a);
+        sprite.setColor(r,g,b,a);
+    }
+
+    public void setAlpha(float a){
+        sprite.setAlpha(a);
+    }
 }
