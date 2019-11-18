@@ -26,51 +26,39 @@ public class Fuggvenyek {
         pElapsed4 = 0;
     }
 
-    public static void esoThread(final World esoWorld, final World kifolyoWorld, final MyStage stage, final Matek matek, final float elapsedTime)
-    {
-        Runnable eso = new Runnable() {
-            @Override
-            public void run() {
-                addVizcsepp(esoWorld, stage, matek, elapsedTime);
-                removeVizcsepp(stage,matek);
-            }
-        };
+    static float deltaTime;
 
+    public static void worldThread(float delta, final World kifolyoWorld, final World esoWorld) {
+        deltaTime = delta;
         Runnable kifolyas = new Runnable() {
             @Override
             public void run() {
-                addKifeleVizcsepp(kifolyoWorld, stage, matek, elapsedTime);
-                removeKifeleVizcsepp(stage);
+                kifolyoWorld.step(deltaTime, 10, 10);
             }
         };
-
-        if (Vizeromu.getMultitasking()) {
-            try {
-                kifolyas.run();
-                eso.run();
-
-            }catch (ArrayIndexOutOfBoundsException e)
-            {
-                e.printStackTrace();
-            }catch (Exception e)
-            {
-                e.printStackTrace();
+        Runnable eso = new Runnable() {
+            @Override
+            public void run() {
+                esoWorld.step(deltaTime,10,10);
             }
-        }
-        else
-        {
-            addVizcsepp(esoWorld, stage, matek, elapsedTime);
-            addKifeleVizcsepp(kifolyoWorld, stage, matek, elapsedTime);
-            removeVizcsepp(stage,matek);
-            removeKifeleVizcsepp(stage);
-        }
+        };
+        new Thread(kifolyas).run();
+        new Thread(eso).run();
+    }
+
+    public static void vizcseppek(final World esoWorld, final World kifolyoWorld, final MyStage stage, final Matek matek, final float elapsedTime)
+    {
+        addVizcsepp(esoWorld, stage, matek, elapsedTime);
+        addKifeleVizcsepp(kifolyoWorld, stage, matek, elapsedTime);
+        removeVizcsepp(stage,matek);
+        removeKifeleVizcsepp(stage);
     }
 
         static float pElapsedEso = 0;
 
-        private static void addVizcsepp(World world, MyStage stage, Matek matek, float elapsedTime)
+        private static synchronized void addVizcsepp(World world, MyStage stage, Matek matek, float elapsedTime)
         {
-            if (elapsedTime > pElapsedEso + 0.065 && matek.isVolteso()) {
+            if (elapsedTime > pElapsedEso + 0.065/* && matek.isVolteso()*/) {
                 WorldActorGroup eso = new Vizcsepp(world);
                 if(eso == null) return;
                 eso.addToWorld();
@@ -82,7 +70,7 @@ public class Fuggvenyek {
             }
         }
 
-        private static void removeVizcsepp(MyStage stage, Matek matek)
+        private static synchronized void removeVizcsepp(MyStage stage, Matek matek)
         {
             try {
                 for (Actor esocsepp : stage.getActors()) {
@@ -107,7 +95,7 @@ public class Fuggvenyek {
             }
         }
 
-        private static void removeKifeleVizcsepp(MyStage stage)
+        private static synchronized void removeKifeleVizcsepp(MyStage stage)
         {
             try {
                 for (Actor kiesoVizcsepp : stage.getActors()) {
@@ -144,7 +132,7 @@ public class Fuggvenyek {
         static float pElapsed3 = 0;
         static float pElapsed4 = 0;
 
-        private static void addKifeleVizcsepp(World world, MyStage stage, Matek matek, float elapsedTime)
+        private static synchronized void addKifeleVizcsepp(World world, MyStage stage, Matek matek, float elapsedTime)
         {
            if (matek.getNyilasok()[0].isOpen && elapsedTime > pElapsed0 + 0.05f) {
                 WorldActorGroup kifeleViz0 = new KifeleVizcsepp(world);

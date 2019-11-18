@@ -41,6 +41,7 @@ public class Matek {
     public Matek() {
         for (int i = 0; i < 5; i++) {
             Kiomlonyilas res = new Kiomlonyilas();
+            res.setOpen(true);
             nyilasok[i] = res;
         }
     }

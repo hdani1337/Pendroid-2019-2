@@ -37,7 +37,7 @@ public class MenuScreen extends MyScreen {
         if (alpha >= 0.99) alpha = 1;
         for (OneSpriteActor actor : menuStage.getMyActors())
         {
-            actor.sprite.setAlpha(alpha);
+            actor.setAlpha(alpha);
         }
         menuStage.act(delta);
         menuStage.draw();
