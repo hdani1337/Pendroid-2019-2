@@ -27,9 +27,7 @@ public class Matek {
     int maxviz = 1100000; //gameover ha nagyobb
     int beviz = 100; //befolyó víz
     int kiviz = 40; //azért ne legyen pont osztható a bevizzel(annyira azért ne legyen könnyű)
-    int ora = 8;
-    int perc = 0;
-    int sec = 0;
+    float time;
     boolean eso = false;
     boolean volteso = false;
     boolean gameover = false;
@@ -54,31 +52,21 @@ public class Matek {
         openek = a;
     }
 
-    public void step() {
+    public void step(float delta) {
         if (eso) {
             vizmennyiseg += 50;
             if (!volteso) { volteso = true; } //animation trigger
             else {
                 if (rnd.nextInt(2) == 1) { eso = false; }}} //eso elmegy 50% eséllyel.
         else {
-            if (sec == 0 && rnd.nextInt(100) <= 10) { eso = false; } //eso megered 10% eséllyel.
+            if (getS()== 0 && rnd.nextInt(100) <= 10) { eso = false; } //eso megered 10% eséllyel.
         }
         opencounter();
         vizmennyiseg += beviz;
         vizmennyiseg -= kiviz * openek;
         //ido
-        sec++;
-        if (sec == 60) {
-            sec = 0;
-            perc++;
-        }
-        if (perc == 60) {
-            perc = 0;
-            ora++;
-        }
-        if (ora == 24) {
-            ora = 0;
-        }
+        time += delta;
+
 
         //gameover trigger
         if (vizmennyiseg <= minviz || vizmennyiseg >= maxviz) { gameover = true; }//gameover trigger
@@ -104,20 +92,30 @@ public class Matek {
         return gameover;
     }
 
-    public String getHour()
+    public String getTimeToString()
     {
-        String s = "";
+        return "" + getH() + ":" + getM() + ":" + getS() + "." + getMs();
+    }
 
-        if (ora < 10) s += "0" + ora + ":";
-        else s += ora + ":";
+    public float getTime()
+    {
+        return time;
+    }
 
-        if (perc < 10) s += "0" + perc + ":";
-        else s += perc + ":";
+    int getS(){
+        return ((int)time) % 60;
+    }
 
-        if (sec < 10) s += "0" + sec;
-        else s += sec;
+    int getH(){
+        return (int)time / 3600;
+    }
 
-        return s;
+    int getM(){
+        return ((int)time / 60) % 60;
+    }
+
+    int getMs(){
+        return ((int)(time * 1000)) % 1000;
     }
 }
 

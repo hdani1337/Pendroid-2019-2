@@ -14,6 +14,8 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
 
+import hu.cehessteg.vizeromu.Actor.WeatherForeGround;
+
 
 public class Assets {
 	// https://github.com/libgdx/libgdx/wiki/Managing-your-assets
@@ -97,6 +99,8 @@ public class Assets {
         manager.load(GOMB_HATTER2);
         manager.load(GAT);
         manager.load(GAT_ALJA);
+
+        WeatherForeGround.load(manager);
 	}
 
     public static void afterLoaded() {
