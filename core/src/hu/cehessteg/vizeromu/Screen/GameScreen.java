@@ -42,7 +42,7 @@ public class GameScreen extends MyScreen {
     public void render(float delta) {
         super.render(delta);
         gameStage.act(delta);
-        weatherForeGround.setTime(matek.getTime());
+        weatherForeGround.setTime(matek.getH() * 60 + matek.getM());
         weatherForeGround.setRain(matek.getRain());
         weatherForeGround.act(delta);
         gameStage.draw();

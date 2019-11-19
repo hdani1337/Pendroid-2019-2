@@ -11,9 +11,9 @@ import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MultiSpriteActor;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyStage;
 
 public abstract class WeatherAbstract extends MyStage {
-    private final static int sunset = 6 * 3600;
-    private final static int sundown = 21 * 3600;
-    private final static int dayNigthGradientSec = 6400;
+    private final static int sunset = 6*60;
+    private final static int sundown = 21*60;
+    private final static float dayNigthGradientSec = 6400/36.0f;
 
     public WeatherAbstract(Viewport viewport, Batch batch, MyGame game) {
         super(viewport, batch, game);
@@ -21,21 +21,20 @@ public abstract class WeatherAbstract extends MyStage {
 
     //0 és 1 közt ad egy értéket a nap fényerejével arányosan.
     public float getLight(float time){
-        int daysec = (int)time % 86400;
-        if (daysec < sunset){
+        if (time < sunset){
             return 0f;
         }
-        if (daysec >=sunset && daysec<=sunset + dayNigthGradientSec){
-            return ((float)(daysec - sunset)) / (float)dayNigthGradientSec;
+        if (time >=sunset && time<=sunset + dayNigthGradientSec){
+            return ((time - sunset)) / dayNigthGradientSec;
         }
 
-        if (daysec>sunset + dayNigthGradientSec && daysec <= sundown){
+        if (time>sunset + dayNigthGradientSec && time <= sundown){
             return 1f;
         }
-        if (daysec> sundown && daysec <= sundown + dayNigthGradientSec){
-            return 1f - ((float)(daysec - sundown)) / (float)dayNigthGradientSec;
+        if (time> sundown && time <= sundown + dayNigthGradientSec){
+            return 1f - ((time - sundown)) / dayNigthGradientSec;
         }
-        if (daysec > sundown + dayNigthGradientSec){
+        if (time > sundown + dayNigthGradientSec){
             return 0f;
         }
         return 0f;

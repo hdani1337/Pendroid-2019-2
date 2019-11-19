@@ -32,6 +32,7 @@ public class WeatherForeGround extends WeatherAbstract {
         addActor(night = new OneSpriteStaticActor(WeatherForeGround.manager.get(NIGHT_TEXTURE)));
         night.setSize(getWidth(), getHeight());
         night.setZIndex(100);
+        night.setDebug(false);
     }
 
     @Override
@@ -57,6 +58,7 @@ public class WeatherForeGround extends WeatherAbstract {
             }
             sprite.setAlpha(random.nextFloat() * 3f / 2f);
             speed = random.nextFloat() * 10f + 3f;
+            setDebug(false);
         }
 
         @Override
@@ -110,9 +112,6 @@ public class WeatherForeGround extends WeatherAbstract {
                 fog.setPosition(-getWidth(), 0);
                 fog.setWidth(getWidth());
                 fog.setHeight(getHeight());
-                //System.out.println("Köd");
-                System.out.println(getWidth());
-                System.out.println(getHeight());
                 lastFogTime = elapsedTime;
             }
         }

@@ -73,7 +73,7 @@ public class LoadingScreen extends MyScreen {
             if(pElapsedTime > 5.5) alpha2nov = false;
         }
 
-        if(pElapsedTime >1 && Assets.manager.update()) game.setScreen(new GameScreen(game));
+        if(pElapsedTime > 6 && Assets.manager.update()) game.setScreen(new GameScreen(game));
 
         logoActor.draw(spriteBatch,1);
         csanyActor.draw(spriteBatch,1);
