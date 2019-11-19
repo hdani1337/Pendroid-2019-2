@@ -9,8 +9,10 @@ import hu.cehessteg.vizeromu.Actor.Gat;
 import hu.cehessteg.vizeromu.Actor.GatAlja;
 import hu.cehessteg.vizeromu.Actor.Viz;
 import hu.cehessteg.vizeromu.GlobalClasses.Matek;
+import hu.cehessteg.vizeromu.GlobalClasses.Styles;
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyStage;
+import hu.cehessteg.vizeromu.ParentClasses.UI.MyLabel;
 import hu.cehessteg.vizeromu.Screen.GameOverScreen;
 
 import static hu.cehessteg.vizeromu.GlobalClasses.Fuggvenyek.fuggvenyekNull;
@@ -61,10 +63,8 @@ public class GameStage extends MyStage {
     public void act(float delta) {
         super.act(delta);
         worldThread(delta,kifolyoWorld,esoWorld);
-        matek.step(delta*3600);
+        matek.step();
         vizcseppek(esoWorld,kifolyoWorld,this,matek,elapsedTime);
         if(matek.isGameover()) game.setScreen(new GameOverScreen(game));
-        //A MyLabellel gondok vannak a túl kicsi viewport miatt
-        //System.out.println(matek.getTimeToString());
     }
 }

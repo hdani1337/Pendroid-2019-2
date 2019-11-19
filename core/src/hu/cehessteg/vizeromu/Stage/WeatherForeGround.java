@@ -33,6 +33,7 @@ public class WeatherForeGround extends WeatherAbstract {
         addActor(night = new OneSpriteStaticActor(WeatherForeGround.manager.get(NIGHT_TEXTURE)));
         night.setSize(getWidth(), getHeight());
         night.setZIndex(100);
+        night.setDebug(false);
     }
 
     @Override
@@ -55,6 +56,7 @@ public class WeatherForeGround extends WeatherAbstract {
             }
             sprite.setAlpha(random.nextFloat() /2f);
             speed = random.nextFloat() * 10f + 3f;
+            setDebug(false);
         }
 
         @Override
