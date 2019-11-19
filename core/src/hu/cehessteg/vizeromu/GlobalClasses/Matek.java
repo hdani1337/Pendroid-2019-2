@@ -28,6 +28,8 @@ public class Matek {
     int beviz = 100; //befolyó víz
     int kiviz = 40; //azért ne legyen pont osztható a bevizzel(annyira azért ne legyen könnyű)
     float time;
+
+
     boolean eso = false;
     boolean volteso = false;
     boolean gameover = false;
@@ -102,6 +104,14 @@ public class Matek {
         return time;
     }
 
+    /**
+     * TODO: Az eső mértékét kell visszaadni 0f és 1f között.
+     * @return
+     */
+    public float getRain(){
+        return 0.7f;
+    }
+
     int getS(){
         return ((int)time) % 60;
     }
@@ -117,5 +127,10 @@ public class Matek {
     int getMs(){
         return ((int)(time * 1000)) % 1000;
     }
+
+    public boolean isEso() {
+        return eso;
+    }
+
 }
 

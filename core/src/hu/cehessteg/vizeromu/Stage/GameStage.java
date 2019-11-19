@@ -8,7 +8,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import hu.cehessteg.vizeromu.Actor.Gat;
 import hu.cehessteg.vizeromu.Actor.GatAlja;
 import hu.cehessteg.vizeromu.Actor.Viz;
-import hu.cehessteg.vizeromu.Actor.WeatherForeGround;
 import hu.cehessteg.vizeromu.GlobalClasses.Matek;
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyStage;
@@ -25,7 +24,6 @@ public class GameStage extends MyStage {
     Gat gat;
     GatAlja gatAlja;
     Viz viz;
-    WeatherForeGround weatherForeGround;
 
     public GameStage(Viewport viewport, Batch batch, MyGame game) {
         super(viewport, batch, game);
@@ -42,7 +40,6 @@ public class GameStage extends MyStage {
         gat = new Gat();
         gatAlja = new GatAlja();
         viz = new Viz();
-        weatherForeGround = new WeatherForeGround(getWidth(), getHeight());
     }
 
     void addActors()
@@ -53,8 +50,6 @@ public class GameStage extends MyStage {
         gat.setZIndex(1);
         viz.setZIndex(0);
         gatAlja.setZIndex(3);
-        addActor(weatherForeGround);
-        weatherForeGround.setZIndex(Integer.MAX_VALUE);
     }
 
     @Override
@@ -70,7 +65,6 @@ public class GameStage extends MyStage {
         vizcseppek(esoWorld,kifolyoWorld,this,matek,elapsedTime);
         if(matek.isGameover()) game.setScreen(new GameOverScreen(game));
         //A MyLabellel gondok vannak a túl kicsi viewport miatt
-        weatherForeGround.setTime(matek.getTime());
-        System.out.println(matek.getTimeToString());
+        //System.out.println(matek.getTimeToString());
     }
 }
