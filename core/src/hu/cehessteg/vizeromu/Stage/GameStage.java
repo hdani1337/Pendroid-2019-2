@@ -26,7 +26,6 @@ public class GameStage extends MyStage {
     Gat gat;
     GatAlja gatAlja;
     Viz viz;
-    MyLabel myLabel = new MyLabel("08:00:00", Styles.getConsolasLabelStyle());
 
     public GameStage(Viewport viewport, Batch batch, MyGame game) {
         super(viewport, batch, game);
@@ -53,8 +52,6 @@ public class GameStage extends MyStage {
         gat.setZIndex(1);
         viz.setZIndex(0);
         gatAlja.setZIndex(3);
-        myLabel.setFontScale(0.12f);
-        addActor(myLabel);
     }
 
     @Override
@@ -69,8 +66,5 @@ public class GameStage extends MyStage {
         matek.step();
         vizcseppek(esoWorld,kifolyoWorld,this,matek,elapsedTime);
         if(matek.isGameover()) game.setScreen(new GameOverScreen(game));
-        myLabel.setText(matek.getTimeToString());
-        //A MyLabellel gondok vannak a túl kicsi viewport miatt
-        //System.out.println(matek.getTimeToString());
     }
 }

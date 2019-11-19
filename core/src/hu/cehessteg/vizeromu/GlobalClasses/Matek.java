@@ -68,15 +68,6 @@ public class Matek {
         vizmennyiseg -= kiviz * openek;
         //ido
         sec++;
-        sec++;
-        sec++;
-        sec++;
-        sec++;
-        sec++;
-        sec++;
-        sec++;
-        sec++;
-        sec++;
         if (sec == 60) {
             sec = 0;
             perc++;
