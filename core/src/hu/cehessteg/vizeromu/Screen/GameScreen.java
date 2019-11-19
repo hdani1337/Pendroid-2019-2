@@ -12,6 +12,7 @@ import java.util.Vector;
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyScreen;
 import hu.cehessteg.vizeromu.Stage.GameStage;
+import hu.cehessteg.vizeromu.Stage.WeatherBackground;
 import hu.cehessteg.vizeromu.Stage.WeatherForeGround;
 
 import static hu.cehessteg.vizeromu.Stage.GameStage.matek;
@@ -20,11 +21,13 @@ import static hu.cehessteg.vizeromu.Vizeromu.keparanySzelesvaszonra;
 public class GameScreen extends MyScreen {
     GameStage gameStage;
     WeatherForeGround weatherForeGround;
+    WeatherBackground weatherBackground;
 
     public GameScreen(MyGame game) {
         super(game);
         gameStage = new GameStage(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20.0f),spriteBatch,game);
         weatherForeGround = new WeatherForeGround(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20.0f),spriteBatch,game);
+        weatherBackground = new WeatherBackground(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20.0f),spriteBatch,game);
     }
 
     @Override
@@ -42,9 +45,16 @@ public class GameScreen extends MyScreen {
     public void render(float delta) {
         super.render(delta);
         gameStage.act(delta);
+
+        weatherBackground.setTime(matek.getTime());
+        weatherBackground.setRain(matek.getRain());
+        weatherBackground.act(delta);
+
         weatherForeGround.setTime(matek.getTime());
         weatherForeGround.setRain(matek.getRain());
         weatherForeGround.act(delta);
+
+        weatherBackground.draw();
         gameStage.draw();
         weatherForeGround.draw();
     }

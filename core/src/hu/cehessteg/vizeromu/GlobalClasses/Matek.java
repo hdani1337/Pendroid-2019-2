@@ -109,7 +109,9 @@ public class Matek {
      * @return
      */
     public float getRain(){
-        return 0.7f;
+        //return 0.7f;
+        float n = (float)Math.sin(time / 40000);
+        return n < 0 ? 0 : n;
     }
 
     int getS(){

@@ -12,17 +12,18 @@ import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.OneSpriteStaticActor;
 
 public class WeatherForeGround extends WeatherAbstract {
+    private static AssetManager manager = null;
+
     private static Random random = new Random();
 
     private static final AssetDescriptor<Texture> NIGHT_TEXTURE = new AssetDescriptor<Texture>("weather/night.png", Texture.class);
     private static final AssetDescriptor<Texture> FOG3_TEXTURE = new AssetDescriptor<Texture>("weather/fog3.png", Texture.class);
     private static final AssetDescriptor<Texture> FOG2_TEXTURE = new AssetDescriptor<Texture>("weather/fog2.png", Texture.class);
     private static final AssetDescriptor<Texture> FOG1_TEXTURE = new AssetDescriptor<Texture>("weather/fog1.png", Texture.class);
+
     private OneSpriteStaticActor night;
-    private static AssetManager manager = null;
-    private final static float nightAlpha = 0.90f;
-    private float rain = 1f;
-    private float time = 1;
+    private final static float nightAlpha = 0.85f;
+
     private float elapsedTime = 0;
     private float lastFogTime = 0;
 
@@ -42,7 +43,7 @@ public class WeatherForeGround extends WeatherAbstract {
     private class Fog extends OneSpriteStaticActor{
         float speed;
         public Fog() {
-            super(WeatherForeGround.manager.get(NIGHT_TEXTURE));
+            super(WeatherForeGround.manager.get(FOG1_TEXTURE));
             setDebug(false);
             switch (random.nextInt(3)){
                 case 0:
@@ -51,11 +52,8 @@ public class WeatherForeGround extends WeatherAbstract {
                 case 1:
                     sprite.setTexture(WeatherForeGround.manager.get(FOG2_TEXTURE));
                     break;
-                case 2:
-                    sprite.setTexture(WeatherForeGround.manager.get(FOG1_TEXTURE));
-                    break;
             }
-            sprite.setAlpha(random.nextFloat() * 3f / 2f);
+            sprite.setAlpha(random.nextFloat() /2f);
             speed = random.nextFloat() * 10f + 3f;
         }
 
@@ -63,28 +61,14 @@ public class WeatherForeGround extends WeatherAbstract {
         public void act(float delta) {
             super.act(delta);
             setX(getX() + speed * delta);
-        /*    if (!isInFrustum(1.2f)){
+            if (!isInFrustum(1.2f)){
                 getStage().getActors().removeValue(this, true);
-            }*/
+            }
         }
     }
 
 
-    /**
-     * Bemenete az idő másodpercben
-     * @param time
-     */
-    public void setTime(float time){
-        this.time = time;
-    }
 
-    /**
-     * Bemenete 0 és 1 között az eső mennyisége
-     * @param rain
-     */
-    public void setRain(float rain){
-        this.rain = rain;
-    }
 
 
 
@@ -110,9 +94,6 @@ public class WeatherForeGround extends WeatherAbstract {
                 fog.setPosition(-getWidth(), 0);
                 fog.setWidth(getWidth());
                 fog.setHeight(getHeight());
-                //System.out.println("Köd");
-                System.out.println(getWidth());
-                System.out.println(getHeight());
                 lastFogTime = elapsedTime;
             }
         }

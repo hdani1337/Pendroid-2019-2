@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
 
+import hu.cehessteg.vizeromu.Stage.WeatherBackground;
 import hu.cehessteg.vizeromu.Stage.WeatherForeGround;
 
 
@@ -99,6 +100,7 @@ public class Assets {
         manager.load(GAT_ALJA);
 
         WeatherForeGround.load(manager);
+        WeatherBackground.load(manager);
 	}
 
     public static void afterLoaded() {
