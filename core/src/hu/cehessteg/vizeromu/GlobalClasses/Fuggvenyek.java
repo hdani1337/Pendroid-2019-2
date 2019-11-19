@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 import java.util.Random;
 
 import hu.cehessteg.vizeromu.Actor.KifeleVizcsepp;
+import hu.cehessteg.vizeromu.Actor.Viz;
 import hu.cehessteg.vizeromu.Actor.Vizcsepp;
 import hu.cehessteg.vizeromu.ParentClasses.Box2dWorld.WorldActorGroup;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyStage;
@@ -46,40 +47,38 @@ public class Fuggvenyek {
         new Thread(eso).run();
     }
 
-    public static void vizcseppek(final World esoWorld, final World kifolyoWorld, final MyStage stage, final Matek matek, final float elapsedTime)
+    public static void vizcseppek(final World esoWorld, final World kifolyoWorld, final MyStage stage, final Matek matek, final float elapsedTime, final Viz viz, final Viz viz2)
     {
-        addVizcsepp(esoWorld, stage, matek, elapsedTime);
+        addVizcsepp(esoWorld, stage, matek, elapsedTime, viz);
         addKifeleVizcsepp(kifolyoWorld, stage, matek, elapsedTime);
-        removeVizcsepp(stage,matek);
-        removeKifeleVizcsepp(stage);
+        removeVizcsepp(stage,viz);
+        removeKifeleVizcsepp(stage,viz2);
     }
 
         static float pElapsedEso = 0;
 
-        private static synchronized void addVizcsepp(World world, MyStage stage, Matek matek, float elapsedTime)
+        private static synchronized void addVizcsepp(World world, MyStage stage, Matek matek, float elapsedTime, Viz viz)
         {
             if (elapsedTime > pElapsedEso + 0.065/* && matek.isVolteso()*/) {
                 WorldActorGroup eso = new Vizcsepp(world);
                 if(eso == null) return;
                 eso.addToWorld();
-                eso.setPosition((float) (Math.random()*41.2f)-6.2f,stage.getViewport().getWorldHeight()+2f);
-                eso.getBody().applyForceToCenter(new Vector2(51200,-180000),false);
+                eso.setPosition((float)(Math.random()*(viz.getX()+viz.getWidth()-6)-5.25),stage.getViewport().getWorldHeight()+2f);
+                eso.getBody().applyForceToCenter(new Vector2(64000,-180000),false);
                 stage.addActor(eso);
-                eso.setZIndex(2);
+                eso.setZIndex(3);
                 pElapsedEso = elapsedTime;
             }
         }
 
-        private static synchronized void removeVizcsepp(MyStage stage, Matek matek)
+        private static synchronized void removeVizcsepp(MyStage stage, Viz viz)
         {
             try {
                 for (Actor esocsepp : stage.getActors()) {
                     if (esocsepp == null) return;
                     else {
                         if (esocsepp instanceof Vizcsepp) {
-                            if (esocsepp.getY() < (24.0f/matek.getMaxviz())*matek.getVizmennyiseg()-esocsepp.getHeight()*2)
-                            {
-                                esocsepp.setVisible(false);
+                            if (esocsepp.getY() < viz.getY() + Math.random()*(viz.getHeight()*0.7)) {
                                 esocsepp.remove();
                             }
                         }
@@ -95,21 +94,21 @@ public class Fuggvenyek {
             }
         }
 
-        private static synchronized void removeKifeleVizcsepp(MyStage stage)
+        private static synchronized void removeKifeleVizcsepp(MyStage stage, Viz viz2)
         {
             try {
                 for (Actor kiesoVizcsepp : stage.getActors()) {
                     if (kiesoVizcsepp == null) return;
                     else {
                         if (kiesoVizcsepp instanceof KifeleVizcsepp) {
-                            if(((24.0f/matek.getMaxviz())*matek.getVizmennyiseg()) > kiesoVizcsepp.getX()*0.265f) {
-                                if (kiesoVizcsepp.getY() < kiesoVizcsepp.getX() * 0.265f) {
+                            if(kiesoVizcsepp.getX() >= viz2.getX()) {
+                                if (kiesoVizcsepp.getY() < viz2.getY() + Math.random()*(viz2.getHeight()*0.8)) {
                                     kiesoVizcsepp.remove();
                                 }
                             }
                             else
                             {
-                                if (kiesoVizcsepp.getY() < ((24.0f/matek.getMaxviz())*matek.getVizmennyiseg()) - kiesoVizcsepp.getHeight()*1.5f) {
+                                if (kiesoVizcsepp.getY() < -kiesoVizcsepp.getHeight()) {
                                     kiesoVizcsepp.remove();
                                 }
                             }
