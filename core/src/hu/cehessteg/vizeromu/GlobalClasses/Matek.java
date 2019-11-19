@@ -27,9 +27,9 @@ public class Matek {
     int maxviz = 1100000; //gameover ha nagyobb
     int beviz = 100; //befolyó víz
     int kiviz = 40; //azért ne legyen pont osztható a bevizzel(annyira azért ne legyen könnyű)
-    int ora = 8;
-    int perc = 0;
-    int sec = 0;
+    float time;
+
+
     boolean eso = false;
     boolean volteso = false;
     boolean gameover = false;
@@ -54,7 +54,7 @@ public class Matek {
         openek = a;
     }
 
-    public void step() {
+    public void step(float delta) {
         if (eso) {
             vizmennyiseg += 50;
             if (!volteso) { volteso = true; } //animation trigger
@@ -67,18 +67,9 @@ public class Matek {
         vizmennyiseg += beviz;
         vizmennyiseg -= kiviz * openek;
         //ido
-        sec++;
-        if (sec == 60) {
-            sec = 0;
-            perc++;
-        }
-        if (perc == 60) {
-            perc = 0;
-            ora++;
-        }
-        if (ora == 24) {
-            ora = 0;
-        }
+        time += delta;
+
+
         //gameover trigger
         if (vizmennyiseg <= minviz || vizmennyiseg >= maxviz) { gameover = true; }//gameover trigger
     }
@@ -105,16 +96,12 @@ public class Matek {
 
     public String getTimeToString()
     {
-        String s = "";
+        return "" + getH() + ":" + getM() + ":" + getS() + "." + getMs();
+    }
 
-        if (ora < 10) s += "0" + ora + ":";
-        else s += ora + ":";
-        if (perc < 10) s += "0" + perc + ":";
-        else s += perc + ":";
-        if (sec < 10) s += "0" + sec;
-        else s += sec;
-
-        return s;
+    public float getTime()
+    {
+        return time;
     }
 
     /**
@@ -122,25 +109,23 @@ public class Matek {
      * @return
      */
     public float getRain(){
-        //return 0.7f;
-        float n = (float)Math.sin(time / 40000);
-        return n < 0 ? 0 : n;
+        return 0.7f;
     }
 
-    public int getS(){
-        return sec;
+    int getS(){
+        return ((int)time) % 60;
     }
 
-    public int getH(){
-        return ora;
+    int getH(){
+        return (int)time / 3600;
     }
 
-    public int getM(){
-        return perc;
+    int getM(){
+        return ((int)time / 60) % 60;
     }
 
-    public int getMs(){
-        return sec / 1000;
+    int getMs(){
+        return ((int)(time * 1000)) % 1000;
     }
 
     public boolean isEso() {
