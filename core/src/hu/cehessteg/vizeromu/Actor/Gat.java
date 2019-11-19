@@ -6,7 +6,7 @@ import hu.cehessteg.vizeromu.ParentClasses.Scene2D.OneSpriteStaticActor;
 public class Gat extends OneSpriteStaticActor {
     public Gat() {
         super(Assets.manager.get(Assets.GAT));
-        setPosition(0,0);
+        setPosition(-1.5f,-2);
         setSize(getWidth()/20,getHeight()/20);
         setDebug(false);
     }

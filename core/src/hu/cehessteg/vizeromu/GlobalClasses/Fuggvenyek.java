@@ -66,7 +66,7 @@ public class Fuggvenyek {
                 eso.setPosition((float)(Math.random()*(viz.getX()+viz.getWidth()-6)-5.25),stage.getViewport().getWorldHeight()+2f);
                 eso.getBody().applyForceToCenter(new Vector2(64000,-180000),false);
                 stage.addActor(eso);
-                eso.setZIndex(3);
+                eso.setZIndex(5);
                 pElapsedEso = elapsedTime;
             }
         }
@@ -137,7 +137,7 @@ public class Fuggvenyek {
                 WorldActorGroup kifeleViz0 = new KifeleVizcsepp(world);
                 if(kifeleViz0 == null) return;
                 kifeleViz0.addToWorld();
-                kifeleViz0.setPosition((float) (13.6f - Math.random()*2), (float) (10.8f + Math.random()*2));
+                kifeleViz0.setPosition((float) (12.5 - Math.random()*2), (float) (10 + Math.random()*1.7));
                 kifeleViz0.getBody().applyForceToCenter(new Vector2(90000,-125000),false);
                 stage.addActor(kifeleViz0);
                 kifeleViz0.setZIndex(400);
@@ -147,7 +147,7 @@ public class Fuggvenyek {
                 WorldActorGroup kifeleViz1 = new KifeleVizcsepp(world);
                 if(kifeleViz1 == null) return;
                 kifeleViz1.addToWorld();
-                kifeleViz1.setPosition((float) (18.4 - Math.random()*2), (float) (12 + Math.random()*2));
+                kifeleViz1.setPosition((float) (17.5 - Math.random()*2), (float) (11 + Math.random()*2));
                 kifeleViz1.getBody().applyForceToCenter(new Vector2(90000,-125000),false);
                 stage.addActor(kifeleViz1);
                 kifeleViz1.setZIndex(400);
@@ -157,7 +157,7 @@ public class Fuggvenyek {
                 WorldActorGroup kifeleViz2 = new KifeleVizcsepp(world);
                 if(kifeleViz2 == null) return;
                 kifeleViz2.addToWorld();
-                kifeleViz2.setPosition((float) (23.2 - Math.random()*2), (float) (12.8f + Math.random()*2));
+                kifeleViz2.setPosition((float) (23.2 - Math.random()*2), (float) (12.1f + Math.random()*2));
                 kifeleViz2.getBody().applyForceToCenter(new Vector2(90000,-125000),false);
                 stage.addActor(kifeleViz2);
                 kifeleViz2.setZIndex(400);
@@ -167,7 +167,7 @@ public class Fuggvenyek {
                 WorldActorGroup kifeleViz3 = new KifeleVizcsepp(world);
                 if(kifeleViz3 == null) return;
                 kifeleViz3.addToWorld();
-                kifeleViz3.setPosition((float) (28.6 - Math.random()*2), (float) (13.4f + Math.random()*2));
+                kifeleViz3.setPosition((float) (28.3 - Math.random()*2), (float) (12.7f + Math.random()*2));
                 kifeleViz3.getBody().applyForceToCenter(new Vector2(90000,-125000),false);
                 stage.addActor(kifeleViz3);
                 kifeleViz3.setZIndex(400);
@@ -177,7 +177,7 @@ public class Fuggvenyek {
                 WorldActorGroup kifeleViz4 = new KifeleVizcsepp(world);
                 if(kifeleViz4 == null) return;
                 kifeleViz4.addToWorld();
-                kifeleViz4.setPosition((float) (33.2 - Math.random()*2), (float) (13.8f + Math.random()*2));
+                kifeleViz4.setPosition((float) (33.7 - Math.random()*2), (float) (13f + Math.random()*2));
                 kifeleViz4.getBody().applyForceToCenter(new Vector2(90000,-125000),false);
                 stage.addActor(kifeleViz4);
                 kifeleViz4.setZIndex(400);

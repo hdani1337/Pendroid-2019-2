@@ -67,7 +67,7 @@ public class Matek {
         opencounter();
         vizmennyiseg += beviz;
         vizmennyiseg -= kiviz * openek;
-        if(patakVizmennyiseg < 210000)patakVizmennyiseg += kiviz * openek;
+        if(patakVizmennyiseg < 225000)patakVizmennyiseg += kiviz * openek;
         if(patakVizmennyiseg >= beviz) patakVizmennyiseg -= beviz;//Mondjuk ami patakból kifolyik víz, azt vezetjük vissza a gáthoz
         time += delta;
         //ido
