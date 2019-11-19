@@ -11,6 +11,9 @@ import hu.cehessteg.vizeromu.ParentClasses.Scene2D.OffsetSprite;
 
 public class WeatherForeGround extends WeatherAbstract {
     private static final AssetDescriptor<Texture> NIGHT_TEXTURE = new AssetDescriptor<Texture>("weather/night.png", Texture.class);
+    private static final AssetDescriptor<Texture> FOG3_TEXTURE = new AssetDescriptor<Texture>("weather/fog3.png", Texture.class);
+    private static final AssetDescriptor<Texture> FOG2_TEXTURE = new AssetDescriptor<Texture>("weather/fog2.png", Texture.class);
+    private static final AssetDescriptor<Texture> FOG1_TEXTURE = new AssetDescriptor<Texture>("weather/fog1.png", Texture.class);
     private OffsetSprite night;
     private static AssetManager manager = null;
 
@@ -31,6 +34,9 @@ public class WeatherForeGround extends WeatherAbstract {
     public static void load(AssetManager manager){
         WeatherForeGround.manager = manager;
         WeatherForeGround.manager.load(NIGHT_TEXTURE);
+        WeatherForeGround.manager.load(FOG1_TEXTURE);
+        WeatherForeGround.manager.load(FOG2_TEXTURE);
+        WeatherForeGround.manager.load(FOG3_TEXTURE);
     }
 
 
