@@ -97,7 +97,7 @@ public class GameStage extends MyStage {
     public void act(float delta) {
         super.act(delta);
         worldThread(delta,kifolyoWorld,esoWorld);
-        matek.step(delta * 36);
+        matek.step(delta * 3600);
         vizcseppek(esoWorld,kifolyoWorld,this,matek,elapsedTime,viz,patak);
         if(matek.isGameover()) game.setScreen(new GameOverScreen(game));
     }

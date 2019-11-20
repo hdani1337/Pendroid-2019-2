@@ -73,6 +73,19 @@ public abstract class WeatherAbstract extends MyStage {
         return 0f;
     }
 
+
+
+    /**
+     *-1 és 1 közt ad egy értéket a hold magasságáról.
+     */
+    public float getMoonPosition(float time){
+        int daysec = (int)time % 86400;
+        if (daysec > sunset && daysec < sundown){
+            return 1f;
+        }
+        return 1f - (daysec < sunset ? (daysec + 86400 - sundown) : (daysec - sundown))/(float)(86400 - sundown + sunset) * 2f;
+    }
+
     /**
      * Bemenete az idő másodpercben
      * @param time

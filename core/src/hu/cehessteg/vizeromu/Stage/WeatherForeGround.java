@@ -20,8 +20,11 @@ public class WeatherForeGround extends WeatherAbstract {
     private static final AssetDescriptor<Texture> FOG3_TEXTURE = new AssetDescriptor<Texture>("weather/fog3.png", Texture.class);
     private static final AssetDescriptor<Texture> FOG2_TEXTURE = new AssetDescriptor<Texture>("weather/fog2.png", Texture.class);
     private static final AssetDescriptor<Texture> FOG1_TEXTURE = new AssetDescriptor<Texture>("weather/fog1.png", Texture.class);
+    private static final AssetDescriptor<Texture> MOON_TEXTURE = new AssetDescriptor<Texture>("weather/moon.png", Texture.class);
 
     private OneSpriteStaticActor night;
+    private OneSpriteStaticActor moonActor;
+
     private final static float nightAlpha = 0.85f;
 
     private float elapsedTime = 0;
@@ -32,8 +35,15 @@ public class WeatherForeGround extends WeatherAbstract {
         super(viewport, batch, game);
         addActor(night = new OneSpriteStaticActor(WeatherForeGround.manager.get(NIGHT_TEXTURE)));
         night.setSize(getWidth(), getHeight());
-        night.setZIndex(100);
         night.setDebug(false);
+
+        moonActor = new OneSpriteStaticActor(WeatherForeGround.manager.get(MOON_TEXTURE));
+        moonActor.setSize(getWidth() / 4, (getWidth() / 16 * 9) / 4);
+        moonActor.setX(getWidth() / 2 - moonActor.getWidth() / 2);
+        moonActor.setAlpha(11);
+
+        addActor(moonActor);
+
     }
 
     @Override
@@ -80,12 +90,14 @@ public class WeatherForeGround extends WeatherAbstract {
         WeatherForeGround.manager.load(FOG1_TEXTURE);
         WeatherForeGround.manager.load(FOG2_TEXTURE);
         WeatherForeGround.manager.load(FOG3_TEXTURE);
+        WeatherForeGround.manager.load(MOON_TEXTURE);
+
     }
 
     @Override
     public void act(float delta) {
         super.act(delta);
-        elapsedTime+=delta;
+        elapsedTime += delta;
         float light = getLight(time);
         night.setAlpha(nightAlpha * (1f - light));
         if (rain >= 0.5f) {
@@ -99,6 +111,12 @@ public class WeatherForeGround extends WeatherAbstract {
                 lastFogTime = elapsedTime;
             }
         }
+
+
+        float a = ((1f - Math.abs(getMoonPosition(time))) * 5f > 1f ? 1f : (1f - Math.abs(getMoonPosition(time))) * 5f);
+
+        moonActor.setAlpha(0.4f * a * ((1f - rain * 5f) < 0f ? 0f : (1f - rain * 5f)));
+        moonActor.setY(getHeight() * 0.95f - moonActor.getHeight() / 2 + getHeight() * getMoonPosition(time) / 18f);
 
     }
 }
