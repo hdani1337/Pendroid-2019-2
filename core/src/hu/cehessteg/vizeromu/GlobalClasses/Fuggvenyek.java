@@ -58,15 +58,19 @@ public class Fuggvenyek {
 
         private static synchronized void addVizcsepp(World world, MyStage stage, Matek matek, float elapsedTime)
         {
-            if (elapsedTime > pElapsedEso + 0.065/* && matek.isVolteso()*/) {
-                WorldActorGroup eso = new Vizcsepp(world);
-                if(eso == null) return;
-                eso.addToWorld();
-                eso.setPosition((float) (Math.random()*41.2f)-6.2f,stage.getViewport().getWorldHeight()+2f);
-                eso.getBody().applyForceToCenter(new Vector2(51200,-180000),false);
-                stage.addActor(eso);
-                eso.setZIndex(2);
-                pElapsedEso = elapsedTime;
+            if (matek.getRain() > 0.05) {
+                if (elapsedTime > pElapsedEso + (1 - matek.getRain()) / 3 /* && matek.isVolteso()*/) {
+                    for(int i = 0; i < 1 + matek.getRain() * 3; i++) {
+                        WorldActorGroup eso = new Vizcsepp(world);
+                        if (eso == null) return;
+                        eso.addToWorld();
+                        eso.setPosition((float) (Math.random() * 41.2f) - 6.2f, stage.getViewport().getWorldHeight() + 2f);
+                        eso.getBody().applyForceToCenter(new Vector2(51200, -180000), false);
+                        stage.addActor(eso);
+                        eso.setZIndex(2);
+                        pElapsedEso = elapsedTime;
+                    }
+                }
             }
         }
 

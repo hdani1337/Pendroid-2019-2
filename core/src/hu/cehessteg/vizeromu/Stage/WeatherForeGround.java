@@ -54,7 +54,7 @@ public class WeatherForeGround extends WeatherAbstract {
                     sprite.setTexture(WeatherForeGround.manager.get(FOG2_TEXTURE));
                     break;
             }
-            sprite.setAlpha(random.nextFloat() /2f);
+            sprite.setAlpha(random.nextFloat() / 3f);
             speed = random.nextFloat() * 10f + 3f;
             setDebug(false);
         }
@@ -89,7 +89,7 @@ public class WeatherForeGround extends WeatherAbstract {
         float light = getLight(time);
         night.setAlpha(nightAlpha * (1f - light));
         if (rain >= 0.5f) {
-            if (elapsedTime > lastFogTime + (1 - rain) * 3 + 1) {
+            if (elapsedTime > lastFogTime + (1 - rain) * 2 + 1) {
                 Fog fog;
                 addActor(fog = new Fog());
                 fog.setZIndex(night.getZIndex() - 1);
