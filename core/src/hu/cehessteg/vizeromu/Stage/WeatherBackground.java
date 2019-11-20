@@ -11,7 +11,6 @@ import java.util.Random;
 
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MultiSpriteActor;
-import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyActor;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.OffsetSprite;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.OneSpriteStaticActor;
 
@@ -49,6 +48,42 @@ public class WeatherBackground extends WeatherAbstract {
             cloudy.setAlpha(rain * 3 > 1 ? 1 : rain * 3);
         }
 
+    };
+
+
+    private class SunActor extends MultiSpriteActor{
+        OffsetSprite sun;
+        OffsetSprite sundown;
+        float alpha = 1f;
+        float sundownF = 0f;
+
+        public SunActor(float width, float height) {
+            super(width, height);
+        }
+
+        @Override
+        public void init() {
+            super.init();
+            setDebug(false);
+            addSprite(sun = new  OffsetSprite(WeatherBackground.manager.get(SUNDAYLIGHT_TEXTURE),0,0,getWidth(),getHeight()));
+            addSprite(sundown = new  OffsetSprite(WeatherBackground.manager.get(SUNDOWN_TEXTURE),0,0,getWidth(),getHeight()));
+            setSundown(0);
+        }
+
+        public void setSundown(float sundown){
+           this.sundownF = sundown;
+           setSun();
+        }
+
+        public void setAlpha(float alpha){
+            this.alpha = alpha;
+            setSun();
+        }
+
+        private void setSun(){
+            this.sundown.setAlpha(sundownF * alpha);
+            this.sun.setAlpha((1f - sundownF) * alpha);
+        }
     };
 
 
@@ -97,13 +132,17 @@ public class WeatherBackground extends WeatherAbstract {
         }
     }
 
-    SkyActor skyActor;
-
+    private SkyActor skyActor;
+    private SunActor sunActor;
 
     public WeatherBackground(Viewport viewport, Batch batch, MyGame game) {
         super(viewport, batch, game);
         skyActor = new SkyActor(getWidth(), getWidth());
+        sunActor = new SunActor(getWidth() / 2, (getWidth() / 16 * 9) / 2);
+        sunActor.setX(getWidth() / 2 - sunActor.getWidth() / 2);
+
         addActor(skyActor);
+        addActor(sunActor);
         skyActor.setDebug(false);
     }
 
@@ -132,6 +171,10 @@ public class WeatherBackground extends WeatherAbstract {
         float light = getLight(time);
         skyActor.setY(-(skyActor.getHeight() - getHeight()) + light * skyActor.getHeight() * 0.8f);
         skyActor.setRain(rain);
+
+        sunActor.setY(getHeight() * 0.92f - sunActor.getHeight() / 2 + getHeight() * getSunPosition(time) / 3f);
+        sunActor.setSundown(getSunPosition(time) > 0 ? 0 : (1f - light * light> 0f ? 1f - light * light : 0f));
+        sunActor.setAlpha(1- rain * 2 < 0 ? 0 : 1- rain * 2);
 
         int cofc = 0;
         float rainfactor = rain*50;

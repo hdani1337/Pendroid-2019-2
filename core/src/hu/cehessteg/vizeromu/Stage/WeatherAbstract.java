@@ -48,6 +48,31 @@ public abstract class WeatherAbstract extends MyStage {
         return 0f;
     }
 
+
+    /**
+     *-1 és 1 közt ad egy értéket a nap magasságáról.
+     */
+    public float getSunPosition(float time){
+        int daysec = (int)time % 86400;
+        if (daysec < sunset){
+            return 1f;
+        }
+        if (daysec >=sunset && daysec<=sunset + dayNigthGradientSec){
+            return 1f - (((float)(daysec - sunset)) / (float)dayNigthGradientSec) * 0.9f;
+        }
+
+        if (daysec>sunset + dayNigthGradientSec && daysec <= sundown){
+            return 0.1f -  ((float)daysec - (float)(sunset + dayNigthGradientSec)) / (float)(sundown - (sunset + dayNigthGradientSec))*0.2f;
+        }
+        if (daysec> sundown && daysec <= sundown + dayNigthGradientSec){
+            return - (((float)(daysec - sundown)) / (float)dayNigthGradientSec) * 0.9f - 0.1f;
+        }
+        if (daysec > sundown + dayNigthGradientSec){
+            return -1f;
+        }
+        return 0f;
+    }
+
     /**
      * Bemenete az idő másodpercben
      * @param time
