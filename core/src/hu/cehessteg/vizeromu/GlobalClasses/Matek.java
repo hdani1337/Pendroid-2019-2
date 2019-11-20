@@ -8,7 +8,7 @@ public class Matek {
     //szélsőértékszámtás (min és max mert game over) készen, de lehet hogy finomítani kell
     //
     //kell pénz kalkulálni (valahogy)
-    //Vízzel való számítások(bemenő, kimenő, random események)
+    //Vízzel való számítások(bemenő, kimenő, random események) félkész
     //gátak be ki kapcsolása és ezekhez lekérdezés
     //
     //Bónusz ötletek miután már a minimum megvan:
@@ -44,6 +44,32 @@ public class Matek {
             Kiomlonyilas res = new Kiomlonyilas();
             res.setOpen(true);
             nyilasok[i] = res;
+        }
+    }
+
+    float idonelertek(float kerttime){
+        //y3 = (y2-y1) / (x2-x1) * x3
+        float x1 = 1;
+        float x2 = 20;
+        float y1 = 0;
+        float y2 = 1;
+        float dif = y2-y1;
+        float timedif = x1/x2;
+        float asd = dif / timedif * kerttime;
+        return asd;
+    }
+
+    public void Opengate(){
+        for (int i = 0; i < getNyilasok().length; i++) {
+            if (getNyilasok()[i].isOpen()){continue;}
+            else{getNyilasok()[i].setOpen(true); break;}
+        }
+    }
+
+    public void Closegate(){
+        for (int i = 0; getNyilasok().length > i; i++) {
+            if (!getNyilasok()[i].isOpen()){continue;}
+            else{getNyilasok()[i].setOpen(false); break;}
         }
     }
 
