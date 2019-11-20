@@ -23,6 +23,7 @@ public class Matek {
     //szárazság calc
 
     float vizmennyiseg = 1000000; // 1misivel kezdünk;
+    float patakVizmennyiseg = 10000;
     int minviz = 1000; //gameover ha kevesebb
     int maxviz = 1100000; //gameover ha nagyobb
     int beviz = 100; //befolyó víz
@@ -66,6 +67,9 @@ public class Matek {
         opencounter();
         vizmennyiseg += beviz;
         vizmennyiseg -= kiviz * openek;
+        if(patakVizmennyiseg < 225000)patakVizmennyiseg += kiviz * openek;
+        if(patakVizmennyiseg >= beviz) patakVizmennyiseg -= beviz;//Mondjuk ami patakból kifolyik víz, azt vezetjük vissza a gáthoz
+        time += delta;
         //ido
         time += delta;
 
@@ -113,19 +117,19 @@ public class Matek {
         return (float)(Math.sin(time / 30000) < 0 ? 0 : Math.sin(time / 30000));
     }
 
-    int getS(){
+    public int getS(){
         return ((int)time) % 60;
     }
 
-    int getH(){
+    public int getH(){
         return (int)time / 3600;
     }
 
-    int getM(){
+    public int getM(){
         return ((int)time / 60) % 60;
     }
 
-    int getMs(){
+    public int getMs(){
         return ((int)(time * 1000)) % 1000;
     }
 
@@ -133,5 +137,8 @@ public class Matek {
         return eso;
     }
 
+    public float getPatakVizmennyiseg() {
+        return patakVizmennyiseg;
+    }
 }
 

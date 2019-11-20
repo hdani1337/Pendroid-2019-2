@@ -104,6 +104,7 @@ public class WeatherBackground extends WeatherAbstract {
         super(viewport, batch, game);
         skyActor = new SkyActor(getWidth(), getWidth());
         addActor(skyActor);
+        skyActor.setDebug(false);
     }
 
     @Override

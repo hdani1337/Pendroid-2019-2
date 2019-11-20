@@ -50,6 +50,7 @@ public class Assets {
     public static final AssetDescriptor<Texture> WALLPAPER_TEXTURE = new AssetDescriptor<Texture>("colors/hatter.png", Texture.class);
     public static final AssetDescriptor<Texture> VIZ_TEXTURE = new AssetDescriptor<Texture>("colors/water.png", Texture.class);
     public static final AssetDescriptor<Texture> VIZ = new AssetDescriptor<Texture>("colors/waterBlue.png", Texture.class);
+    public static final AssetDescriptor<Texture> VIZ2 = new AssetDescriptor<Texture>("colors/waterBlue2.png", Texture.class);
     public static final AssetDescriptor<Texture> VIZSZINT_TEXTURE = new AssetDescriptor<Texture>("colors/waterLevel.png", Texture.class);
     public static final AssetDescriptor<Texture> SLIDER_BG_GR = new AssetDescriptor<Texture>("colors/greenRed.png", Texture.class);
     public static final AssetDescriptor<Texture> SLIDER_BG_BR = new AssetDescriptor<Texture>("colors/blueRed.png", Texture.class);
@@ -62,7 +63,8 @@ public class Assets {
     public static final AssetDescriptor<Texture> GOMB_HATTER = new AssetDescriptor<Texture>("colors/gombhatter1.png", Texture.class);
     public static final AssetDescriptor<Texture> GOMB_HATTER2 = new AssetDescriptor<Texture>("colors/gombhatter2.png", Texture.class);
     public static final AssetDescriptor<Texture> GAT = new AssetDescriptor<Texture>("gat.png", Texture.class);
-    public static final AssetDescriptor<Texture> GAT_ALJA = new AssetDescriptor<Texture>("gat_alja.png", Texture.class);
+    public static final AssetDescriptor<Texture> HEGY1 = new AssetDescriptor<Texture>("hegy1.png", Texture.class);
+    public static final AssetDescriptor<Texture> HEGY2 = new AssetDescriptor<Texture>("hegy2.png", Texture.class);
 
     public static void prepare() {
 		manager = new AssetManager();
@@ -85,6 +87,7 @@ public class Assets {
         manager.load(YELLOW_TEXTURE);
         manager.load(VIZ_TEXTURE);
         manager.load(VIZ);
+        manager.load(VIZ2);
         manager.load(VIZSZINT_TEXTURE);
         manager.load(SLIDER_BG_GR);
         manager.load(SLIDER_BG_BR);
@@ -97,7 +100,8 @@ public class Assets {
         manager.load(GOMB_HATTER);
         manager.load(GOMB_HATTER2);
         manager.load(GAT);
-        manager.load(GAT_ALJA);
+        manager.load(HEGY1);
+        manager.load(HEGY2);
 
         WeatherForeGround.load(manager);
         WeatherBackground.load(manager);
