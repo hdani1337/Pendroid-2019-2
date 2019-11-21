@@ -65,6 +65,8 @@ public class Assets {
     public static final AssetDescriptor<Texture> GAT = new AssetDescriptor<Texture>("gat.png", Texture.class);
     public static final AssetDescriptor<Texture> HEGY1 = new AssetDescriptor<Texture>("hegy1.png", Texture.class);
     public static final AssetDescriptor<Texture> HEGY2 = new AssetDescriptor<Texture>("hegy2.png", Texture.class);
+    public static final AssetDescriptor<Texture> CAUTION = new AssetDescriptor<Texture>("caution.png", Texture.class);
+    public static final AssetDescriptor<Texture> AJTO = new AssetDescriptor<Texture>("ajtotemp.png", Texture.class);
 
     public static void prepare() {
 		manager = new AssetManager();
@@ -102,6 +104,8 @@ public class Assets {
         manager.load(GAT);
         manager.load(HEGY1);
         manager.load(HEGY2);
+        manager.load(CAUTION);
+        manager.load(AJTO);
 
         WeatherForeGround.load(manager);
         WeatherBackground.load(manager);

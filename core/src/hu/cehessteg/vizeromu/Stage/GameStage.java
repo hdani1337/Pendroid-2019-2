@@ -24,6 +24,7 @@ public class GameStage extends MyStage {
     World esoWorld;
     World kifolyoWorld;
     public static Matek matek;
+    private boolean still = false;//Ez akkor lesz igaz, ha a GameStage a menü mögött van egy állóképként elhelyezve
     Gat gat;
     Viz viz;
     Viz patak;
@@ -60,8 +61,10 @@ public class GameStage extends MyStage {
             @Override
             public void act(float delta) {
                 super.act(delta);
-                setHeight((float)(matek.getPatakVizmennyiseg()*0.0001));
-                setWidth((float)(matek.getPatakVizmennyiseg()*0.0004));
+                if(!still) {
+                    setHeight((float) (matek.getPatakVizmennyiseg() * 0.0001));
+                    setWidth((float) (matek.getPatakVizmennyiseg() * 0.0004));
+                }//Csak a gát mögötti víz kapjon méretet, ha a menü mögött van a stage
                 setX(36-(getWidth()/2));
                 setY(-(getHeight()/2));
             }
@@ -96,9 +99,16 @@ public class GameStage extends MyStage {
     @Override
     public void act(float delta) {
         super.act(delta);
-        worldThread(delta,kifolyoWorld,esoWorld);
-        matek.step(delta * 3600);
-        vizcseppek(esoWorld,kifolyoWorld,this,matek,elapsedTime,viz,patak);
-        if(matek.isGameover()) game.setScreen(new GameOverScreen(game));
+        if(!still) {
+            worldThread(delta, kifolyoWorld, esoWorld);
+            matek.step(delta * 3600);
+            vizcseppek(esoWorld, kifolyoWorld, this, matek, elapsedTime, viz, patak);
+            if (matek.isGameover()) game.setScreen(new GameOverScreen(game));
+        }
+        else matek.step(delta*3600);
+    }
+
+    public void setStill(boolean still) {
+        this.still = still;
     }
 }

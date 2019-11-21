@@ -144,6 +144,7 @@ public class WeatherBackground extends WeatherAbstract {
         addActor(skyActor);
         addActor(sunActor);
         skyActor.setDebug(false);
+        sunActor.setDebug(false);
     }
 
     @Override

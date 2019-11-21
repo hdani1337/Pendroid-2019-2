@@ -41,6 +41,7 @@ public class WeatherForeGround extends WeatherAbstract {
         moonActor.setSize(getWidth() / 4, (getWidth() / 16 * 9) / 4);
         moonActor.setX(getWidth() / 2 - moonActor.getWidth() / 2);
         moonActor.setAlpha(11);
+        moonActor.setDebug(false);
 
         addActor(moonActor);
 

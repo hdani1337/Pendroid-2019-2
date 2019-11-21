@@ -10,8 +10,8 @@ public class Hegy extends OneSpriteStaticActor {
 
         if(id==1)
         {
-            setSize(getWidth()/42,getHeight()/42);
-            setPosition(0,36-getHeight());
+            setSize(getWidth()/40,getHeight()/40);
+            setPosition(0,37-getHeight());
         }
         else if(id==2) {
             sprite.setTexture(Assets.manager.get(Assets.HEGY2));
