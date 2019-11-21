@@ -67,6 +67,10 @@ public class Assets {
     public static final AssetDescriptor<Texture> HEGY2 = new AssetDescriptor<Texture>("hegy2.png", Texture.class);
     public static final AssetDescriptor<Texture> CAUTION = new AssetDescriptor<Texture>("caution.png", Texture.class);
     public static final AssetDescriptor<Texture> AJTO = new AssetDescriptor<Texture>("ajtotemp.png", Texture.class);
+    public static final AssetDescriptor<Texture> ZOLI = new AssetDescriptor<Texture>("portraits/zoli.png", Texture.class);
+    public static final AssetDescriptor<Texture> BENCE = new AssetDescriptor<Texture>("portraits/bence.png", Texture.class);
+    public static final AssetDescriptor<Texture> DANI = new AssetDescriptor<Texture>("portraits/dani.png", Texture.class);
+    public static final AssetDescriptor<Texture> DAVID = new AssetDescriptor<Texture>("portraits/david.png", Texture.class);
 
     public static void prepare() {
 		manager = new AssetManager();
@@ -106,6 +110,10 @@ public class Assets {
         manager.load(HEGY2);
         manager.load(CAUTION);
         manager.load(AJTO);
+        manager.load(ZOLI);
+        manager.load(BENCE);
+        manager.load(DANI);
+        manager.load(DAVID);
 
         WeatherForeGround.load(manager);
         WeatherBackground.load(manager);
