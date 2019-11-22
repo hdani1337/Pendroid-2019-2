@@ -1,6 +1,8 @@
 package hu.cehessteg.vizeromu.Stage;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import hu.cehessteg.vizeromu.GlobalClasses.Assets;
@@ -8,6 +10,7 @@ import hu.cehessteg.vizeromu.GlobalClasses.Styles;
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyStage;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.OneSpriteStaticActor;
+import hu.cehessteg.vizeromu.ParentClasses.UI.MyButton;
 import hu.cehessteg.vizeromu.ParentClasses.UI.MyLabel;
 
 public class InfoStage extends MyStage {
@@ -26,12 +29,18 @@ public class InfoStage extends MyStage {
     MyLabel daniLabelTitle;
     MyLabel davidLabelTitle;
 
+    MyButton back;
+
+    boolean mehetvissza;
+
     public InfoStage(Viewport viewport, Batch batch, MyGame game) {
         super(viewport, batch, game);
         assignment();
         labelStuff();
         setPositions();
+        addListeners();
         addActors();
+        mehetvissza = false;
     }
 
     void assignment()
@@ -50,6 +59,8 @@ public class InfoStage extends MyStage {
         benceLabelTitle = new MyLabel("Grafikus", Styles.getCalibriLabelStyle());
         daniLabelTitle = new MyLabel("Szoftverfejlesztő", Styles.getCalibriLabelStyle());
         davidLabelTitle = new MyLabel("Szoftverfejlesztő", Styles.getCalibriLabelStyle());
+
+        back = new MyButton("Vissza a menübe",Styles.getTextButtonStyle());
     }
 
     void labelStuff()
@@ -86,6 +97,19 @@ public class InfoStage extends MyStage {
         benceLabelTitle.setPosition((benceLabel.getX()+benceLabel.getWidth()/2)-benceLabelTitle.getWidth()/2,benceLabel.getY()-35);
         daniLabelTitle.setPosition((daniLabel.getX()+daniLabel.getWidth()/2)-daniLabelTitle.getWidth()/2,daniLabel.getY()-35);
         davidLabelTitle.setPosition((davidLabel.getX()+davidLabel.getWidth()/2)-davidLabelTitle.getWidth()/2,davidLabel.getY()-35);
+
+        back.setPosition(getViewport().getWorldWidth()*0.66f,getViewport().getWorldHeight()*0.1f);
+    }
+
+    void addListeners()
+    {
+        back.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                setMehetvissza(true);
+            }
+        });
     }
 
     void addActors()
@@ -109,10 +133,20 @@ public class InfoStage extends MyStage {
         addActor(benceLabelTitle);
         addActor(daniLabelTitle);
         addActor(davidLabelTitle);
+
+        addActor(back);
     }
 
     @Override
     public void init() {
 
+    }
+
+    public boolean isMehetvissza() {
+        return mehetvissza;
+    }
+
+    public void setMehetvissza(boolean mehetvissza) {
+        this.mehetvissza = mehetvissza;
     }
 }

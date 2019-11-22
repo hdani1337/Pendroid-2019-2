@@ -28,7 +28,7 @@ public class Matek {
     int maxviz = 1100000; //gameover ha nagyobb
     int beviz = 100; //befolyó víz
     int kiviz = 40; //azért ne legyen pont osztható a bevizzel(annyira azért ne legyen könnyű)
-    float time;
+    float time = 8000;
 
 
     boolean eso = false;
@@ -96,10 +96,6 @@ public class Matek {
         if(patakVizmennyiseg < 225000)patakVizmennyiseg += kiviz * openek;
         if(patakVizmennyiseg >= beviz) patakVizmennyiseg -= beviz;//Mondjuk ami patakból kifolyik víz, azt vezetjük vissza a gáthoz
         time += delta;
-        //ido
-        time += delta;
-
-
         //gameover trigger
         if (vizmennyiseg <= minviz || vizmennyiseg >= maxviz) { gameover = true; }//gameover trigger
     }
@@ -165,6 +161,11 @@ public class Matek {
 
     public float getPatakVizmennyiseg() {
         return patakVizmennyiseg;
+    }
+
+    public void addDemoTime(float demoTime)
+    {
+        this.time += demoTime;
     }
 }
 

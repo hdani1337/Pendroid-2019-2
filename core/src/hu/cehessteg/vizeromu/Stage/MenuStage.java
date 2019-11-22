@@ -18,9 +18,9 @@ import hu.cehessteg.vizeromu.Screen.InfoScreen;
 import hu.cehessteg.vizeromu.Screen.OptionsScreen;
 
 public class MenuStage extends MyStage {
-    CautionSign felsoSign;
+    public CautionSign felsoSign;
     CautionSign alsoSign;
-    Ajto ajto;
+    public Ajto ajto;
     MyButton start;
     MyButton exit;
     MyButton info;
@@ -30,7 +30,10 @@ public class MenuStage extends MyStage {
     boolean drawInfo = false;
     boolean drawOptions = false;
 
-    boolean isFinished = false;
+    boolean mehetVissza = false;
+
+    boolean ajtoKifogMenni = false;
+    boolean willExit = false;
 
     public MenuStage(Viewport viewport, Batch batch, MyGame game) {
         super(viewport, batch, game);
@@ -49,6 +52,15 @@ public class MenuStage extends MyStage {
         exit = new MyButton("Kilépés", Styles.getTextButtonStyle());
         info = new MyButton("A játékról", Styles.getTextButtonStyle());
         options = new MyButton("Beállítások", Styles.getTextButtonStyle());
+        ajto.setMove(true);
+        ajto.setMoveIn(true);
+        ajto.setMoveOut(true);
+        felsoSign.setMove(true);
+        alsoSign.setMove(true);
+        felsoSign.setMoveDown(true);
+        alsoSign.setMoveDown(true);
+        felsoSign.setMoveUp(false);
+        alsoSign.setMoveUp(false);
     }
 
     void setPositions()
@@ -66,7 +78,13 @@ public class MenuStage extends MyStage {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 moveBack = true;
+                ajto.setMove(true);
+                ajto.setMoveOut(true);
+                ajto.setMoveIn(false);
+                ajtoKifogMenni = true;
                 drawGame = true;
+                drawInfo = false;
+                drawOptions = false;
             }
         });
 
@@ -74,8 +92,14 @@ public class MenuStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
+                ajto.setMove(true);
+                ajto.setMoveOut(true);
+                ajto.setMoveIn(false);
+                ajtoKifogMenni = true;
                 moveBack = true;
                 drawInfo = true;
+                drawOptions = false;
+                drawGame = false;
             }
         });
 
@@ -83,8 +107,14 @@ public class MenuStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
+                ajto.setMove(true);
+                ajto.setMoveOut(true);
+                ajto.setMoveIn(false);
+                ajtoKifogMenni = true;
                 moveBack = true;
                 drawOptions = true;
+                drawGame = false;
+                drawInfo = false;
             }
         });
 
@@ -92,8 +122,15 @@ public class MenuStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                Gdx.app.exit();
-                System.exit(0);
+                ajto.setMove(true);
+                ajto.setMoveOut(true);
+                ajto.setMoveIn(false);
+                ajtoKifogMenni = true;
+                moveBack = true;
+                drawOptions = false;
+                drawGame = false;
+                drawInfo = false;
+                willExit = true;
             }
         });
 
@@ -135,36 +172,66 @@ public class MenuStage extends MyStage {
     public void act(float delta) {
         super.act(delta);
 
-        if(felsoSign.isFinished() && alsoSign.isFinished()) ajto.setMove(true);
-
-        if(ajto.isFinished())
+        if(isMehetVissza())
         {
-            if(alpha < 0.99)
-            {
-                alpha += 0.02;
-                start.setColor(1,1,1,alpha);
-                options.setColor(1,1,1,alpha);
-                exit.setColor(1,1,1,alpha);
-                info.setColor(1,1,1,alpha);
-            }
+            ajto.setMove(true);
+            ajto.setMoveIn(true);
+            ajto.setMoveOut(true);
+            felsoSign.setMove(true);
+            alsoSign.setMove(true);
+            felsoSign.setMoveDown(true);
+            alsoSign.setMoveDown(true);
+            felsoSign.setMoveUp(false);
+            alsoSign.setMoveUp(false);
+            alpha = 0;
+            start.setColor(1,1,1,alpha);
+            options.setColor(1,1,1,alpha);
+            exit.setColor(1,1,1,alpha);
+            info.setColor(1,1,1,alpha);
+            moveBack = false;
+            setPositions();
+            setMehetVissza(false);
+        }
+
+        if(ajto.getX() > -50)
+        {
+            if(alpha < 0.99) alpha += 0.02;
             else alpha = 1;
+
+            start.setColor(1,1,1,alpha);
+            options.setColor(1,1,1,alpha);
+            exit.setColor(1,1,1,alpha);
+            info.setColor(1,1,1,alpha);
         }
 
         if(moveBack)
         {
             for (Actor actor : getActors())
             {
-                if(actor.getX()>-actor.getWidth()-1)actor.setX(actor.getX()-20);
+                if(!(actor instanceof CautionSign) && !(actor instanceof Ajto)) if(actor.getX()>-actor.getWidth()-1)actor.setX(actor.getX()-20);
             }
-
-            if(ajto.getX() <= -ajto.getWidth()) isFinished = true;
         }
 
-        if(isFinished)
+        if(ajtoKifogMenni)
         {
-            if(drawGame) game.setScreen(new GameScreen(game));
-            else if(drawInfo) game.setScreen(new InfoScreen(game));
-            else if(drawOptions) game.setScreen(new OptionsScreen(game));
+            if(ajto.getX() < -ajto.getWidth()*0.8) {
+                felsoSign.setMove(true);
+                alsoSign.setMove(true);
+                felsoSign.setMoveDown(false);
+                alsoSign.setMoveDown(false);
+                felsoSign.setMoveUp(true);
+                alsoSign.setMoveUp(true);
+                ajtoKifogMenni = false;
+            }
+        }
+
+        if(felsoSign.getY() >= getViewport().getWorldHeight()) {
+            if (drawGame) game.setScreen(new GameScreen(game));
+            else if (willExit)
+            {
+                Gdx.app.exit();
+                System.exit(0);
+            }
         }
     }
 
@@ -180,7 +247,11 @@ public class MenuStage extends MyStage {
         return drawOptions;
     }
 
-    public boolean isFinished() {
-        return isFinished;
+    public boolean isMehetVissza() {
+        return mehetVissza;
+    }
+
+    public void setMehetVissza(boolean mehetVissza) {
+        this.mehetVissza = mehetVissza;
     }
 }

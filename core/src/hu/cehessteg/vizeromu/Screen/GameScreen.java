@@ -29,6 +29,7 @@ public class GameScreen extends MyScreen {
         weatherForeGround = new WeatherForeGround(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20.0f),spriteBatch,game);
         weatherBackground = new WeatherBackground(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20.0f),spriteBatch,game);
         gameStage.setStill(false);
+        gameStage.matek.addDemoTime(MenuScreen.demoElapsed);
     }
 
     @Override

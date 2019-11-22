@@ -6,12 +6,13 @@ import hu.cehessteg.vizeromu.GlobalClasses.Assets;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.OneSpriteStaticActor;
 
 public class Ajto extends OneSpriteStaticActor {
-    private boolean move = false;
-    private boolean isFinished = false;
+    private boolean move;
+    private boolean moveIn;
+    private boolean moveOut;
 
     public Ajto(Viewport viewport) {
         super(Assets.manager.get(Assets.AJTO));
-        setPosition(-getWidth()*1.5f,0);
+        setPosition(-getWidth()*2.5f,0);
         setDebug(false);
         if(viewport.getWorldWidth() > 1400) setWidth(viewport.getWorldWidth());
     }
@@ -21,17 +22,36 @@ public class Ajto extends OneSpriteStaticActor {
         this.move = move;
     }
 
-    public boolean isFinished() {
-        return isFinished;
-    }
-
     @Override
     public void act(float delta) {
         super.act(delta);
-        if(move && !isFinished)
+        if(move)
         {
-            if(getX() < -39) setX(getX()+40);
-            else isFinished = true;
+            if(moveIn) {
+                if (getX() < -39) setX(getX() + 40);
+                else setX(0);
+            }
+            if(moveOut)
+            {
+                if (getX() > -getWidth()) setX(getX() - 20);
+                else setX(-getWidth());
+            }
         }
+    }
+
+    public boolean isMoveIn() {
+        return moveIn;
+    }
+
+    public void setMoveIn(boolean moveIn) {
+        this.moveIn = moveIn;
+    }
+
+    public boolean isMoveOut() {
+        return moveOut;
+    }
+
+    public void setMoveOut(boolean moveOut) {
+        this.moveOut = moveOut;
     }
 }

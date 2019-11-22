@@ -15,6 +15,7 @@ import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyStage;
 import hu.cehessteg.vizeromu.ParentClasses.UI.MyLabel;
 import hu.cehessteg.vizeromu.Screen.GameOverScreen;
+import hu.cehessteg.vizeromu.Screen.MenuScreen;
 
 import static hu.cehessteg.vizeromu.GlobalClasses.Fuggvenyek.fuggvenyekNull;
 import static hu.cehessteg.vizeromu.GlobalClasses.Fuggvenyek.vizcseppek;
@@ -105,7 +106,10 @@ public class GameStage extends MyStage {
             vizcseppek(esoWorld, kifolyoWorld, this, matek, elapsedTime, viz, patak);
             if (matek.isGameover()) game.setScreen(new GameOverScreen(game));
         }
-        else matek.step(delta*3600);
+        else {
+            matek.step(delta * 3600);
+            MenuScreen.demoElapsed += delta*3600;
+        }
     }
 
     public void setStill(boolean still) {

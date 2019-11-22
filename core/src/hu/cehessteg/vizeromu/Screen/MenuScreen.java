@@ -1,6 +1,7 @@
 package hu.cehessteg.vizeromu.Screen;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
@@ -21,8 +22,9 @@ public class MenuScreen extends MyScreen {
     GameStage gameStage;
     InfoStage infoStage;
     OptionsStage optionsStage;
-    WeatherBackground weatherBackground;
     WeatherForeGround weatherForeGround;
+
+    public static float demoElapsed = 0;
 
     public MenuScreen(MyGame game) {
         super(game);
@@ -32,13 +34,16 @@ public class MenuScreen extends MyScreen {
 
         gameStage = new GameStage(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20),spriteBatch,game);
         weatherForeGround = new WeatherForeGround(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20.0f),spriteBatch,game);
-        weatherBackground = new WeatherBackground(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20.0f),spriteBatch,game);
     }
 
     @Override
     public void show() {
         super.show();
-        Gdx.input.setInputProcessor(menuStage);
+        InputMultiplexer inputMultiplexer = new InputMultiplexer();
+        inputMultiplexer.addProcessor(menuStage);
+        inputMultiplexer.addProcessor(infoStage);
+        inputMultiplexer.addProcessor(optionsStage);
+        Gdx.input.setInputProcessor(inputMultiplexer);
     }
 
     @Override
@@ -49,25 +54,24 @@ public class MenuScreen extends MyScreen {
     @Override
     public void render(float delta) {
         super.render(delta);
-        if(menuStage.isDrawGame() && !menuStage.isFinished()) {
+        if(menuStage.isDrawGame() && menuStage.felsoSign.getY() < menuStage.getViewport().getWorldHeight()) {
             gameStage.act(delta);
-
-            weatherBackground.setTime(matek.getTime());
-            weatherBackground.setRain(matek.getRain());
-            weatherBackground.act(delta);
 
             weatherForeGround.setTime(matek.getTime());
             weatherForeGround.setRain(matek.getRain());
             weatherForeGround.act(delta);
 
-            weatherBackground.draw();
             gameStage.draw();
             weatherForeGround.draw();
 
             gameStage.setStill(true);
         }
-        else if(menuStage.isDrawInfo() && !menuStage.isFinished()) infoStage.draw();
-        else if(menuStage.isDrawOptions() && !menuStage.isFinished()) optionsStage.draw();
+        else if(menuStage.isDrawInfo()) infoStage.draw();
+        else if(menuStage.isDrawOptions()) optionsStage.draw();
+        if(infoStage.isMehetvissza()) {
+            menuStage.setMehetVissza(true);
+            infoStage.setMehetvissza(false);
+        }
         menuStage.act(delta);
         menuStage.draw();
     }
