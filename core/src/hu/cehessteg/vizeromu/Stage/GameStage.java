@@ -57,10 +57,10 @@ public class GameStage extends MyStage {
             @Override
             public void act(float delta) {
                 super.act(delta);
-                setHeight((matek.getVizmennyiseg()/matek.getMaxviz())*25);
+                setHeight((matek.getVizmennyiseg()/matek.getMaxviz())*20);
                 setWidth((matek.getVizmennyiseg()/matek.getMaxviz())*75);
-                setX(12-(getWidth()/2));
-                setY(17.5f-(getHeight()/2));
+                setX(17-(getWidth()/2));
+                setY(16.46f-(getHeight()/2));
             }
         };
         patak = new Viz()
