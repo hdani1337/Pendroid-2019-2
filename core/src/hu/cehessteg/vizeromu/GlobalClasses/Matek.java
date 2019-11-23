@@ -106,7 +106,6 @@ public class Matek {
         time += delta;
         //gameover trigger
         if (vizmennyiseg <= minviz || vizmennyiseg >= maxviz) { gameover = true; }//gameover trigger
-        System.out.println(time);
     }
 
     public boolean isVolteso() {

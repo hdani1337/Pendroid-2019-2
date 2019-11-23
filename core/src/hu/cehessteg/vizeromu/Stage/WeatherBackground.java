@@ -9,9 +9,11 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.Random;
 
+import hu.cehessteg.vizeromu.GlobalClasses.Assets;
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MultiSpriteActor;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.OffsetSprite;
+import hu.cehessteg.vizeromu.ParentClasses.Scene2D.OneSpriteActor;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.OneSpriteStaticActor;
 
 public class WeatherBackground extends WeatherAbstract {
@@ -141,10 +143,32 @@ public class WeatherBackground extends WeatherAbstract {
         sunActor = new SunActor(getWidth() / 2, (getWidth() / 16 * 9) / 2);
         sunActor.setX(getWidth() / 2 - sunActor.getWidth() / 2);
 
+        addHatter();
+
         addActor(skyActor);
         addActor(sunActor);
         skyActor.setDebug(false);
         sunActor.setDebug(false);
+    }
+
+    void addHatter()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            OneSpriteActor hatter = new OneSpriteStaticActor(Assets.manager.get(Assets.FOLD));
+            hatter.setSize(14,14);
+            hatter.setDebug(false);
+            hatter.setPosition(i*14,0);
+            addActor(hatter);
+            hatter.setZIndex(-1000);
+
+            OneSpriteActor hatter2 = new OneSpriteStaticActor(Assets.manager.get(Assets.FOLD));
+            hatter2.setSize(14,14);
+            hatter2.setDebug(false);
+            hatter2.setPosition(i*14,14);
+            addActor(hatter2);
+            hatter2.setZIndex(-1000);
+        }
     }
 
     @Override
