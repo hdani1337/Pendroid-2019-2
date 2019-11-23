@@ -62,6 +62,7 @@ public class Assets {
     public static final AssetDescriptor<Texture> MAXVIZ = new AssetDescriptor<Texture>("colors/maxViz.png", Texture.class);
     public static final AssetDescriptor<Texture> GOMB_HATTER = new AssetDescriptor<Texture>("colors/gombhatter1.png", Texture.class);
     public static final AssetDescriptor<Texture> GOMB_HATTER2 = new AssetDescriptor<Texture>("colors/gombhatter2.png", Texture.class);
+    public static final AssetDescriptor<Texture> BLANK = new AssetDescriptor<Texture>("colors/blank.png", Texture.class);
     public static final AssetDescriptor<Texture> GAT = new AssetDescriptor<Texture>("gat.png", Texture.class);
     public static final AssetDescriptor<Texture> HEGY1 = new AssetDescriptor<Texture>("hegy1.png", Texture.class);
     public static final AssetDescriptor<Texture> HEGY2 = new AssetDescriptor<Texture>("hegy2.png", Texture.class);
@@ -114,6 +115,7 @@ public class Assets {
         manager.load(BENCE);
         manager.load(DANI);
         manager.load(DAVID);
+        manager.load(BLANK);
 
         WeatherForeGround.load(manager);
         WeatherBackground.load(manager);

@@ -4,6 +4,7 @@ import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.Random;
@@ -36,12 +37,14 @@ public class WeatherForeGround extends WeatherAbstract {
         addActor(night = new OneSpriteStaticActor(WeatherForeGround.manager.get(NIGHT_TEXTURE)));
         night.setSize(getWidth(), getHeight());
         night.setDebug(false);
+        night.setTouchable(null);
 
         moonActor = new OneSpriteStaticActor(WeatherForeGround.manager.get(MOON_TEXTURE));
         moonActor.setSize(getWidth() / 4, (getWidth() / 16 * 9) / 4);
         moonActor.setX(getWidth() / 2 - moonActor.getWidth() / 2);
         moonActor.setAlpha(11);
         moonActor.setDebug(false);
+        moonActor.setTouchable(null);
 
         addActor(moonActor);
 
@@ -105,6 +108,7 @@ public class WeatherForeGround extends WeatherAbstract {
             if (elapsedTime > lastFogTime + (1 - rain) * 2 + 1) {
                 Fog fog;
                 addActor(fog = new Fog());
+                fog.setTouchable(null);
                 fog.setZIndex(night.getZIndex() - 1);
                 fog.setPosition(-getWidth(), 0);
                 fog.setWidth(getWidth());

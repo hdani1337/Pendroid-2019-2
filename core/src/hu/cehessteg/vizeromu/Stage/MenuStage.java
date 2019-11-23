@@ -14,8 +14,6 @@ import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyStage;
 import hu.cehessteg.vizeromu.ParentClasses.UI.MyButton;
 import hu.cehessteg.vizeromu.Screen.GameScreen;
-import hu.cehessteg.vizeromu.Screen.InfoScreen;
-import hu.cehessteg.vizeromu.Screen.OptionsScreen;
 
 public class MenuStage extends MyStage {
     public CautionSign felsoSign;
@@ -226,7 +224,10 @@ public class MenuStage extends MyStage {
         }
 
         if(felsoSign.getY() >= getViewport().getWorldHeight()) {
-            if (drawGame) game.setScreen(new GameScreen(game));
+            if (drawGame) {
+                game.setScreen(new GameScreen(game));
+                drawGame = false;
+            }
             else if (willExit)
             {
                 Gdx.app.exit();

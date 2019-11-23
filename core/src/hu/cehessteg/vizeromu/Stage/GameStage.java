@@ -12,9 +12,9 @@ import hu.cehessteg.vizeromu.GlobalClasses.Assets;
 import hu.cehessteg.vizeromu.GlobalClasses.Matek;
 import hu.cehessteg.vizeromu.GlobalClasses.Styles;
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
+import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyCircle;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyStage;
 import hu.cehessteg.vizeromu.ParentClasses.UI.MyLabel;
-import hu.cehessteg.vizeromu.Screen.GameOverScreen;
 import hu.cehessteg.vizeromu.Screen.MenuScreen;
 
 import static hu.cehessteg.vizeromu.GlobalClasses.Fuggvenyek.fuggvenyekNull;
@@ -32,6 +32,12 @@ public class GameStage extends MyStage {
     Hegy hegy1;
     Hegy hegy2;
     Hegy hegy3;
+
+    Gat.gatListenes elsoNyilas;
+    Gat.gatListenes masodikNyilas;
+    Gat.gatListenes harmadikNyilas;
+    Gat.gatListenes negyedikNyilas;
+    Gat.gatListenes otodikNyilas;
 
     public GameStage(Viewport viewport, Batch batch, MyGame game) {
         super(viewport, batch, game);
@@ -74,6 +80,13 @@ public class GameStage extends MyStage {
         hegy1 = new Hegy((byte) 1);
         hegy2 = new Hegy((byte) 2);
         hegy3 = new Hegy((byte) 3);
+
+        elsoNyilas = new Gat.gatListenes((byte) 1);
+        masodikNyilas = new Gat.gatListenes((byte) 2);
+        harmadikNyilas = new Gat.gatListenes((byte) 3);
+        negyedikNyilas = new Gat.gatListenes((byte) 4);
+        otodikNyilas = new Gat.gatListenes((byte) 5);
+        //Ezek később átkerülnek majd egy HudStage-re
     }
 
     void addActors()
@@ -84,6 +97,11 @@ public class GameStage extends MyStage {
         addActor(hegy1);
         addActor(hegy2);
         addActor(hegy3);
+        addActor(elsoNyilas);
+        addActor(masodikNyilas);
+        addActor(harmadikNyilas);
+        addActor(negyedikNyilas);
+        addActor(otodikNyilas);
         gat.setZIndex(4);
         viz.setZIndex(0);
         patak.setZIndex(-2);
@@ -104,7 +122,6 @@ public class GameStage extends MyStage {
             worldThread(delta, kifolyoWorld, esoWorld);
             matek.step(delta * 3600);
             vizcseppek(esoWorld, kifolyoWorld, this, matek, elapsedTime, viz, patak);
-            if (matek.isGameover()) game.setScreen(new GameOverScreen(game));
         }
         else {
             matek.step(delta * 3600);

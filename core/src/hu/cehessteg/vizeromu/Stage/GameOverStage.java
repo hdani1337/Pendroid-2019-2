@@ -11,10 +11,12 @@ import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyStage;
 import hu.cehessteg.vizeromu.ParentClasses.UI.MyButton;
 import hu.cehessteg.vizeromu.ParentClasses.UI.MyLabel;
 import hu.cehessteg.vizeromu.Screen.GameScreen;
+import hu.cehessteg.vizeromu.Screen.MenuScreen;
 
 public class GameOverStage extends MyStage {
     MyLabel gameOver;
     MyButton restart;
+    MyButton menu;
 
     public GameOverStage(Viewport viewport, Batch batch, final MyGame game) {
         super(viewport, batch, game);
@@ -28,19 +30,22 @@ public class GameOverStage extends MyStage {
     {
         gameOver = new MyLabel("Vége a játéknak!", Styles.getCalibriLabelStyle());
         restart = new MyButton("Újra!", Styles.getTextButtonStyle());
+        menu = new MyButton("Főmenü", Styles.getTextButtonStyle());
     }
 
     void setPositions()
     {
         gameOver.setAlignment(0);
-        gameOver.setPosition(getViewport().getWorldWidth()/2-gameOver.getWidth()/2,getViewport().getWorldHeight()/2-gameOver.getHeight()/2);
+        gameOver.setPosition(getViewport().getWorldWidth()/2-gameOver.getWidth()/2,getViewport().getWorldHeight()/2+gameOver.getHeight()/2);
         restart.setPosition(getViewport().getWorldWidth()/2-restart.getWidth()/2,gameOver.getY()-75);
+        menu.setPosition(getViewport().getWorldWidth()/2-menu.getWidth()/2,restart.getY()-75);
     }
 
     void addActors()
     {
         addActor(gameOver);
         addActor(restart);
+        addActor(menu);
     }
 
     void addListeners()
@@ -50,6 +55,14 @@ public class GameOverStage extends MyStage {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 game.setScreen(new GameScreen(game));
+            }
+        });
+
+        menu.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                game.setScreen(new MenuScreen(game));
             }
         });
     }
