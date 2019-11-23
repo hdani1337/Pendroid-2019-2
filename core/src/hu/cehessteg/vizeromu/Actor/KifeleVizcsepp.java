@@ -22,6 +22,9 @@ public class KifeleVizcsepp extends WorldActorGroup {
         water.setSize(0.6f,0.6f);
         water.setDebug(false);
 
+        setTouchable(null);
+        water.setTouchable(null);
+
         addActor(water);
         setSize(0.6f,0.6f);
         setColor(0,0,255,1);

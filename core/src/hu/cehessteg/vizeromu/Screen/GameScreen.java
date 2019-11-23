@@ -68,7 +68,10 @@ public class GameScreen extends MyScreen {
         weatherForeGround.draw();
 
         if (gameStage.matek.isGameover()) {
-            if(!inputMultiplexer.getProcessors().contains(gameOverStage,true)) inputMultiplexer.addProcessor(gameOverStage);
+            if(!inputMultiplexer.getProcessors().contains(gameOverStage,true)) {
+                inputMultiplexer.addProcessor(gameOverStage);
+                inputMultiplexer.removeProcessor(gameStage);
+            }
             gameOverStage.draw();
         }
     }

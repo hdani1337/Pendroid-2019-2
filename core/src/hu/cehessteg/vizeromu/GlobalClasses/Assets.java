@@ -62,7 +62,6 @@ public class Assets {
     public static final AssetDescriptor<Texture> MAXVIZ = new AssetDescriptor<Texture>("colors/maxViz.png", Texture.class);
     public static final AssetDescriptor<Texture> GOMB_HATTER = new AssetDescriptor<Texture>("colors/gombhatter1.png", Texture.class);
     public static final AssetDescriptor<Texture> GOMB_HATTER2 = new AssetDescriptor<Texture>("colors/gombhatter2.png", Texture.class);
-    public static final AssetDescriptor<Texture> BLANK = new AssetDescriptor<Texture>("colors/blank.png", Texture.class);
     public static final AssetDescriptor<Texture> GAT = new AssetDescriptor<Texture>("gat.png", Texture.class);
     public static final AssetDescriptor<Texture> HEGY1 = new AssetDescriptor<Texture>("hegy1.png", Texture.class);
     public static final AssetDescriptor<Texture> HEGY2 = new AssetDescriptor<Texture>("hegy2.png", Texture.class);
@@ -72,6 +71,8 @@ public class Assets {
     public static final AssetDescriptor<Texture> BENCE = new AssetDescriptor<Texture>("portraits/bence.png", Texture.class);
     public static final AssetDescriptor<Texture> DANI = new AssetDescriptor<Texture>("portraits/dani.png", Texture.class);
     public static final AssetDescriptor<Texture> DAVID = new AssetDescriptor<Texture>("portraits/david.png", Texture.class);
+    public static final AssetDescriptor<Texture> RED_CIRC = new AssetDescriptor<Texture>("colors/redCircle.png", Texture.class);
+    public static final AssetDescriptor<Texture> GREEN_CIRC = new AssetDescriptor<Texture>("colors/greenCircle.png", Texture.class);
 
     public static void prepare() {
 		manager = new AssetManager();
@@ -115,7 +116,8 @@ public class Assets {
         manager.load(BENCE);
         manager.load(DANI);
         manager.load(DAVID);
-        manager.load(BLANK);
+        manager.load(RED_CIRC);
+        manager.load(GREEN_CIRC);
 
         WeatherForeGround.load(manager);
         WeatherBackground.load(manager);
