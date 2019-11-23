@@ -14,7 +14,7 @@ public class Ajto extends OneSpriteStaticActor {
         super(Assets.manager.get(Assets.AJTO));
         setPosition(-getWidth()*2.5f,0);
         setDebug(false);
-        if(viewport.getWorldWidth() > 1400) setWidth(viewport.getWorldWidth());
+        if(viewport.getWorldWidth() > getWidth()) setWidth(viewport.getWorldWidth());
     }
 
     public void setMove(boolean move)

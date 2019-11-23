@@ -41,7 +41,7 @@ public class WeatherForeGround extends WeatherAbstract {
 
         moonActor = new OneSpriteStaticActor(WeatherForeGround.manager.get(MOON_TEXTURE));
         moonActor.setSize(getWidth() / 4, (getWidth() / 16 * 9) / 4);
-        moonActor.setX(getWidth() / 2 - moonActor.getWidth() / 2);
+        moonActor.setX(720 / 2 - moonActor.getWidth() / 2);//Átírtam 720-ra, mert ha szélesebb a vievport, akkor elcsúszik a Hold a hegy elé
         moonActor.setAlpha(11);
         moonActor.setDebug(false);
         moonActor.setTouchable(null);

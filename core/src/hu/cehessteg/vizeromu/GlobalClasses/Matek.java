@@ -22,12 +22,14 @@ public class Matek {
     //árvízveszély a városra nézve
     //szárazság calc
 
+    public static int coins = 0;
+
     float vizmennyiseg = 1000000; // 1misivel kezdünk;
     float patakVizmennyiseg = 0;
     int minviz = 1000; //gameover ha kevesebb
     int maxviz = 1100000; //gameover ha nagyobb
     int beviz = 100; //befolyó víz
-    int kiviz = 400; //azért ne legyen pont osztható a bevizzel(annyira azért ne legyen könnyű)
+    int kiviz = 40; //azért ne legyen pont osztható a bevizzel(annyira azért ne legyen könnyű)
     float time;
 
 
@@ -44,7 +46,7 @@ public class Matek {
             Kiomlonyilas res = new Kiomlonyilas();
             nyilasok[i] = res;
         }
-        time = 8000;
+        time = 32000;
     }
 
     float idonelertek(float kerttime){
@@ -81,6 +83,8 @@ public class Matek {
         openek = a;
     }
 
+    float coinTime = 0;
+
     public void step(float delta) {
         if (eso) {
             vizmennyiseg += 50;
@@ -93,11 +97,16 @@ public class Matek {
         opencounter();
         vizmennyiseg += beviz;
         vizmennyiseg -= kiviz * openek;
+        if(time > coinTime+(36*5)) {
+            coins += openek;
+            coinTime = time;
+        }//5 másodpercenként annyi coint kap, ahány csap megvan nyitva
         if(patakVizmennyiseg < 225000)patakVizmennyiseg += kiviz * openek;
         if(patakVizmennyiseg >= beviz) patakVizmennyiseg -= beviz;//Mondjuk ami patakból kifolyik víz, azt vezetjük vissza a gáthoz
         time += delta;
         //gameover trigger
         if (vizmennyiseg <= minviz || vizmennyiseg >= maxviz) { gameover = true; }//gameover trigger
+        System.out.println(time);
     }
 
     public boolean isVolteso() {

@@ -29,6 +29,8 @@ public class InfoStage extends MyStage {
     MyLabel daniLabelTitle;
     MyLabel davidLabelTitle;
 
+    MyLabel myLabel;
+
     MyButton back;
 
     boolean mehetvissza;
@@ -61,6 +63,8 @@ public class InfoStage extends MyStage {
         davidLabelTitle = new MyLabel("Szoftverfejlesztő", Styles.getCalibriLabelStyle());
 
         back = new MyButton("Vissza a menübe",Styles.getTextButtonStyle());
+
+        myLabel = new MyLabel("Ide jön majd valami leírás a játékról", Styles.getCalibriLabelStyle());
     }
 
     void labelStuff()
@@ -79,6 +83,8 @@ public class InfoStage extends MyStage {
         benceLabelTitle.setAlignment(0);
         daniLabelTitle.setAlignment(0);
         davidLabelTitle.setAlignment(0);
+
+        myLabel.setAlignment(0);
     }
 
     void setPositions()
@@ -99,6 +105,8 @@ public class InfoStage extends MyStage {
         davidLabelTitle.setPosition((davidLabel.getX()+davidLabel.getWidth()/2)-davidLabelTitle.getWidth()/2,davidLabel.getY()-35);
 
         back.setPosition(getViewport().getWorldWidth()*0.66f,getViewport().getWorldHeight()*0.1f);
+
+        myLabel.setPosition(getViewport().getWorldWidth()/2-myLabel.getWidth()/2,getViewport().getWorldHeight()/2-myLabel.getHeight()*2.25f);
     }
 
     void addListeners()
@@ -135,6 +143,8 @@ public class InfoStage extends MyStage {
         addActor(davidLabelTitle);
 
         addActor(back);
+
+        addActor(myLabel);
     }
 
     @Override

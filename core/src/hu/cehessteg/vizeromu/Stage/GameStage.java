@@ -15,6 +15,7 @@ import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyCircle;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyStage;
 import hu.cehessteg.vizeromu.ParentClasses.UI.MyLabel;
+import hu.cehessteg.vizeromu.ParentClasses.UI.Pause;
 import hu.cehessteg.vizeromu.Screen.MenuScreen;
 
 import static hu.cehessteg.vizeromu.GlobalClasses.Fuggvenyek.fuggvenyekNull;
@@ -25,6 +26,7 @@ public class GameStage extends MyStage {
     World esoWorld;
     World kifolyoWorld;
     public static Matek matek;
+    private static boolean isGamePaused;
     private boolean still = false;//Ez akkor lesz igaz, ha a GameStage a menü mögött van egy állóképként elhelyezve
     Gat gat;
     Viz viz;
@@ -41,6 +43,7 @@ public class GameStage extends MyStage {
 
     public GameStage(Viewport viewport, Batch batch, MyGame game) {
         super(viewport, batch, game);
+        isGamePaused = false;
         assignment();
         addActors();
         fuggvenyekNull();
@@ -51,6 +54,7 @@ public class GameStage extends MyStage {
         esoWorld = new World(new Vector2(0,-1), false);
         kifolyoWorld = new World(new Vector2(0,-1), false);
         matek = new Matek();
+        matek.addDemoTime(MenuScreen.demoElapsed);
         gat = new Gat();
         viz = new Viz()
         {
@@ -77,6 +81,7 @@ public class GameStage extends MyStage {
             }
         };
         patak.sprite.setTexture(Assets.manager.get(Assets.VIZ2));
+
         hegy1 = new Hegy((byte) 1);
         hegy2 = new Hegy((byte) 2);
         hegy3 = new Hegy((byte) 3);
@@ -86,7 +91,6 @@ public class GameStage extends MyStage {
         harmadikNyilas = new Gat.gatListenes((byte) 3);
         negyedikNyilas = new Gat.gatListenes((byte) 4);
         otodikNyilas = new Gat.gatListenes((byte) 5);
-        //Ezek később átkerülnek majd egy HudStage-re
     }
 
     void addActors()
@@ -97,11 +101,13 @@ public class GameStage extends MyStage {
         addActor(hegy1);
         addActor(hegy2);
         addActor(hegy3);
-        addActor(elsoNyilas);
-        addActor(masodikNyilas);
-        addActor(harmadikNyilas);
-        addActor(negyedikNyilas);
-        addActor(otodikNyilas);
+        if(!still) {
+            addActor(elsoNyilas);
+            addActor(masodikNyilas);
+            addActor(harmadikNyilas);
+            addActor(negyedikNyilas);
+            addActor(otodikNyilas);
+        }
         gat.setZIndex(4);
         viz.setZIndex(0);
         patak.setZIndex(-2);
@@ -118,18 +124,42 @@ public class GameStage extends MyStage {
     @Override
     public void act(float delta) {
         super.act(delta);
-        if(!still) {
+        if (!still) {
             worldThread(delta, kifolyoWorld, esoWorld);
-            matek.step(delta * 3600);
+            matek.step(delta * 36*6);
             vizcseppek(esoWorld, kifolyoWorld, this, matek, elapsedTime, viz, patak);
-        }
-        else {
-            matek.step(delta * 3600);
-            MenuScreen.demoElapsed += delta*3600;
+            if(alpha < 1) setAlphaForGatListeners();
+        } else {
+            matek.step(delta * 36*6);
+            MenuScreen.demoElapsed += delta * 36*6;
         }
     }
 
+    //delta*36     1mp a játékban = 1mp a valóságban
+    //delta*36*6   6mp a játékban = 1mp a valóságban ==> 1 nap a játékban = 10p a valóságban
+
     public void setStill(boolean still) {
         this.still = still;
+    }
+
+    public static boolean isGamePaused() {
+        return isGamePaused;
+    }
+
+    public static void setGamePaused(boolean gamePaused) {
+        isGamePaused = gamePaused;
+    }
+
+    float alpha = 0;
+
+    void setAlphaForGatListeners()
+    {
+        if(alpha < 0.985) alpha += 0.015;
+        else alpha = 1;
+        elsoNyilas.setColor(1,1,1,alpha);
+        masodikNyilas.setColor(1,1,1,alpha);
+        harmadikNyilas.setColor(1,1,1,alpha);
+        negyedikNyilas.setColor(1,1,1,alpha);
+        otodikNyilas.setColor(1,1,1,alpha);
     }
 }

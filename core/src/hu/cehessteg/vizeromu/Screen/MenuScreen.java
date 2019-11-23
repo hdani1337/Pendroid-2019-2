@@ -22,7 +22,7 @@ public class MenuScreen extends MyScreen {
     GameStage gameStage;
     InfoStage infoStage;
     OptionsStage optionsStage;
-    WeatherForeGround weatherForeGround;
+    WeatherBackground weatherBackground;
 
     public static float demoElapsed = 0;
 
@@ -33,7 +33,7 @@ public class MenuScreen extends MyScreen {
         optionsStage = new OptionsStage(new FitViewport(keparanySzelesvaszonra(),720),spriteBatch,game);
 
         gameStage = new GameStage(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20),spriteBatch,game);
-        weatherForeGround = new WeatherForeGround(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20.0f),spriteBatch,game);
+        weatherBackground = new WeatherBackground(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20.0f),spriteBatch,game);
     }
 
     @Override
@@ -57,12 +57,12 @@ public class MenuScreen extends MyScreen {
         if(menuStage.isDrawGame() && menuStage.felsoSign.getY() < menuStage.getViewport().getWorldHeight()) {
             gameStage.act(delta);
 
-            weatherForeGround.setTime(matek.getTime());
-            weatherForeGround.setRain(matek.getRain());
-            weatherForeGround.act(delta);
+            weatherBackground.setTime(matek.getTime());
+            weatherBackground.setRain(matek.getRain());
+            weatherBackground.act(delta);
 
+            weatherBackground.draw();
             gameStage.draw();
-            weatherForeGround.draw();
 
             gameStage.setStill(true);
         }
@@ -71,6 +71,10 @@ public class MenuScreen extends MyScreen {
         if(infoStage.isMehetvissza()) {
             menuStage.setMehetVissza(true);
             infoStage.setMehetvissza(false);
+        }
+        if(optionsStage.isMehetVissza()) {
+            menuStage.setMehetVissza(true);
+            optionsStage.setMehetVissza(false);
         }
         menuStage.act(delta);
         menuStage.draw();
