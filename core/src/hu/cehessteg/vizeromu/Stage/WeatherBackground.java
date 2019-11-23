@@ -143,12 +143,12 @@ public class WeatherBackground extends WeatherAbstract {
         sunActor = new SunActor(getWidth() / 2, (getWidth() / 16 * 9) / 2);
         sunActor.setX(getWidth() / 2 - sunActor.getWidth() / 2);
 
-        addHatter();
-
         addActor(skyActor);
         addActor(sunActor);
         skyActor.setDebug(false);
         sunActor.setDebug(false);
+
+        addHatter();
     }
 
     void addHatter()
@@ -160,14 +160,14 @@ public class WeatherBackground extends WeatherAbstract {
             hatter.setDebug(false);
             hatter.setPosition(i*14,0);
             addActor(hatter);
-            hatter.setZIndex(-1000);
+            hatter.setZIndex(skyActor.getZIndex()+1);
 
             OneSpriteActor hatter2 = new OneSpriteStaticActor(Assets.manager.get(Assets.FOLD));
             hatter2.setSize(14,14);
             hatter2.setDebug(false);
             hatter2.setPosition(i*14,14);
             addActor(hatter2);
-            hatter2.setZIndex(-1000);
+            hatter2.setZIndex(skyActor.getZIndex()+1);
         }
     }
 
