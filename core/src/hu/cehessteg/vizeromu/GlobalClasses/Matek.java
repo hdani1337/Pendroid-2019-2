@@ -100,7 +100,7 @@ public class Matek {
         if(time > coinTime+(36*5)) {
             coins += openek;
             coinTime = time;
-        }//5 másodpercenként annyi coint kap, ahány csap megvan nyitva
+        }//5 másodpercenként annyi coint kap, ahány csap megvan nyitva, csak ideiglenesen van bent, hogy működjön a pénzszámláló
         if(patakVizmennyiseg < 225000)patakVizmennyiseg += kiviz * openek;
         if(patakVizmennyiseg >= beviz) patakVizmennyiseg -= beviz;//Mondjuk ami patakból kifolyik víz, azt vezetjük vissza a gáthoz
         time += delta;

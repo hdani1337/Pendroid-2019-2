@@ -9,12 +9,14 @@ public class Ajto extends OneSpriteStaticActor {
     private boolean move;
     private boolean moveIn;
     private boolean moveOut;
+    private Viewport viewport;
 
     public Ajto(Viewport viewport) {
         super(Assets.manager.get(Assets.AJTO));
-        setPosition(-getWidth()*2.5f,0);
+        setPosition(-getWidth()*2,0);
         setDebug(false);
         if(viewport.getWorldWidth() > getWidth()) setWidth(viewport.getWorldWidth());
+        this.viewport = viewport;
     }
 
     public void setMove(boolean move)
@@ -28,15 +30,16 @@ public class Ajto extends OneSpriteStaticActor {
         if(move)
         {
             if(moveIn) {
-                if (getX() < -39) setX(getX() + 40);
-                else setX(0);
+                if (getX() < viewport.getWorldWidth()-this.getWidth()-20) setX(getX() + 40);
+                else setX(viewport.getWorldWidth()-this.getWidth()+20);
             }
             if(moveOut)
             {
-                if (getX() > -getWidth()) setX(getX() - 20);
-                else setX(-getWidth());
+                if (getX() > -getWidth()*1.25) setX(getX() - 20);
+                else setX(-getWidth()*1.25f);
             }
         }
+        System.out.println(getX());
     }
 
     public boolean isMoveIn() {

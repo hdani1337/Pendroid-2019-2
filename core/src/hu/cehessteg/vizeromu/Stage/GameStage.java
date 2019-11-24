@@ -154,7 +154,7 @@ public class GameStage extends MyStage {
 
     void setAlphaForGatListeners()
     {
-        if(alpha < 0.985) alpha += 0.015;
+        if(alpha < 0.985) alpha += 0.0125;
         else alpha = 1;
         elsoNyilas.setColor(1,1,1,alpha);
         masodikNyilas.setColor(1,1,1,alpha);

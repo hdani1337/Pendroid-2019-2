@@ -36,7 +36,7 @@ public class HudStage extends MyStage {
     void addActors()
     {
         addActor(pause);
-        addActor(coins);
+        //addActor(coins);
     }
 
     @Override

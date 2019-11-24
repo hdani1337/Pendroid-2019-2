@@ -13,6 +13,7 @@ import hu.cehessteg.vizeromu.GlobalClasses.Styles;
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyStage;
 import hu.cehessteg.vizeromu.ParentClasses.UI.MyButton;
+import hu.cehessteg.vizeromu.ParentClasses.UI.MyLabel;
 import hu.cehessteg.vizeromu.Screen.GameScreen;
 
 public class MenuStage extends MyStage {
@@ -23,6 +24,7 @@ public class MenuStage extends MyStage {
     MyButton exit;
     MyButton info;
     MyButton options;
+    MyLabel title;
 
     boolean drawGame = false;
     boolean drawInfo = false;
@@ -46,7 +48,10 @@ public class MenuStage extends MyStage {
         felsoSign = new CautionSign((byte)2,getViewport());
         alsoSign = new CautionSign((byte)1,getViewport());
         ajto = new Ajto(getViewport());
-        start = new MyButton("Start", Styles.getTextButtonStyle());
+        title = new MyLabel("Vízerőmű",Styles.getCalibriLabelStyle());
+        title.setFontScale(1.75f);
+        title.setAlignment(0);
+        start = new MyButton("A játék indítása", Styles.getTextButtonStyle());
         exit = new MyButton("Kilépés", Styles.getTextButtonStyle());
         info = new MyButton("A játékról", Styles.getTextButtonStyle());
         options = new MyButton("Beállítások", Styles.getTextButtonStyle());
@@ -63,7 +68,8 @@ public class MenuStage extends MyStage {
 
     void setPositions()
     {
-        start.setPosition(getViewport().getWorldWidth()*0.18f,getViewport().getWorldHeight()*0.66f);
+        title.setPosition(getViewport().getWorldWidth()*0.11f,getViewport().getWorldHeight()*0.73f);
+        start.setPosition(getViewport().getWorldWidth()*0.065f,title.getY()-100);
         info.setPosition(start.getX(),start.getY()-100);
         options.setPosition(start.getX(),info.getY()-100);
         exit.setPosition(start.getX(),options.getY()-100);
@@ -143,6 +149,7 @@ public class MenuStage extends MyStage {
         addActor(options);
         addActor(exit);
         addActor(info);
+        addActor(title);
 
         ajto.setZIndex(0);
         felsoSign.setZIndex(1);
@@ -152,6 +159,7 @@ public class MenuStage extends MyStage {
         exit.setZIndex(2);
         info.setZIndex(2);
 
+        title.setColor(1,1,1,0f);
         start.setColor(1,1,1,0f);
         options.setColor(1,1,1,0f);
         exit.setColor(1,1,1,0f);
@@ -182,6 +190,7 @@ public class MenuStage extends MyStage {
             felsoSign.setMoveUp(false);
             alsoSign.setMoveUp(false);
             alpha = 0;
+            title.setColor(1,1,1,alpha);
             start.setColor(1,1,1,alpha);
             options.setColor(1,1,1,alpha);
             exit.setColor(1,1,1,alpha);
@@ -191,11 +200,12 @@ public class MenuStage extends MyStage {
             setMehetVissza(false);
         }
 
-        if(ajto.getX() > -50)
+        if(ajto.getX() > getViewport().getWorldWidth()-ajto.getWidth()-50)
         {
             if(alpha < 0.99) alpha += 0.02;
             else alpha = 1;
 
+            title.setColor(1,1,1,alpha);
             start.setColor(1,1,1,alpha);
             options.setColor(1,1,1,alpha);
             exit.setColor(1,1,1,alpha);
@@ -206,7 +216,7 @@ public class MenuStage extends MyStage {
         {
             for (Actor actor : getActors())
             {
-                if(!(actor instanceof CautionSign) && !(actor instanceof Ajto)) if(actor.getX()>-actor.getWidth()-1)actor.setX(actor.getX()-20);
+                if(!(actor instanceof CautionSign) && !(actor instanceof Ajto)) if(actor.getX()>-actor.getWidth()*2) actor.setX(actor.getX()-20);
             }
         }
 
