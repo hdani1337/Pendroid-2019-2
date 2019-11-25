@@ -5,6 +5,10 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import java.awt.Menu;
+
+import hu.cehessteg.vizeromu.Actor.Ajto;
+import hu.cehessteg.vizeromu.Actor.CautionSign;
 import hu.cehessteg.vizeromu.GlobalClasses.Assets;
 import hu.cehessteg.vizeromu.GlobalClasses.Styles;
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
@@ -20,6 +24,9 @@ public class PauseStage extends MyStage {
     MyButton continueGame;
     MyButton menu;
     OneSpriteStaticActor background;
+    CautionSign felso;
+    CautionSign also;
+    Ajto ajto;
 
     public PauseStage(Viewport viewport, Batch batch, MyGame game) {
         super(viewport, batch, game);
@@ -37,6 +44,9 @@ public class PauseStage extends MyStage {
         background = new OneSpriteStaticActor(Assets.manager.get(Assets.BLUE_TEXTURE));
         background.setColor(0,0,0,0.5f);
         background.setDebug(false);
+        felso = new CautionSign((byte)2,getViewport());
+        also = new CautionSign((byte)1,getViewport());
+        ajto = new Ajto(getViewport());
     }
 
     void setPositions()
@@ -45,6 +55,7 @@ public class PauseStage extends MyStage {
         myLabel.setPosition(getViewport().getWorldWidth()/2-myLabel.getWidth()/2,getViewport().getWorldHeight()/2+myLabel.getHeight());
         continueGame.setPosition(getViewport().getWorldWidth()/2-continueGame.getWidth()/2,myLabel.getY()-75);
         menu.setPosition(getViewport().getWorldWidth()/2-menu.getWidth()/2,continueGame.getY()-100);
+        ajto.setX(-ajto.getWidth()*1.25f);
         background.setPosition(0,0);
         background.setSize(getViewport().getWorldWidth(),getViewport().getWorldHeight());
     }
@@ -55,6 +66,9 @@ public class PauseStage extends MyStage {
         addActor(myLabel);
         addActor(continueGame);
         addActor(menu);
+        addActor(ajto);
+        addActor(felso);
+        addActor(also);
     }
 
     void addListeners()
@@ -71,7 +85,15 @@ public class PauseStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                game.setScreen(new MenuScreen(game));
+                ajto.setMove(true);
+                ajto.setMoveIn(true);
+                ajto.setMoveOut(false);
+                felso.setMove(true);
+                also.setMove(true);
+                felso.setMoveDown(true);
+                also.setMoveDown(true);
+                felso.setMoveUp(false);
+                also.setMoveUp(false);
             }
         });
     }
@@ -79,5 +101,15 @@ public class PauseStage extends MyStage {
     @Override
     public void init() {
 
+    }
+
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+        if(ajto.getX() >= getViewport().getWorldWidth()-ajto.getWidth()) {
+            MenuScreen menuScreen = new MenuScreen(game);
+            menuScreen.setJojjonCaution(false);
+            game.setScreen(menuScreen);
+        }
     }
 }

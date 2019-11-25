@@ -82,6 +82,7 @@ public class GameScreen extends MyScreen {
                 inputMultiplexer.removeProcessor(gameStage);
                 inputMultiplexer.removeProcessor(hudStage);
             }
+            gameOverStage.act(delta);
             gameOverStage.draw();
         }
 
@@ -91,6 +92,7 @@ public class GameScreen extends MyScreen {
                 inputMultiplexer.removeProcessor(hudStage);
                 inputMultiplexer.removeProcessor(gameStage);
             }
+            pauseStage.act(delta);
             pauseStage.draw();
         }
         else {

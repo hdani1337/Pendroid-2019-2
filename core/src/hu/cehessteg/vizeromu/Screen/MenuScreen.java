@@ -26,6 +26,8 @@ public class MenuScreen extends MyScreen {
 
     public static float demoElapsed = 0;
 
+    private boolean jojjonCaution = true;
+
     public MenuScreen(MyGame game) {
         super(game);
         menuStage = new MenuStage(new FitViewport(keparanySzelesvaszonra(),720),spriteBatch,game);
@@ -70,13 +72,24 @@ public class MenuScreen extends MyScreen {
         else if(menuStage.isDrawOptions()) optionsStage.draw();
         if(infoStage.isMehetvissza()) {
             menuStage.setMehetVissza(true);
+            menuStage.setJojjonCaution(true);
             infoStage.setMehetvissza(false);
         }
         if(optionsStage.isMehetVissza()) {
             menuStage.setMehetVissza(true);
+            menuStage.setJojjonCaution(true);
             optionsStage.setMehetVissza(false);
         }
         menuStage.act(delta);
         menuStage.draw();
+    }
+
+    public boolean isJojjonCaution() {
+        return jojjonCaution;
+    }
+
+    public void setJojjonCaution(boolean jojjonCaution) {
+        this.jojjonCaution = jojjonCaution;
+        menuStage.setJojjonCaution(this.jojjonCaution);
     }
 }

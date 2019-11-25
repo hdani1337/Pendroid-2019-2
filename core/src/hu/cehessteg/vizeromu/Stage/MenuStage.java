@@ -35,6 +35,8 @@ public class MenuStage extends MyStage {
     boolean ajtoKifogMenni = false;
     boolean willExit = false;
 
+    private boolean jojjonCaution = true;
+
     public MenuStage(Viewport viewport, Batch batch, MyGame game) {
         super(viewport, batch, game);
         assignment();
@@ -57,7 +59,7 @@ public class MenuStage extends MyStage {
         options = new MyButton("Beállítások", Styles.getTextButtonStyle());
         ajto.setMove(true);
         ajto.setMoveIn(true);
-        ajto.setMoveOut(true);
+        ajto.setMoveOut(false);
         felsoSign.setMove(true);
         alsoSign.setMove(true);
         felsoSign.setMoveDown(true);
@@ -182,7 +184,7 @@ public class MenuStage extends MyStage {
         {
             ajto.setMove(true);
             ajto.setMoveIn(true);
-            ajto.setMoveOut(true);
+            ajto.setMoveOut(false);
             felsoSign.setMove(true);
             alsoSign.setMove(true);
             felsoSign.setMoveDown(true);
@@ -264,5 +266,23 @@ public class MenuStage extends MyStage {
 
     public void setMehetVissza(boolean mehetVissza) {
         this.mehetVissza = mehetVissza;
+    }
+
+    public boolean isJojjonCaution() {
+        return jojjonCaution;
+    }
+
+    public void setJojjonCaution(boolean jojjonCaution) {
+        this.jojjonCaution = jojjonCaution;
+        ajto.setMove(jojjonCaution);
+        felsoSign.setMove(jojjonCaution);
+        alsoSign.setMove(jojjonCaution);
+        felsoSign.setMoveDown(jojjonCaution);
+        alsoSign.setMoveDown(jojjonCaution);
+        if(jojjonCaution == false) {
+            alsoSign.setY(0);
+            felsoSign.setY(getViewport().getWorldHeight() - felsoSign.getHeight());
+            ajto.setX(getViewport().getWorldWidth() - ajto.getWidth() + 40);
+        }
     }
 }

@@ -26,7 +26,7 @@ public class CautionSign extends OneSpriteStaticActor {
         if(move) {
             if (moveDown) {
                 if(id == 1) {
-                    if (getY() < 0) setY(getY() + 2);
+                    if (getY() < 0) setY(getY() + 3);
                     else {
                         setY(0);
                         move = false;
@@ -35,7 +35,7 @@ public class CautionSign extends OneSpriteStaticActor {
 
                 else if(id == 2) {
                     if (getY() > getStage().getViewport().getWorldHeight() - this.getHeight())
-                        setY(getY() - 2);
+                        setY(getY() - 3);
                     else {
                         setY(getStage().getViewport().getWorldHeight() - this.getHeight());
                         move = false;
@@ -44,7 +44,7 @@ public class CautionSign extends OneSpriteStaticActor {
             }
             if (moveUp) {
                 if(id == 1) {
-                    if (getY() > -this.getHeight()) setY(getY() - 2);
+                    if (getY() > -this.getHeight()) setY(getY() - 3);
                     else {
                         setY(-this.getHeight());
                         move = false;
@@ -53,7 +53,7 @@ public class CautionSign extends OneSpriteStaticActor {
 
                 else if(id == 2) {
                     if (getY() < getStage().getViewport().getWorldHeight())
-                        setY(getY() + 2);
+                        setY(getY() + 3);
                     else {
                         setY(getStage().getViewport().getWorldHeight());
                         move = false;
