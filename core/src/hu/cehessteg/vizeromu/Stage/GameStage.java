@@ -126,11 +126,11 @@ public class GameStage extends MyStage {
         super.act(delta);
         if (!still) {
             worldThread(delta, kifolyoWorld, esoWorld);
-            matek.step(delta * 36*6);
+            matek.step(delta * 36*6*10);
             vizcseppek(esoWorld, kifolyoWorld, this, matek, elapsedTime, viz, patak);
             if(alpha < 1) setAlphaForGatListeners();
         } else {
-            matek.step(delta * 36*6);
+            matek.step(delta * 36*6*10);
             MenuScreen.demoElapsed += delta * 36*6;
         }
     }
