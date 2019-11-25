@@ -30,12 +30,12 @@ public class Ajto extends OneSpriteStaticActor {
         if(move)
         {
             if(moveIn) {
-                if (getX() < viewport.getWorldWidth()-this.getWidth()-20) setX(getX() + 40);
-                else setX(viewport.getWorldWidth()-this.getWidth()+20);
+                if (getX() < viewport.getWorldWidth()-this.getWidth()-40) setX(getX() + 80);
+                else setX(viewport.getWorldWidth()-this.getWidth()+40);
             }
             if(moveOut)
             {
-                if (getX() > -getWidth()*1.25) setX(getX() - 20);
+                if (getX() > -getWidth()*1.25) setX(getX() - 40);
                 else setX(-getWidth()*1.25f);
             }
         }

@@ -216,7 +216,7 @@ public class MenuStage extends MyStage {
         {
             for (Actor actor : getActors())
             {
-                if(!(actor instanceof CautionSign) && !(actor instanceof Ajto)) if(actor.getX()>-actor.getWidth()*2) actor.setX(actor.getX()-20);
+                if(!(actor instanceof CautionSign) && !(actor instanceof Ajto)) if(actor.getX()>-actor.getWidth()*2) actor.setX(actor.getX()-40);
             }
         }
 
