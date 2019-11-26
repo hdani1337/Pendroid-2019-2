@@ -5,6 +5,8 @@ import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -76,6 +78,13 @@ public class Assets {
     public static final AssetDescriptor<Texture> GREEN_CIRC = new AssetDescriptor<Texture>("colors/greenCircle.png", Texture.class);
     public static final AssetDescriptor<Texture> PAUSE = new AssetDescriptor<Texture>("icons/pauseTemp.png", Texture.class);
 
+    public static final AssetDescriptor<Sound> AJTO_NYIT = new AssetDescriptor<Sound>("Hangok/AjtoNyito.mp3",Sound.class);
+    public static final AssetDescriptor<Sound> AJTO_ZAR = new AssetDescriptor<Sound>("Hangok/AjtoZaro.mp3",Sound.class);
+    public static final AssetDescriptor<Sound> NYIKORGAS = new AssetDescriptor<Sound>("Hangok/Nyikorgas.mp3",Sound.class);
+
+    public static final AssetDescriptor<Music> ESO = new AssetDescriptor<Music>("Hangok/RainDrops.mp3",Music.class);
+    public static final AssetDescriptor<Music> GAME_MUSIC = new AssetDescriptor<Music>("Hangok/GameMusic.mp3",Music.class);
+
     public static void prepare() {
 		manager = new AssetManager();
 		Texture.setAssetManager(manager);
@@ -122,6 +131,13 @@ public class Assets {
         manager.load(GREEN_CIRC);
         manager.load(PAUSE);
         manager.load(FOLD);
+
+        manager.load(AJTO_NYIT);
+        manager.load(AJTO_ZAR);
+        manager.load(NYIKORGAS);
+        manager.load(ESO);
+
+        manager.load(GAME_MUSIC);
 
         WeatherForeGround.load(manager);
         WeatherBackground.load(manager);

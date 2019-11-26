@@ -15,6 +15,7 @@ public class OptionsStage extends MyStage {
     MyButton menu;
     MyLabel myLabel;
     boolean mehetVissza;
+    public static boolean muted = false;
 
     public OptionsStage(Viewport viewport, Batch batch, MyGame game) {
         super(viewport, batch, game);
@@ -65,5 +66,13 @@ public class OptionsStage extends MyStage {
 
     public void setMehetVissza(boolean mehetVissza) {
         this.mehetVissza = mehetVissza;
+    }
+
+    public static boolean isMuted() {
+        return muted;
+    }
+
+    public static void setMuted(boolean muted) {
+        OptionsStage.muted = muted;
     }
 }

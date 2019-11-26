@@ -36,6 +36,8 @@ public class MenuScreen extends MyScreen {
 
         gameStage = new GameStage(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20),spriteBatch,game);
         weatherBackground = new WeatherBackground(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20.0f),spriteBatch,game);
+
+        gameStage.gameMusic.stop();
     }
 
     @Override

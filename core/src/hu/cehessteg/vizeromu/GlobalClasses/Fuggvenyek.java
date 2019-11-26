@@ -1,5 +1,6 @@
 package hu.cehessteg.vizeromu.GlobalClasses;
 
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -12,8 +13,11 @@ import hu.cehessteg.vizeromu.Actor.Viz;
 import hu.cehessteg.vizeromu.Actor.Vizcsepp;
 import hu.cehessteg.vizeromu.ParentClasses.Box2dWorld.WorldActorGroup;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyStage;
+import hu.cehessteg.vizeromu.Stage.GameStage;
+import hu.cehessteg.vizeromu.Stage.OptionsStage;
 import hu.cehessteg.vizeromu.Vizeromu;
 
+import static hu.cehessteg.vizeromu.Stage.GameStage.isGamePaused;
 import static hu.cehessteg.vizeromu.Stage.GameStage.matek;
 
 public class Fuggvenyek {
@@ -28,9 +32,12 @@ public class Fuggvenyek {
     }
 
     static float deltaTime;
+    public static Music rainSound;
 
     public static void worldThread(float delta, final World kifolyoWorld, final World esoWorld) {
         deltaTime = delta;
+        rainSound = Assets.manager.get(Assets.ESO);
+        rainSound.setLooping(true);
         Runnable kifolyas = new Runnable() {
             @Override
             public void run() {
@@ -72,7 +79,9 @@ public class Fuggvenyek {
                         pElapsedEso = elapsedTime;
                     }
                 }
+                if(!rainSound.isPlaying() && !OptionsStage.isMuted()) rainSound.play();
             }
+            else if(rainSound.isPlaying()) rainSound.stop();
         }
 
         private static synchronized void removeVizcsepp(MyStage stage, Viz viz)

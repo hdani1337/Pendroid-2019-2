@@ -1,5 +1,7 @@
 package hu.cehessteg.vizeromu.Stage;
 
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
@@ -40,6 +42,8 @@ public class GameStage extends MyStage {
     Gat.gatListenes harmadikNyilas;
     Gat.gatListenes negyedikNyilas;
     Gat.gatListenes otodikNyilas;
+
+    public static Music gameMusic;
 
     public GameStage(Viewport viewport, Batch batch, MyGame game) {
         super(viewport, batch, game);
@@ -91,6 +95,8 @@ public class GameStage extends MyStage {
         harmadikNyilas = new Gat.gatListenes((byte) 3);
         negyedikNyilas = new Gat.gatListenes((byte) 4);
         otodikNyilas = new Gat.gatListenes((byte) 5);
+
+        gameMusic = Assets.manager.get(Assets.GAME_MUSIC);
     }
 
     void addActors()

@@ -10,11 +10,14 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import hu.cehessteg.vizeromu.GlobalClasses.Assets;
+import hu.cehessteg.vizeromu.GlobalClasses.Fuggvenyek;
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyScreen;
 import hu.cehessteg.vizeromu.Stage.GameOverStage;
 import hu.cehessteg.vizeromu.Stage.GameStage;
 import hu.cehessteg.vizeromu.Stage.HudStage;
+import hu.cehessteg.vizeromu.Stage.OptionsStage;
 import hu.cehessteg.vizeromu.Stage.PauseStage;
 import hu.cehessteg.vizeromu.Stage.WeatherBackground;
 import hu.cehessteg.vizeromu.Stage.WeatherForeGround;
@@ -41,6 +44,11 @@ public class GameScreen extends MyScreen {
         pauseStage = new PauseStage(new FitViewport(keparanySzelesvaszonra(),720),spriteBatch,game);
         hudStage = new HudStage(new FitViewport(keparanySzelesvaszonra(),720),spriteBatch,game);
         gameStage.setStill(false);
+
+        gameStage.gameMusic.setLooping(true);
+        gameStage.gameMusic.setVolume(0.5f);
+        if(!OptionsStage.isMuted()) gameStage.gameMusic.play();
+        else gameStage.gameMusic.stop();
     }
 
     @Override
@@ -82,6 +90,7 @@ public class GameScreen extends MyScreen {
                 inputMultiplexer.removeProcessor(gameStage);
                 inputMultiplexer.removeProcessor(hudStage);
             }
+            if(!OptionsStage.isMuted()) gameStage.gameMusic.pause();
             gameOverStage.act(delta);
             gameOverStage.draw();
         }
@@ -91,6 +100,10 @@ public class GameScreen extends MyScreen {
                 inputMultiplexer.addProcessor(pauseStage);
                 inputMultiplexer.removeProcessor(hudStage);
                 inputMultiplexer.removeProcessor(gameStage);
+            }
+            if(!OptionsStage.isMuted()) {
+                gameStage.gameMusic.pause();
+                Fuggvenyek.rainSound.pause();
             }
             pauseStage.act(delta);
             pauseStage.draw();

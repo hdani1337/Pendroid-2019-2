@@ -10,6 +10,7 @@ import java.awt.Menu;
 import hu.cehessteg.vizeromu.Actor.Ajto;
 import hu.cehessteg.vizeromu.Actor.CautionSign;
 import hu.cehessteg.vizeromu.GlobalClasses.Assets;
+import hu.cehessteg.vizeromu.GlobalClasses.Fuggvenyek;
 import hu.cehessteg.vizeromu.GlobalClasses.Styles;
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyStage;
@@ -78,6 +79,10 @@ public class PauseStage extends MyStage {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 GameStage.setGamePaused(false);
+                if(!OptionsStage.isMuted()) {
+                    GameStage.gameMusic.play();
+                    Fuggvenyek.rainSound.play();
+                }
             }
         });
 
