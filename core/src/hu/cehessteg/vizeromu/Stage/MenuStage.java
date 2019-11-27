@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import hu.cehessteg.vizeromu.Actor.Ajto;
 import hu.cehessteg.vizeromu.Actor.CautionSign;
+import hu.cehessteg.vizeromu.Actor.Gomb;
 import hu.cehessteg.vizeromu.GlobalClasses.Styles;
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyStage;
@@ -20,10 +21,10 @@ public class MenuStage extends MyStage {
     public CautionSign felsoSign;
     CautionSign alsoSign;
     public Ajto ajto;
-    MyButton start;
-    MyButton exit;
-    MyButton info;
-    MyButton options;
+    Gomb start;
+    Gomb exit;
+    Gomb info;
+    Gomb options;
     MyLabel title;
 
     boolean drawGame = false;
@@ -53,10 +54,10 @@ public class MenuStage extends MyStage {
         title = new MyLabel("Vízerőmű",Styles.getCalibriLabelStyle());
         title.setFontScale(1.75f);
         title.setAlignment(0);
-        start = new MyButton("A játék indítása", Styles.getTextButtonStyle());
-        exit = new MyButton("Kilépés", Styles.getTextButtonStyle());
-        info = new MyButton("A játékról", Styles.getTextButtonStyle());
-        options = new MyButton("Beállítások", Styles.getTextButtonStyle());
+        start = new Gomb("Indítás",this);
+        exit = new Gomb("Kilépés",this);
+        info = new Gomb("Információ",this);
+        options = new Gomb("Beállítások",this);
         ajto.setMove(true);
         ajto.setMoveIn(true);
         ajto.setMoveOut(false);
@@ -70,11 +71,15 @@ public class MenuStage extends MyStage {
 
     void setPositions()
     {
-        title.setPosition(getViewport().getWorldWidth()*0.11f,getViewport().getWorldHeight()*0.73f);
-        start.setPosition(getViewport().getWorldWidth()*0.065f,title.getY()-100);
-        info.setPosition(start.getX(),start.getY()-100);
-        options.setPosition(start.getX(),info.getY()-100);
-        exit.setPosition(start.getX(),options.getY()-100);
+        start.setPosition(getViewport().getWorldWidth()*0.065f,getViewport().getWorldHeight()*0.66f);
+        info.setPosition(start.getX(),start.getY()-120);
+        options.setPosition(start.getX(),info.getY()-120);
+        exit.setPosition(start.getX(),options.getY()-120);
+
+        start.myLabel.setPosition(start.getX()+start.getWidth()/2-start.myLabel.getWidth()/2,start.getY()+start.getHeight()/2-start.myLabel.getHeight()/2);
+        info.myLabel.setPosition(info.getX()+info.getWidth()/2-info.myLabel.getWidth()/2,info.getY()+info.getHeight()/2-info.myLabel.getHeight()/2);
+        options.myLabel.setPosition(options.getX()+options.getWidth()/2-options.myLabel.getWidth()/2,options.getY()+options.getHeight()/2-options.myLabel.getHeight()/2);
+        exit.myLabel.setPosition(exit.getX()+exit.getWidth()/2-exit.myLabel.getWidth()/2,exit.getY()+exit.getHeight()/2-exit.myLabel.getHeight()/2);
     }
 
     void addListeners()
@@ -151,7 +156,7 @@ public class MenuStage extends MyStage {
         addActor(options);
         addActor(exit);
         addActor(info);
-        addActor(title);
+        //addActor(title);
 
         ajto.setZIndex(0);
         felsoSign.setZIndex(1);
@@ -160,6 +165,11 @@ public class MenuStage extends MyStage {
         options.setZIndex(2);
         exit.setZIndex(2);
         info.setZIndex(2);
+
+        start.myLabel.setZIndex(30);
+        options.myLabel.setZIndex(30);
+        info.myLabel.setZIndex(30);
+        exit.myLabel.setZIndex(30);
 
         title.setColor(1,1,1,0f);
         start.setColor(1,1,1,0f);

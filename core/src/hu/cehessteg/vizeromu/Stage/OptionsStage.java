@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import hu.cehessteg.vizeromu.Actor.Gomb;
 import hu.cehessteg.vizeromu.GlobalClasses.Styles;
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyStage;
@@ -12,7 +13,7 @@ import hu.cehessteg.vizeromu.ParentClasses.UI.MyButton;
 import hu.cehessteg.vizeromu.ParentClasses.UI.MyLabel;
 
 public class OptionsStage extends MyStage {
-    MyButton menu;
+    Gomb menu;
     MyLabel myLabel;
     boolean mehetVissza;
     public static boolean muted = false;
@@ -27,13 +28,13 @@ public class OptionsStage extends MyStage {
 
     void assignment()
     {
-        menu = new MyButton("Vissza a menübe", Styles.getTextButtonStyle());
+        menu = new Gomb("Vissza",this);
         myLabel = new MyLabel("Ide jönnek majd a beállítások\nValószínűleg csak a zene és a hangok némítása lesz", Styles.getCalibriLabelStyle());
     }
 
     void setPositions()
     {
-        menu.setPosition(getViewport().getWorldWidth()*0.66f,getViewport().getWorldHeight()*0.1f);
+        menu.setPosition(getViewport().getWorldWidth()*0.66f+menu.getWidth()/2,getViewport().getWorldHeight()*0.1f);
         myLabel.setAlignment(0);
         myLabel.setPosition(getViewport().getWorldWidth()/2-myLabel.getWidth()/2,getViewport().getWorldHeight()/2+myLabel.getHeight()/4);
     }
@@ -42,6 +43,9 @@ public class OptionsStage extends MyStage {
     {
         addActor(menu);
         addActor(myLabel);
+
+        menu.myLabel.setPosition(menu.getX()+menu.getWidth()/2-menu.myLabel.getWidth()/2,menu.getY()+menu.getHeight()/2-menu.myLabel.getHeight()/2);
+        menu.myLabel.setZIndex(30);
     }
 
     void addListeners()

@@ -77,6 +77,7 @@ public class Assets {
     public static final AssetDescriptor<Texture> RED_CIRC = new AssetDescriptor<Texture>("colors/redCircle.png", Texture.class);
     public static final AssetDescriptor<Texture> GREEN_CIRC = new AssetDescriptor<Texture>("colors/greenCircle.png", Texture.class);
     public static final AssetDescriptor<Texture> PAUSE = new AssetDescriptor<Texture>("icons/pauseTemp.png", Texture.class);
+    public static final AssetDescriptor<Texture> GOMB = new AssetDescriptor<Texture>("gomb.png", Texture.class);
 
     public static final AssetDescriptor<Sound> AJTO_NYIT = new AssetDescriptor<Sound>("Hangok/AjtoNyito.mp3",Sound.class);
     public static final AssetDescriptor<Sound> AJTO_ZAR = new AssetDescriptor<Sound>("Hangok/AjtoZaro.mp3",Sound.class);
@@ -131,6 +132,7 @@ public class Assets {
         manager.load(GREEN_CIRC);
         manager.load(PAUSE);
         manager.load(FOLD);
+        manager.load(GOMB);
 
         manager.load(AJTO_NYIT);
         manager.load(AJTO_ZAR);

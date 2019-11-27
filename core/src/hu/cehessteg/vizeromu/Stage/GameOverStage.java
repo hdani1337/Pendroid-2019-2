@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import hu.cehessteg.vizeromu.Actor.Ajto;
 import hu.cehessteg.vizeromu.Actor.CautionSign;
+import hu.cehessteg.vizeromu.Actor.Gomb;
 import hu.cehessteg.vizeromu.GlobalClasses.Assets;
 import hu.cehessteg.vizeromu.GlobalClasses.Styles;
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
@@ -19,8 +20,8 @@ import hu.cehessteg.vizeromu.Screen.MenuScreen;
 
 public class GameOverStage extends MyStage {
     MyLabel gameOver;
-    MyButton restart;
-    MyButton menu;
+    Gomb restart;
+    Gomb menu;
     OneSpriteStaticActor background;
     CautionSign felso;
     CautionSign also;
@@ -37,8 +38,8 @@ public class GameOverStage extends MyStage {
     void assignment()
     {
         gameOver = new MyLabel("Vége a játéknak!", Styles.getCalibriLabelStyle());
-        restart = new MyButton("Újra!", Styles.getTextButtonStyle());
-        menu = new MyButton("Főmenü", Styles.getTextButtonStyle());
+        restart = new Gomb("Újraindítás", this);
+        menu = new Gomb("Kilépés",this);
         background = new OneSpriteStaticActor(Assets.manager.get(Assets.BLUE_TEXTURE));
         background.setColor(0,0,0,0.5f);
         background.setDebug(false);
@@ -50,9 +51,9 @@ public class GameOverStage extends MyStage {
     void setPositions()
     {
         gameOver.setAlignment(0);
-        gameOver.setPosition(getViewport().getWorldWidth()/2-gameOver.getWidth()/2,getViewport().getWorldHeight()/2+gameOver.getHeight()/2);
-        restart.setPosition(getViewport().getWorldWidth()/2-restart.getWidth()/2,gameOver.getY()-75);
-        menu.setPosition(getViewport().getWorldWidth()/2-menu.getWidth()/2,restart.getY()-75);
+        gameOver.setPosition(getViewport().getWorldWidth()/2-gameOver.getWidth()/2,getViewport().getWorldHeight()/2+gameOver.getHeight()*2);
+        restart.setPosition(getViewport().getWorldWidth()/2-restart.getWidth()/2,gameOver.getY()-120);
+        menu.setPosition(getViewport().getWorldWidth()/2-menu.getWidth()/2,restart.getY()-120);
         ajto.setX(-ajto.getWidth()*1.25f);
         background.setPosition(0,0);
         background.setSize(getViewport().getWorldWidth(),getViewport().getWorldHeight());
@@ -67,6 +68,12 @@ public class GameOverStage extends MyStage {
         addActor(ajto);
         addActor(felso);
         addActor(also);
+
+        menu.myLabel.setPosition(menu.getX()+menu.getWidth()/2-menu.myLabel.getWidth()/2,menu.getY()+menu.getHeight()/2-menu.myLabel.getHeight()/2);
+        menu.myLabel.setZIndex(menu.getZIndex()+1);
+
+        restart.myLabel.setPosition(restart.getX()+restart.getWidth()/2-restart.myLabel.getWidth()/2,restart.getY()+restart.getHeight()/2-restart.myLabel.getHeight()/2);
+        restart.myLabel.setZIndex(restart.getZIndex()+1);
     }
 
     void addListeners()

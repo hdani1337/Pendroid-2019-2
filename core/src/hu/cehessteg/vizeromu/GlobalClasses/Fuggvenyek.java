@@ -67,7 +67,7 @@ public class Fuggvenyek {
         private static synchronized void addVizcsepp(World world, MyStage stage, Matek matek, float elapsedTime, Viz viz)
         {
             if (matek.getRain() > 0.05) {
-                if (elapsedTime > pElapsedEso + (1 - matek.getRain()) / 3 /* && matek.isVolteso()*/) {
+                if (elapsedTime > pElapsedEso + (1 - matek.getRain()) / 2 /* && matek.isVolteso()*/) {
                     for (int i = 0; i < 1 + matek.getRain() * 3; i++) {
                         WorldActorGroup eso = new Vizcsepp(world);
                         if (eso == null) return;

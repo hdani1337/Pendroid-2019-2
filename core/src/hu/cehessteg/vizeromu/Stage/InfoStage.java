@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import hu.cehessteg.vizeromu.Actor.Gomb;
 import hu.cehessteg.vizeromu.GlobalClasses.Assets;
 import hu.cehessteg.vizeromu.GlobalClasses.Styles;
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
@@ -31,7 +32,7 @@ public class InfoStage extends MyStage {
 
     MyLabel myLabel;
 
-    MyButton back;
+    Gomb back;
 
     boolean mehetvissza;
 
@@ -62,7 +63,7 @@ public class InfoStage extends MyStage {
         daniLabelTitle = new MyLabel("Szoftverfejlesztő", Styles.getCalibriLabelStyle());
         davidLabelTitle = new MyLabel("Szoftverfejlesztő", Styles.getCalibriLabelStyle());
 
-        back = new MyButton("Vissza a menübe",Styles.getTextButtonStyle());
+        back = new Gomb("Vissza",this);
 
         myLabel = new MyLabel("Ide jön majd valami leírás a játékról", Styles.getCalibriLabelStyle());
     }
@@ -104,7 +105,8 @@ public class InfoStage extends MyStage {
         daniLabelTitle.setPosition((daniLabel.getX()+daniLabel.getWidth()/2)-daniLabelTitle.getWidth()/2,daniLabel.getY()-35);
         davidLabelTitle.setPosition((davidLabel.getX()+davidLabel.getWidth()/2)-davidLabelTitle.getWidth()/2,davidLabel.getY()-35);
 
-        back.setPosition(getViewport().getWorldWidth()*0.66f,getViewport().getWorldHeight()*0.1f);
+        back.setPosition(getViewport().getWorldWidth()*0.66f + back.getWidth()/2,getViewport().getWorldHeight()*0.1f);
+        back.myLabel.setPosition(back.getX()+back.getWidth()/2-back.myLabel.getWidth()/2,back.getY()+back.getHeight()/2-back.myLabel.getHeight()/2);
 
         myLabel.setPosition(getViewport().getWorldWidth()/2-myLabel.getWidth()/2,getViewport().getWorldHeight()/2-myLabel.getHeight()*2.25f);
     }
@@ -144,6 +146,7 @@ public class InfoStage extends MyStage {
         addActor(davidLabelTitle);
 
         addActor(back);
+        back.myLabel.setZIndex(300);
 
         addActor(myLabel);
     }

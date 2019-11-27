@@ -86,9 +86,9 @@ public class GameScreen extends MyScreen {
 
         if (gameStage.matek.isGameover()) {
             if(!inputMultiplexer.getProcessors().contains(gameOverStage,true)) {
-                inputMultiplexer.addProcessor(gameOverStage);
                 inputMultiplexer.removeProcessor(gameStage);
                 inputMultiplexer.removeProcessor(hudStage);
+                inputMultiplexer.addProcessor(gameOverStage);
             }
             if(!OptionsStage.isMuted()) gameStage.gameMusic.pause();
             gameOverStage.act(delta);
@@ -108,7 +108,7 @@ public class GameScreen extends MyScreen {
             pauseStage.act(delta);
             pauseStage.draw();
         }
-        else {
+        else if(!gameStage.isGamePaused() && !gameStage.matek.isGameover()){
             if(!inputMultiplexer.getProcessors().contains(hudStage, true))
                 inputMultiplexer.addProcessor(hudStage);
             if(!inputMultiplexer.getProcessors().contains(gameStage, true))

@@ -9,6 +9,7 @@ import java.awt.Menu;
 
 import hu.cehessteg.vizeromu.Actor.Ajto;
 import hu.cehessteg.vizeromu.Actor.CautionSign;
+import hu.cehessteg.vizeromu.Actor.Gomb;
 import hu.cehessteg.vizeromu.GlobalClasses.Assets;
 import hu.cehessteg.vizeromu.GlobalClasses.Fuggvenyek;
 import hu.cehessteg.vizeromu.GlobalClasses.Styles;
@@ -22,8 +23,8 @@ import hu.cehessteg.vizeromu.Screen.MenuScreen;
 
 public class PauseStage extends MyStage {
     MyLabel myLabel;
-    MyButton continueGame;
-    MyButton menu;
+    Gomb continueGame;
+    Gomb menu;
     OneSpriteStaticActor background;
     CautionSign felso;
     CautionSign also;
@@ -40,8 +41,8 @@ public class PauseStage extends MyStage {
     void assignment()
     {
         myLabel = new MyLabel("Megállítva", Styles.getCalibriLabelStyle());
-        continueGame = new MyButton("A játék folytatása", Styles.getTextButtonStyle());
-        menu = new MyButton("Kilépés a menübe", Styles.getTextButtonStyle());
+        continueGame = new Gomb("Folytatás", this);
+        menu = new Gomb("Kilépés", this);
         background = new OneSpriteStaticActor(Assets.manager.get(Assets.BLUE_TEXTURE));
         background.setColor(0,0,0,0.5f);
         background.setDebug(false);
@@ -53,9 +54,9 @@ public class PauseStage extends MyStage {
     void setPositions()
     {
         myLabel.setAlignment(0);
-        myLabel.setPosition(getViewport().getWorldWidth()/2-myLabel.getWidth()/2,getViewport().getWorldHeight()/2+myLabel.getHeight());
-        continueGame.setPosition(getViewport().getWorldWidth()/2-continueGame.getWidth()/2,myLabel.getY()-75);
-        menu.setPosition(getViewport().getWorldWidth()/2-menu.getWidth()/2,continueGame.getY()-100);
+        myLabel.setPosition(getViewport().getWorldWidth()/2-myLabel.getWidth()/2,getViewport().getWorldHeight()/1.7f+myLabel.getHeight());
+        continueGame.setPosition(getViewport().getWorldWidth()/2-continueGame.getWidth()/2,myLabel.getY()-120);
+        menu.setPosition(getViewport().getWorldWidth()/2-menu.getWidth()/2,continueGame.getY()-120);
         ajto.setX(-ajto.getWidth()*1.25f);
         background.setPosition(0,0);
         background.setSize(getViewport().getWorldWidth(),getViewport().getWorldHeight());
@@ -70,6 +71,12 @@ public class PauseStage extends MyStage {
         addActor(ajto);
         addActor(felso);
         addActor(also);
+
+        menu.myLabel.setPosition(menu.getX()+menu.getWidth()/2-menu.myLabel.getWidth()/2,menu.getY()+menu.getHeight()/2-menu.myLabel.getHeight()/2);
+        menu.myLabel.setZIndex(continueGame.getZIndex()+1);
+
+        continueGame.myLabel.setPosition(continueGame.getX()+continueGame.getWidth()/2-continueGame.myLabel.getWidth()/2,continueGame.getY()+continueGame.getHeight()/2-continueGame.myLabel.getHeight()/2);
+        continueGame.myLabel.setZIndex(continueGame.getZIndex()+1);
     }
 
     void addListeners()
