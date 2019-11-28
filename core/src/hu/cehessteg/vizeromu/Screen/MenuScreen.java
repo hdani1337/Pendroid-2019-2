@@ -67,6 +67,29 @@ public class MenuScreen extends MyScreen {
     @Override
     public void render(float delta) {
         super.render(delta);
+        whatToDraw(delta);
+        backToMenuFromAnotherStage();
+        menuStage.act(delta);
+        menuStage.draw();
+    }
+
+    void backToMenuFromAnotherStage()
+    {
+        if(infoStage.isMehetvissza()) {
+            menuStage.setMehetVissza(true);
+            menuStage.setJojjonCaution(true);
+            infoStage.setMehetvissza(false);
+        }
+
+        if(optionsStage.isMehetVissza()) {
+            menuStage.setMehetVissza(true);
+            menuStage.setJojjonCaution(true);
+            optionsStage.setMehetVissza(false);
+        }
+    }
+
+    void whatToDraw(float delta)
+    {
         if(menuStage.isDrawGame() && menuStage.felsoSign.getY() < menuStage.getViewport().getWorldHeight()) {
             gameStage.act(delta);
 
@@ -81,18 +104,6 @@ public class MenuScreen extends MyScreen {
         }
         else if(menuStage.isDrawInfo()) infoStage.draw();
         else if(menuStage.isDrawOptions()) optionsStage.draw();
-        if(infoStage.isMehetvissza()) {
-            menuStage.setMehetVissza(true);
-            menuStage.setJojjonCaution(true);
-            infoStage.setMehetvissza(false);
-        }
-        if(optionsStage.isMehetVissza()) {
-            menuStage.setMehetVissza(true);
-            menuStage.setJojjonCaution(true);
-            optionsStage.setMehetVissza(false);
-        }
-        menuStage.act(delta);
-        menuStage.draw();
     }
 
     public boolean isJojjonCaution() {

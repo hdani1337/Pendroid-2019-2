@@ -191,10 +191,21 @@ public class MenuStage extends MyStage {
     private float alpha = 0;
     private boolean moveBack = false;
 
+    private float movingButtons = 0.05f;
+
     @Override
     public void act(float delta) {
         super.act(delta);
+        ajtoVissza();//Ajtó vissza bejön
+        buttonsFadeIn();//Gombok megjelennek
+        ajtoKimegy();//Ajtó kimegy
+        mindenKimegy();//Minden actor kimegy
+        buttonsAnimation();//Gombok animációja (kísérleti jelleggel)
+        exitOrGame();//Kilépés vagy váltás GameScreenre
+    }
 
+    void ajtoVissza()
+    {
         if(isMehetVissza())
         {
             ajto.setMove(true);
@@ -216,27 +227,10 @@ public class MenuStage extends MyStage {
             setPositions();
             setMehetVissza(false);
         }
+    }
 
-        if(ajto.getX() > getViewport().getWorldWidth()-ajto.getWidth()-50)
-        {
-            if(alpha < 0.99) alpha += 0.02;
-            else alpha = 1;
-
-            title.setColor(1,1,1,alpha);
-            start.setColor(1,1,1,alpha);
-            options.setColor(1,1,1,alpha);
-            exit.setColor(1,1,1,alpha);
-            info.setColor(1,1,1,alpha);
-        }
-
-        if(moveBack)
-        {
-            for (Actor actor : getActors())
-            {
-                if(!(actor instanceof CautionSign) && !(actor instanceof Ajto)) if(actor.getX()>-actor.getWidth()*2) actor.setX(actor.getX()-40);
-            }
-        }
-
+    void ajtoKimegy()
+    {
         if(ajtoKifogMenni)
         {
             if(ajto.getX() < -ajto.getWidth()*0.8) {
@@ -249,7 +243,42 @@ public class MenuStage extends MyStage {
                 ajtoKifogMenni = false;
             }
         }
+    }
 
+    void mindenKimegy()
+    {
+        if(moveBack)
+        {
+            for (Actor actor : getActors())
+            {
+                if(!(actor instanceof CautionSign) && !(actor instanceof Ajto)) if(actor.getX()>-actor.getWidth()*2) actor.setX(actor.getX()-40);
+            }
+        }
+    }
+
+    void buttonsFadeIn()
+    {
+        if(ajto.getX() > getViewport().getWorldWidth()-ajto.getWidth()-50)
+        {
+            if(alpha < 0.99) alpha += 0.02;
+            else alpha = 1;
+
+            title.setColor(1,1,1,alpha);
+            start.setColor(1,1,1,alpha);
+            options.setColor(1,1,1,alpha);
+            exit.setColor(1,1,1,alpha);
+            info.setColor(1,1,1,alpha);
+        }
+    }
+
+    void buttonsAnimation()
+    {
+        start.setRotation(start.getRotation() + movingButtons);
+        if(start.getRotation() < -4 || start.getRotation() > 4) movingButtons *= -1;
+    }
+
+    void exitOrGame()
+    {
         if(felsoSign.getY() >= getViewport().getWorldHeight()) {
             if (drawGame) {
                 game.setScreen(new GameScreen(game));

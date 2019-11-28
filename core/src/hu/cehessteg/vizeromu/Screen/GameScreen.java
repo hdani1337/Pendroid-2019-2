@@ -88,6 +88,12 @@ public class GameScreen extends MyScreen {
         weatherForeGround.draw();
         hudStage.draw();
 
+        ifGameOver(delta);
+        ifPaused(delta);
+    }
+
+    void ifGameOver(float delta)
+    {
         if (gameStage.matek.isGameover()) {
             if(!inputMultiplexer.getProcessors().contains(gameOverStage,true)) {
                 inputMultiplexer.removeProcessor(gameStage);
@@ -98,7 +104,10 @@ public class GameScreen extends MyScreen {
             gameOverStage.act(delta);
             gameOverStage.draw();
         }
+    }
 
+    void ifPaused(float delta)
+    {
         if (gameStage.isGamePaused()) {
             if(!inputMultiplexer.getProcessors().contains(pauseStage,true)) {
                 inputMultiplexer.addProcessor(pauseStage);
@@ -120,6 +129,5 @@ public class GameScreen extends MyScreen {
             if(inputMultiplexer.getProcessors().contains(pauseStage,true))
                 inputMultiplexer.removeProcessor(pauseStage);
         }
-
     }
 }
