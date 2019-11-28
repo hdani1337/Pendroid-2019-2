@@ -1,6 +1,7 @@
 package hu.cehessteg.vizeromu.Stage;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -10,6 +11,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import hu.cehessteg.vizeromu.Actor.Ajto;
 import hu.cehessteg.vizeromu.Actor.CautionSign;
 import hu.cehessteg.vizeromu.Actor.Gomb;
+import hu.cehessteg.vizeromu.GlobalClasses.Assets;
 import hu.cehessteg.vizeromu.GlobalClasses.Styles;
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyStage;
@@ -38,6 +40,8 @@ public class MenuStage extends MyStage {
 
     private boolean jojjonCaution = true;
 
+    public static Music menuMusic;
+
     public MenuStage(Viewport viewport, Batch batch, MyGame game) {
         super(viewport, batch, game);
         assignment();
@@ -48,6 +52,7 @@ public class MenuStage extends MyStage {
 
     void assignment()
     {
+        menuMusic = Assets.manager.get(Assets.MENU_MUSIC);
         felsoSign = new CautionSign((byte)2,getViewport());
         alsoSign = new CautionSign((byte)1,getViewport());
         ajto = new Ajto(getViewport());

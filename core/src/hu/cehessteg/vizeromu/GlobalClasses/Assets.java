@@ -85,6 +85,7 @@ public class Assets {
 
     public static final AssetDescriptor<Music> ESO = new AssetDescriptor<Music>("Hangok/RainDrops.mp3",Music.class);
     public static final AssetDescriptor<Music> GAME_MUSIC = new AssetDescriptor<Music>("Hangok/GameMusic.mp3",Music.class);
+    public static final AssetDescriptor<Music> MENU_MUSIC = new AssetDescriptor<Music>("Hangok/MenuMusic.mp3",Music.class);
 
     public static void prepare() {
 		manager = new AssetManager();
@@ -140,6 +141,7 @@ public class Assets {
         manager.load(ESO);
 
         manager.load(GAME_MUSIC);
+        manager.load(MENU_MUSIC);
 
         WeatherForeGround.load(manager);
         WeatherBackground.load(manager);

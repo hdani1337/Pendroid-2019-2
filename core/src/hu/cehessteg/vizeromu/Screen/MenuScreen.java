@@ -38,6 +38,15 @@ public class MenuScreen extends MyScreen {
         weatherBackground = new WeatherBackground(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20.0f),spriteBatch,game);
 
         gameStage.gameMusic.stop();
+
+
+        menuStage.menuMusic.setLooping(true);
+        menuStage.menuMusic.setVolume(0.5f);
+        if(!OptionsStage.isMuted()) {
+            menuStage.menuMusic.play();
+            gameStage.gameMusic.stop();
+        }
+        else menuStage.menuMusic.stop();
     }
 
     @Override

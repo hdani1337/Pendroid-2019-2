@@ -17,6 +17,7 @@ import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyScreen;
 import hu.cehessteg.vizeromu.Stage.GameOverStage;
 import hu.cehessteg.vizeromu.Stage.GameStage;
 import hu.cehessteg.vizeromu.Stage.HudStage;
+import hu.cehessteg.vizeromu.Stage.MenuStage;
 import hu.cehessteg.vizeromu.Stage.OptionsStage;
 import hu.cehessteg.vizeromu.Stage.PauseStage;
 import hu.cehessteg.vizeromu.Stage.WeatherBackground;
@@ -47,7 +48,10 @@ public class GameScreen extends MyScreen {
 
         gameStage.gameMusic.setLooping(true);
         gameStage.gameMusic.setVolume(0.5f);
-        if(!OptionsStage.isMuted()) gameStage.gameMusic.play();
+        if(!OptionsStage.isMuted()) {
+            MenuStage.menuMusic.stop();
+            gameStage.gameMusic.play();
+        }
         else gameStage.gameMusic.stop();
     }
 
