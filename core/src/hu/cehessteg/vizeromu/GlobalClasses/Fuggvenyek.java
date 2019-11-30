@@ -50,8 +50,8 @@ public class Fuggvenyek {
                 esoWorld.step(deltaTime,10,10);
             }
         };
-        new Thread(kifolyas).run();
         new Thread(eso).run();
+        new Thread(kifolyas).run();
     }
 
     public static void vizcseppek(final World esoWorld, final World kifolyoWorld, final MyStage stage, final Matek matek, final float elapsedTime, final Viz viz, final Viz viz2)
@@ -67,7 +67,7 @@ public class Fuggvenyek {
         private static synchronized void addVizcsepp(World world, MyStage stage, Matek matek, float elapsedTime, Viz viz)
         {
             if (matek.getRain() > 0.05) {
-                if (elapsedTime > pElapsedEso + (1 - matek.getRain()) / 2 /* && matek.isVolteso()*/) {
+                if (elapsedTime > pElapsedEso + (1 - matek.getRain()) /* && matek.isVolteso()*/) {
                     for (int i = 0; i < 1 + matek.getRain() * 3; i++) {
                         WorldActorGroup eso = new Vizcsepp(world);
                         if (eso == null) return;

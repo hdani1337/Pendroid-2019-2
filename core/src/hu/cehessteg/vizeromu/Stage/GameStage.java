@@ -11,6 +11,7 @@ import hu.cehessteg.vizeromu.Actor.Gat;
 import hu.cehessteg.vizeromu.Actor.Hegy;
 import hu.cehessteg.vizeromu.Actor.Viz;
 import hu.cehessteg.vizeromu.GlobalClasses.Assets;
+import hu.cehessteg.vizeromu.GlobalClasses.Fuggvenyek;
 import hu.cehessteg.vizeromu.GlobalClasses.Matek;
 import hu.cehessteg.vizeromu.GlobalClasses.Styles;
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
@@ -138,6 +139,7 @@ public class GameStage extends MyStage {
         } else {
             matek.step(delta * 36*6*10);
             MenuScreen.demoElapsed += delta * 36*6;
+            Fuggvenyek.rainSound.stop();
         }
     }
 

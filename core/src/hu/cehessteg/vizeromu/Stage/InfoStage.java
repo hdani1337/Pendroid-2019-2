@@ -30,7 +30,9 @@ public class InfoStage extends MyStage {
     MyLabel daniLabelTitle;
     MyLabel davidLabelTitle;
 
-    MyLabel myLabel;
+    MyLabel infoText;
+
+    OneSpriteStaticActor background;
 
     Gomb back;
 
@@ -65,7 +67,10 @@ public class InfoStage extends MyStage {
 
         back = new Gomb("Vissza",this);
 
-        myLabel = new MyLabel("Ide jön majd valami leírás a játékról", Styles.getCalibriLabelStyle());
+        infoText = new MyLabel("Ez a játék a 2019-es Pendroid programozási\nverseny második fordulójára készült.\nA játékban egy vízerőművet kell irányítanod úgy,\nhogy minél több anyagi haszont szerezz belőle,\nmiközben nem fogy el a víz vagy nem telik fel a víztározó.", Styles.getCalibriLabelStyle());
+        infoText.setFontScale(0.7f);
+        background = new OneSpriteStaticActor(Assets.manager.get(Assets.BLUE_TEXTURE));
+        background.setColor(0,0,0,0.85f);
     }
 
     void labelStuff()
@@ -85,7 +90,7 @@ public class InfoStage extends MyStage {
         daniLabelTitle.setAlignment(0);
         davidLabelTitle.setAlignment(0);
 
-        myLabel.setAlignment(0);
+        infoText.setAlignment(0);
     }
 
     void setPositions()
@@ -108,7 +113,10 @@ public class InfoStage extends MyStage {
         back.setPosition(getViewport().getWorldWidth()*0.66f + back.getWidth()/2,getViewport().getWorldHeight()*0.1f);
         back.myLabel.setPosition(back.getX()+back.getWidth()/2-back.myLabel.getWidth()/2,back.getY()+back.getHeight()/2-back.myLabel.getHeight()/2);
 
-        myLabel.setPosition(getViewport().getWorldWidth()/2-myLabel.getWidth()/2,getViewport().getWorldHeight()/2-myLabel.getHeight()*2.25f);
+        infoText.setPosition(getViewport().getWorldWidth()/2-infoText.getWidth()/1.66f,getViewport().getWorldHeight()*0.035f);
+
+        background.setPosition(0,0);
+        background.setSize(getViewport().getWorldWidth(),getViewport().getWorldHeight());
     }
 
     void addListeners()
@@ -125,10 +133,13 @@ public class InfoStage extends MyStage {
 
     void addActors()
     {
+        background.setDebug(false);
         zoli.setDebug(false);
         bence.setDebug(false);
         dani.setDebug(false);
         david.setDebug(false);
+
+        addActor(background);
 
         addActor(zoli);
         addActor(bence);
@@ -148,7 +159,7 @@ public class InfoStage extends MyStage {
         addActor(back);
         back.myLabel.setZIndex(300);
 
-        addActor(myLabel);
+        addActor(infoText);
     }
 
     @Override

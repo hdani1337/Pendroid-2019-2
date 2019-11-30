@@ -6,13 +6,11 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyScreen;
-import hu.cehessteg.vizeromu.ParentClasses.Scene2D.OneSpriteActor;
 import hu.cehessteg.vizeromu.Stage.GameStage;
 import hu.cehessteg.vizeromu.Stage.InfoStage;
 import hu.cehessteg.vizeromu.Stage.MenuStage;
 import hu.cehessteg.vizeromu.Stage.OptionsStage;
 import hu.cehessteg.vizeromu.Stage.WeatherBackground;
-import hu.cehessteg.vizeromu.Stage.WeatherForeGround;
 
 import static hu.cehessteg.vizeromu.Stage.GameStage.matek;
 import static hu.cehessteg.vizeromu.Vizeromu.keparanySzelesvaszonra;
@@ -38,7 +36,6 @@ public class MenuScreen extends MyScreen {
         weatherBackground = new WeatherBackground(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20.0f),spriteBatch,game);
 
         gameStage.gameMusic.stop();
-
 
         menuStage.menuMusic.setLooping(true);
         menuStage.menuMusic.setVolume(0.5f);
@@ -90,20 +87,29 @@ public class MenuScreen extends MyScreen {
 
     void whatToDraw(float delta)
     {
-        if(menuStage.isDrawGame() && menuStage.felsoSign.getY() < menuStage.getViewport().getWorldHeight()) {
-            gameStage.act(delta);
-
-            weatherBackground.setTime(matek.getTime());
-            weatherBackground.setRain(matek.getRain());
-            weatherBackground.act(delta);
-
-            weatherBackground.draw();
-            gameStage.draw();
-
-            gameStage.setStill(true);
+        if(menuStage.isDrawGame() && menuStage.felsoSign.getY() < menuStage.getViewport().getWorldHeight()) drawDemoGame(delta);
+        else if(menuStage.isDrawInfo()) {
+            drawDemoGame(delta);
+            infoStage.draw();
         }
-        else if(menuStage.isDrawInfo()) infoStage.draw();
-        else if(menuStage.isDrawOptions()) optionsStage.draw();
+        else if(menuStage.isDrawOptions()) {
+            drawDemoGame(delta);
+            optionsStage.draw();
+        }
+    }
+
+    void drawDemoGame(float delta)
+    {
+        gameStage.act(delta);
+
+        weatherBackground.setTime(matek.getTime());
+        weatherBackground.setRain(matek.getRain());
+        weatherBackground.act(delta);
+
+        weatherBackground.draw();
+        gameStage.draw();
+
+        gameStage.setStill(true);
     }
 
     public boolean isJojjonCaution() {

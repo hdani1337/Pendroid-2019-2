@@ -6,9 +6,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import hu.cehessteg.vizeromu.Actor.Gomb;
+import hu.cehessteg.vizeromu.GlobalClasses.Assets;
 import hu.cehessteg.vizeromu.GlobalClasses.Styles;
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyStage;
+import hu.cehessteg.vizeromu.ParentClasses.Scene2D.OneSpriteStaticActor;
 import hu.cehessteg.vizeromu.ParentClasses.UI.MyButton;
 import hu.cehessteg.vizeromu.ParentClasses.UI.MyLabel;
 
@@ -17,6 +19,7 @@ public class OptionsStage extends MyStage {
     MyLabel myLabel;
     boolean mehetVissza;
     public static boolean muted = false;
+    OneSpriteStaticActor background;
 
     public OptionsStage(Viewport viewport, Batch batch, MyGame game) {
         super(viewport, batch, game);
@@ -30,6 +33,8 @@ public class OptionsStage extends MyStage {
     {
         menu = new Gomb("Vissza",this);
         myLabel = new MyLabel("Ide jönnek majd a beállítások\nValószínűleg csak a zene és a hangok némítása lesz", Styles.getCalibriLabelStyle());
+        background = new OneSpriteStaticActor(Assets.manager.get(Assets.BLUE_TEXTURE));
+        background.setColor(0,0,0,0.85f);
     }
 
     void setPositions()
@@ -37,10 +42,15 @@ public class OptionsStage extends MyStage {
         menu.setPosition(getViewport().getWorldWidth()*0.66f+menu.getWidth()/2,getViewport().getWorldHeight()*0.1f);
         myLabel.setAlignment(0);
         myLabel.setPosition(getViewport().getWorldWidth()/2-myLabel.getWidth()/2,getViewport().getWorldHeight()/2+myLabel.getHeight()/4);
+        background.setPosition(0,0);
+        background.setSize(getViewport().getWorldWidth(),getViewport().getWorldHeight());
     }
 
     void addActors()
     {
+        background.setDebug(false);
+
+        addActor(background);
         addActor(menu);
         addActor(myLabel);
 
