@@ -104,10 +104,12 @@ public class MenuScreen extends MyScreen {
         }
         else if(menuStage.isDrawOptions()) {
             drawDemoGame(delta);
+            optionsStage.act(delta);
             optionsStage.draw();
         }
         else if(menuStage.isDrawShop()) {
             drawDemoGame(delta);
+            shopStage.act(delta);
             shopStage.draw();
         }
     }

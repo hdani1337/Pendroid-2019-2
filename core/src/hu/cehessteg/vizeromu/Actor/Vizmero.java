@@ -49,4 +49,11 @@ public class Vizmero extends OneSpriteStaticActor {
         bg.setPosition(this.getX(),this.getY());
         bgFade.setPosition(this.getX(),this.getY());
     }
+
+    @Override
+    public void setScale(float scale) {
+        this.setSize(this.getWidth()*scale,this.getHeight()*scale);
+        bg.setSize(bg.getWidth()*scale,bg.getHeight()*scale);
+        bgFade.setSize(bgFade.getWidth()*scale,bgFade.getHeight()*scale);
+    }
 }

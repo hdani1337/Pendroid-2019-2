@@ -70,7 +70,8 @@ public class HudStage extends MyStage {
     void setPositions()
     {
         arammero.setPosition(pause.getX()-arammero.getWidth(),getViewport().getWorldHeight()-arammero.getHeight()-8);
-        vizmero.setPosition(5,getViewport().getWorldHeight()-vizmero.getHeight()-8);
+        vizmero.setScale(0.85f);
+        vizmero.setPosition(15,getViewport().getWorldHeight()-vizmero.getHeight()-15);
     }
 
     void addActors()

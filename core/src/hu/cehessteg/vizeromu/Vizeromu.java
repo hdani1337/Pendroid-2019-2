@@ -10,7 +10,7 @@ import hu.cehessteg.vizeromu.Stage.OptionsStage;
 
 public class Vizeromu extends MyGame {
 	static boolean multitasking;
-	static Preferences gameSave;
+	public static Preferences gameSave;
 
 	@Override
 	public void create () {
@@ -27,7 +27,8 @@ public class Vizeromu extends MyGame {
 			gameSave.putBoolean("muted", false);
 			gameSave.flush();
 		}
-		else OptionsStage.setMuted(gameSave.getBoolean("muted"));
+
+		OptionsStage.setMuted(gameSave.getBoolean("muted"));
 	}
 
 	@Override
@@ -68,9 +69,5 @@ public class Vizeromu extends MyGame {
 	public void dispose () {
 		super.dispose();
 		Assets.unload();
-	}
-
-	public static Preferences getGameSave() {
-		return gameSave;
 	}
 }

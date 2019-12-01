@@ -116,7 +116,7 @@ public class GameOverStage extends MyStage {
 
     }
 
-    int lastRecord = Vizeromu.getGameSave().getInteger("rekordNapok");
+    int lastRecord = Vizeromu.gameSave.getInteger("rekordNapok");
 
     @Override
     public void act(float delta) {
@@ -131,11 +131,11 @@ public class GameOverStage extends MyStage {
             napok.setText(napokInt + " napot dolgoztál le sikeresen ebben a játékmenetben.");
         }
 
-        if(napokInt > Vizeromu.getGameSave().getInteger("rekordNapok")) {
+        if(napokInt > Vizeromu.gameSave.getInteger("rekordNapok")) {
             if(!napok.getText().equals(napokInt + " napot dolgoztál le sikeresen ebben a játékmenetben,\nezzel megdöntve a rekordodat, ami " + lastRecord + " volt.")) {
                 napok.setText(napokInt + " napot dolgoztál le sikeresen ebben a játékmenetben,\nezzel megdöntve a rekordodat, ami " + lastRecord + " volt.");
-                Vizeromu.getGameSave().putInteger("rekordNapok", napokInt);
-                Vizeromu.getGameSave().flush();
+                Vizeromu.gameSave.putInteger("rekordNapok", napokInt);
+                Vizeromu.gameSave.flush();
             }
         }
     }
