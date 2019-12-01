@@ -140,6 +140,8 @@ public class GameStage extends MyStage {
             matek.step(delta * 36*6*10);
             MenuScreen.demoElapsed += delta * 36*6;
             Fuggvenyek.rainSound.stop();
+            viz.setHeight((1000000/1100000.0f)*20);
+            viz.setWidth((1000000/1100000.0f)*75);
         }
     }
 

@@ -10,6 +10,7 @@ import hu.cehessteg.vizeromu.Stage.GameStage;
 import hu.cehessteg.vizeromu.Stage.InfoStage;
 import hu.cehessteg.vizeromu.Stage.MenuStage;
 import hu.cehessteg.vizeromu.Stage.OptionsStage;
+import hu.cehessteg.vizeromu.Stage.ShopStage;
 import hu.cehessteg.vizeromu.Stage.WeatherBackground;
 
 import static hu.cehessteg.vizeromu.Stage.GameStage.matek;
@@ -20,6 +21,7 @@ public class MenuScreen extends MyScreen {
     GameStage gameStage;
     InfoStage infoStage;
     OptionsStage optionsStage;
+    ShopStage shopStage;
     WeatherBackground weatherBackground;
 
     public static float demoElapsed = 0;
@@ -31,6 +33,7 @@ public class MenuScreen extends MyScreen {
         menuStage = new MenuStage(new FitViewport(keparanySzelesvaszonra(),720),spriteBatch,game);
         infoStage = new InfoStage(new FitViewport(keparanySzelesvaszonra(),720),spriteBatch,game);
         optionsStage = new OptionsStage(new FitViewport(keparanySzelesvaszonra(),720),spriteBatch,game);
+        shopStage = new ShopStage(new FitViewport(keparanySzelesvaszonra(),720),spriteBatch,game);
 
         gameStage = new GameStage(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20),spriteBatch,game);
         weatherBackground = new WeatherBackground(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20.0f),spriteBatch,game);
@@ -53,6 +56,7 @@ public class MenuScreen extends MyScreen {
         inputMultiplexer.addProcessor(menuStage);
         inputMultiplexer.addProcessor(infoStage);
         inputMultiplexer.addProcessor(optionsStage);
+        inputMultiplexer.addProcessor(shopStage);
         Gdx.input.setInputProcessor(inputMultiplexer);
     }
 
@@ -83,6 +87,12 @@ public class MenuScreen extends MyScreen {
             menuStage.setJojjonCaution(true);
             optionsStage.setMehetVissza(false);
         }
+
+        if(shopStage.isMehetVissza()) {
+            menuStage.setMehetVissza(true);
+            menuStage.setJojjonCaution(true);
+            shopStage.setMehetVissza(false);
+        }
     }
 
     void whatToDraw(float delta)
@@ -95,6 +105,10 @@ public class MenuScreen extends MyScreen {
         else if(menuStage.isDrawOptions()) {
             drawDemoGame(delta);
             optionsStage.draw();
+        }
+        else if(menuStage.isDrawShop()) {
+            drawDemoGame(delta);
+            shopStage.draw();
         }
     }
 

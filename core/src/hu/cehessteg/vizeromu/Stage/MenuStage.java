@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import hu.cehessteg.vizeromu.Actor.Ajto;
 import hu.cehessteg.vizeromu.Actor.CautionSign;
 import hu.cehessteg.vizeromu.Actor.Gomb;
+import hu.cehessteg.vizeromu.Actor.Kacsa;
 import hu.cehessteg.vizeromu.GlobalClasses.Assets;
 import hu.cehessteg.vizeromu.GlobalClasses.Styles;
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
@@ -28,11 +29,14 @@ public class MenuStage extends MyStage {
     Gomb exit;
     Gomb info;
     Gomb options;
+    Gomb shop;
     MyLabel title;
+    Kacsa kacsa;
 
     boolean drawGame = false;
     boolean drawInfo = false;
     boolean drawOptions = false;
+    boolean drawShop = false;
 
     boolean mehetVissza = false;
 
@@ -63,9 +67,12 @@ public class MenuStage extends MyStage {
         title.setFontScale(1.75f);
         title.setAlignment(0);
         start = new Gomb("Indítás",this);
+        start.setSize(start.getWidth()*1.4f,start.getHeight()*1.4f);
         exit = new Gomb("Kilépés",this);
         info = new Gomb("Információ",this);
         options = new Gomb("Beállítások",this);
+        shop = new Gomb("Bolt",this);
+        kacsa = new Kacsa();
         dark = new OneSpriteStaticActor(Assets.manager.get(Assets.BLUE_TEXTURE));
         dark.setTouchable(null);
         dark.setDebug(false);
@@ -82,18 +89,22 @@ public class MenuStage extends MyStage {
 
     void setPositions()
     {
-        start.setPosition(getViewport().getWorldWidth()*0.065f,getViewport().getWorldHeight()*0.66f);
-        info.setPosition(start.getX(),start.getY()-120);
-        options.setPosition(start.getX(),info.getY()-120);
-        exit.setPosition(start.getX(),options.getY()-120);
+        start.setPosition(getViewport().getWorldWidth()*0.065f,getViewport().getWorldHeight()*0.53f);
+        info.setPosition(start.getX(),start.getY()-info.getHeight()-10);
+        options.setPosition(info.getX() + info.getWidth() + 5,info.getY());
+        shop.setPosition(info.getX(),options.getY() - options.getHeight() - 10);
+        exit.setPosition(shop.getX() + shop.getWidth(),shop.getY());
 
         start.myLabel.setPosition(start.getX()+start.getWidth()/2-start.myLabel.getWidth()/2,start.getY()+start.getHeight()/2-start.myLabel.getHeight()/2);
         info.myLabel.setPosition(info.getX()+info.getWidth()/2-info.myLabel.getWidth()/2,info.getY()+info.getHeight()/2-info.myLabel.getHeight()/2);
         options.myLabel.setPosition(options.getX()+options.getWidth()/2-options.myLabel.getWidth()/2,options.getY()+options.getHeight()/2-options.myLabel.getHeight()/2);
         exit.myLabel.setPosition(exit.getX()+exit.getWidth()/2-exit.myLabel.getWidth()/2,exit.getY()+exit.getHeight()/2-exit.myLabel.getHeight()/2);
+        shop.myLabel.setPosition(shop.getX()+shop.getWidth()/2-shop.myLabel.getWidth()/2,shop.getY()+shop.getHeight()/2-shop.myLabel.getHeight()/2);
 
         dark.setPosition(0,0);
         dark.setSize(getViewport().getWorldWidth(),getViewport().getWorldHeight());
+
+        kacsa.setPosition(start.getX()+start.getWidth()-10,start.getY()-10);
     }
 
     void addListeners()
@@ -110,6 +121,7 @@ public class MenuStage extends MyStage {
                 drawGame = true;
                 drawInfo = false;
                 drawOptions = false;
+                drawShop = false;
             }
         });
 
@@ -125,6 +137,7 @@ public class MenuStage extends MyStage {
                 drawInfo = true;
                 drawOptions = false;
                 drawGame = false;
+                drawShop = false;
             }
         });
 
@@ -140,6 +153,23 @@ public class MenuStage extends MyStage {
                 drawOptions = true;
                 drawGame = false;
                 drawInfo = false;
+                drawShop = false;
+            }
+        });
+
+        shop.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                ajto.setMove(true);
+                ajto.setMoveOut(true);
+                ajto.setMoveIn(false);
+                ajtoKifogMenni = true;
+                moveBack = true;
+                drawOptions = false;
+                drawGame = false;
+                drawInfo = false;
+                drawShop = true;
             }
         });
 
@@ -155,6 +185,7 @@ public class MenuStage extends MyStage {
                 drawOptions = false;
                 drawGame = false;
                 drawInfo = false;
+                drawShop = false;
                 willExit = true;
             }
         });
@@ -169,7 +200,9 @@ public class MenuStage extends MyStage {
         addActor(start);
         addActor(options);
         addActor(exit);
+        addActor(shop);
         addActor(info);
+        addActor(kacsa);
         addActor(dark);
         //addActor(title);
 
@@ -180,11 +213,13 @@ public class MenuStage extends MyStage {
         options.setZIndex(2);
         exit.setZIndex(2);
         info.setZIndex(2);
+        shop.setZIndex(2);
 
         start.myLabel.setZIndex(30);
         options.myLabel.setZIndex(30);
         info.myLabel.setZIndex(30);
         exit.myLabel.setZIndex(30);
+        shop.myLabel.setZIndex(30);
 
         dark.setZIndex(5000);
 
@@ -193,6 +228,8 @@ public class MenuStage extends MyStage {
         options.setColor(1,1,1,0f);
         exit.setColor(1,1,1,0f);
         info.setColor(1,1,1,0f);
+        shop.setColor(1,1,1,0f);
+        kacsa.setColor(1,1,1,0f);
         dark.setColor(0,0,0,0f);
     }
 
@@ -236,6 +273,8 @@ public class MenuStage extends MyStage {
             options.setColor(1,1,1,alpha);
             exit.setColor(1,1,1,alpha);
             info.setColor(1,1,1,alpha);
+            shop.setColor(1,1,1,alpha);
+            kacsa.setColor(1,1,1,alpha);
             moveBack = false;
             setPositions();
             setMehetVissza(false);
@@ -273,7 +312,7 @@ public class MenuStage extends MyStage {
         {
             for (Actor actor : getActors())
             {
-                if(!(actor instanceof CautionSign) && !(actor instanceof Ajto)) if(actor.getX()>-actor.getWidth()*2) actor.setX(actor.getX()-40);
+                if(!(actor instanceof CautionSign) && !(actor instanceof Ajto)) if(actor.getX()>-actor.getWidth()*2) actor.setX(actor.getX()-30);
                 dark.setPosition(0,0);
             }
         }
@@ -291,6 +330,8 @@ public class MenuStage extends MyStage {
             options.setColor(1,1,1,alpha);
             exit.setColor(1,1,1,alpha);
             info.setColor(1,1,1,alpha);
+            shop.setColor(1,1,1,alpha);
+            kacsa.setColor(1,1,1,alpha);
         }
     }
 
@@ -325,6 +366,10 @@ public class MenuStage extends MyStage {
 
     public boolean isDrawOptions() {
         return drawOptions;
+    }
+
+    public boolean isDrawShop() {
+        return drawShop;
     }
 
     public boolean isMehetVissza() {
