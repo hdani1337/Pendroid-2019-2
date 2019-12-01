@@ -81,6 +81,7 @@ public class Assets {
     public static final AssetDescriptor<Texture> ORA = new AssetDescriptor<Texture>("Images/clock.png", Texture.class);
     public static final AssetDescriptor<Texture> MUTATO = new AssetDescriptor<Texture>("Images/mutato.png", Texture.class);
     public static final AssetDescriptor<Texture> KACSA = new AssetDescriptor<Texture>("Images/kacsa.png", Texture.class);
+    public static final AssetDescriptor<Texture> ARAMMERO = new AssetDescriptor<Texture>("arammero.png", Texture.class);
 
     public static final AssetDescriptor<Sound> AJTO_NYIT = new AssetDescriptor<Sound>("Hangok/AjtoNyito.mp3",Sound.class);
     public static final AssetDescriptor<Sound> AJTO_ZAR = new AssetDescriptor<Sound>("Hangok/AjtoZaro.mp3",Sound.class);
@@ -140,6 +141,7 @@ public class Assets {
         manager.load(ORA);
         manager.load(MUTATO);
         manager.load(KACSA);
+        manager.load(ARAMMERO);
 
         manager.load(AJTO_NYIT);
         manager.load(AJTO_ZAR);
