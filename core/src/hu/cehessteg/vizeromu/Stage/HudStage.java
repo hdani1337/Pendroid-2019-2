@@ -3,6 +3,7 @@ package hu.cehessteg.vizeromu.Stage;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import hu.cehessteg.vizeromu.Actor.Arammero;
 import hu.cehessteg.vizeromu.Actor.Gat;
 import hu.cehessteg.vizeromu.GlobalClasses.Assets;
 import hu.cehessteg.vizeromu.GlobalClasses.Styles;
@@ -18,6 +19,8 @@ public class HudStage extends MyStage {
     OneSpriteStaticActor ora;
     OneSpriteStaticActor kismutato;
     OneSpriteStaticActor nagymutato;
+
+    Arammero arammero;
 
     int napok = 0;
     private boolean napokNov = true;
@@ -40,6 +43,7 @@ public class HudStage extends MyStage {
         };
         coins.setPosition(0,getViewport().getWorldHeight()-coins.getHeight());
         pause = new Pause(getViewport());
+        arammero = new Arammero(this);
     }
 
     void clock()
@@ -72,6 +76,7 @@ public class HudStage extends MyStage {
         addActor(ora);
         addActor(kismutato);
         addActor(nagymutato);
+        addActor(arammero);
     }
 
     void napszamlalo()

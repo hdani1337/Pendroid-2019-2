@@ -16,7 +16,7 @@ public class Arammero extends OneSpriteStaticActor {
 
     private void bgStuff(MyStage stage)
     {
-        bg = new OneSpriteStaticActor(Assets.manager.get(Assets.SLIDER_BG_GR));
+        bg = new OneSpriteStaticActor(Assets.manager.get(Assets.BLANK));
         bg.setDebug(false);
         bg.setPosition(this.getX() + this.getWidth()*0.15f,this.getY());
         bg.setSize(this.getWidth()*0.85f,this.getHeight());
@@ -26,6 +26,6 @@ public class Arammero extends OneSpriteStaticActor {
     @Override
     public void act(float delta) {
         super.act(delta);
-        //bg.setWidth(this.getWidth()*0.85f * (GameStage.matek.getVizmennyiseg()/GameStage.matek.getMaxviz()*1.0f));
+        bg.setWidth(this.getWidth()*0.85f * (GameStage.matek.getVizmennyiseg()/GameStage.matek.getMaxviz()*1.0f));
     }
 }
