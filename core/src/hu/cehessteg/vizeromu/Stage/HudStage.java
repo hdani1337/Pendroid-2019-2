@@ -94,7 +94,7 @@ public class HudStage extends MyStage {
     public void act(float delta) {
         super.act(delta);
         nagymutato.setRotation(-(360/60)*GameStage.matek.getM());
-        kismutato.setRotation(-(360/12)*GameStage.matek.getH());
+        kismutato.setRotation(-(360/12)*GameStage.matek.getH()-(360/12/60.0f)*GameStage.matek.getM());
         napszamlalo();
     }
 
