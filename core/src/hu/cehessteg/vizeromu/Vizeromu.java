@@ -1,18 +1,33 @@
 package hu.cehessteg.vizeromu;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 
 import hu.cehessteg.vizeromu.GlobalClasses.Assets;
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
 import hu.cehessteg.vizeromu.Screen.LoadingScreen;
+import hu.cehessteg.vizeromu.Stage.OptionsStage;
 
 public class Vizeromu extends MyGame {
 	static boolean multitasking;
+	static Preferences gameSave;
 
 	@Override
 	public void create () {
 		Assets.prepare();
 		setScreen(new LoadingScreen(this));
+
+		gameSave = Gdx.app.getPreferences("gameSave");
+
+		if(!gameSave.contains("boot"))//ha még nem volt elindítva
+		{
+			gameSave.putBoolean("boot", true);
+			gameSave.putInteger("coins", 0);
+			gameSave.putInteger("rekordNapok", 0);
+			gameSave.putBoolean("muted", false);
+			gameSave.flush();
+		}
+		else OptionsStage.setMuted(gameSave.getBoolean("muted"));
 	}
 
 	@Override
@@ -53,5 +68,9 @@ public class Vizeromu extends MyGame {
 	public void dispose () {
 		super.dispose();
 		Assets.unload();
+	}
+
+	public static Preferences getGameSave() {
+		return gameSave;
 	}
 }

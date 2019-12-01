@@ -19,6 +19,9 @@ public class HudStage extends MyStage {
     OneSpriteStaticActor kismutato;
     OneSpriteStaticActor nagymutato;
 
+    int napok = 0;
+    private boolean napokNov = true;
+
     public HudStage(Viewport viewport, Batch batch, MyGame game) {
         super(viewport, batch, game);
         assignment();
@@ -71,6 +74,17 @@ public class HudStage extends MyStage {
         addActor(nagymutato);
     }
 
+    void napszamlalo()
+    {
+        if(GameStage.matek.getH() % 24 == 0 && napokNov)
+        {
+            napok++;
+            napokNov = false;
+        }
+
+        else if(GameStage.matek.getH() % 24 != 0 && !napokNov) napokNov = true;
+    }
+
     @Override
     public void init() {
 
@@ -81,5 +95,10 @@ public class HudStage extends MyStage {
         super.act(delta);
         nagymutato.setRotation(-(360/60)*GameStage.matek.getM());
         kismutato.setRotation(-(360/12)*GameStage.matek.getH());
+        napszamlalo();
+    }
+
+    public int getNapok() {
+        return napok;
     }
 }

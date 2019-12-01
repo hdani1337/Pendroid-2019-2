@@ -17,6 +17,7 @@ import hu.cehessteg.vizeromu.ParentClasses.UI.MyButton;
 import hu.cehessteg.vizeromu.ParentClasses.UI.MyLabel;
 import hu.cehessteg.vizeromu.Screen.GameScreen;
 import hu.cehessteg.vizeromu.Screen.MenuScreen;
+import hu.cehessteg.vizeromu.Vizeromu;
 
 public class GameOverStage extends MyStage {
     MyLabel gameOver;
@@ -26,6 +27,8 @@ public class GameOverStage extends MyStage {
     CautionSign felso;
     CautionSign also;
     Ajto ajto;
+    MyLabel napok;
+    int napokInt = 0;
 
     public GameOverStage(Viewport viewport, Batch batch, final MyGame game) {
         super(viewport, batch, game);
@@ -40,6 +43,7 @@ public class GameOverStage extends MyStage {
         gameOver = new MyLabel("Vége a játéknak!", Styles.getCalibriLabelStyle());
         restart = new Gomb("Újraindítás", this);
         menu = new Gomb("Kilépés",this);
+        napok = new MyLabel("",Styles.getCalibriLabelStyle());
         background = new OneSpriteStaticActor(Assets.manager.get(Assets.BLUE_TEXTURE));
         background.setColor(0,0,0,0.5f);
         background.setDebug(false);
@@ -51,8 +55,8 @@ public class GameOverStage extends MyStage {
     void setPositions()
     {
         gameOver.setAlignment(0);
-        gameOver.setPosition(getViewport().getWorldWidth()/2-gameOver.getWidth()/2,getViewport().getWorldHeight()/2+gameOver.getHeight()*2);
-        restart.setPosition(getViewport().getWorldWidth()/2-restart.getWidth()/2,gameOver.getY()-120);
+        gameOver.setPosition(getViewport().getWorldWidth()/2-gameOver.getWidth()/2,getViewport().getWorldHeight()/2+gameOver.getHeight()*2.5f);
+        restart.setPosition(getViewport().getWorldWidth()/2-restart.getWidth()/2,getViewport().getWorldHeight()/2);
         menu.setPosition(getViewport().getWorldWidth()/2-menu.getWidth()/2,restart.getY()-120);
         ajto.setX(-ajto.getWidth()*1.25f);
         background.setPosition(0,0);
@@ -68,12 +72,16 @@ public class GameOverStage extends MyStage {
         addActor(ajto);
         addActor(felso);
         addActor(also);
+        addActor(napok);
 
         menu.myLabel.setPosition(menu.getX()+menu.getWidth()/2-menu.myLabel.getWidth()/2,menu.getY()+menu.getHeight()/2-menu.myLabel.getHeight()/2);
         menu.myLabel.setZIndex(menu.getZIndex()+1);
 
         restart.myLabel.setPosition(restart.getX()+restart.getWidth()/2-restart.myLabel.getWidth()/2,restart.getY()+restart.getHeight()/2-restart.myLabel.getHeight()/2);
         restart.myLabel.setZIndex(restart.getZIndex()+1);
+
+        napok.setAlignment(0);
+        napok.setPosition(getViewport().getWorldWidth()/2-napok.getWidth()/2,getViewport().getWorldHeight()*0.2f);
     }
 
     void addListeners()
@@ -108,6 +116,8 @@ public class GameOverStage extends MyStage {
 
     }
 
+    int lastRecord = Vizeromu.getGameSave().getInteger("rekordNapok");
+
     @Override
     public void act(float delta) {
         super.act(delta);
@@ -116,5 +126,25 @@ public class GameOverStage extends MyStage {
             menuScreen.setJojjonCaution(false);
             game.setScreen(menuScreen);
         }
+
+        if(!napok.getText().equals(napokInt + " napot dolgoztál le sikeresen ebben a játékmenetben.")) {
+            napok.setText(napokInt + " napot dolgoztál le sikeresen ebben a játékmenetben.");
+        }
+
+        if(napokInt > Vizeromu.getGameSave().getInteger("rekordNapok")) {
+            if(!napok.getText().equals(napokInt + " napot dolgoztál le sikeresen ebben a játékmenetben,\nezzel megdöntve a rekordodat, ami " + lastRecord + " volt.")) {
+                napok.setText(napokInt + " napot dolgoztál le sikeresen ebben a játékmenetben,\nezzel megdöntve a rekordodat, ami " + lastRecord + " volt.");
+                Vizeromu.getGameSave().putInteger("rekordNapok", napokInt);
+                Vizeromu.getGameSave().flush();
+            }
+        }
+    }
+
+    public void setNapokInt(int napokInt) {
+        this.napokInt = napokInt;
+    }
+
+    public int getNapokInt() {
+        return napokInt;
     }
 }

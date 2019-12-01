@@ -101,6 +101,7 @@ public class GameScreen extends MyScreen {
                 inputMultiplexer.addProcessor(gameOverStage);
             }
             if(!OptionsStage.isMuted()) gameStage.gameMusic.pause();
+            if(gameOverStage.getNapokInt() != hudStage.getNapok()) gameOverStage.setNapokInt(hudStage.getNapok());
             gameOverStage.act(delta);
             gameOverStage.draw();
         }
