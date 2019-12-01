@@ -5,6 +5,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import hu.cehessteg.vizeromu.Actor.Arammero;
 import hu.cehessteg.vizeromu.Actor.Gat;
+import hu.cehessteg.vizeromu.Actor.Penz;
+import hu.cehessteg.vizeromu.Actor.Vizmero;
 import hu.cehessteg.vizeromu.GlobalClasses.Assets;
 import hu.cehessteg.vizeromu.GlobalClasses.Styles;
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
@@ -14,13 +16,14 @@ import hu.cehessteg.vizeromu.ParentClasses.UI.MyLabel;
 import hu.cehessteg.vizeromu.ParentClasses.UI.Pause;
 
 public class HudStage extends MyStage {
-    MyLabel coins;
     Pause pause;
     OneSpriteStaticActor ora;
     OneSpriteStaticActor kismutato;
     OneSpriteStaticActor nagymutato;
 
+    Penz penz;
     Arammero arammero;
+    Vizmero vizmero;
 
     int napok = 0;
     private boolean napokNov = true;
@@ -29,21 +32,16 @@ public class HudStage extends MyStage {
         super(viewport, batch, game);
         assignment();
         clock();
+        setPositions();
         addActors();
     }
 
     void assignment()
     {
-        coins = new MyLabel("Pénz: 0", Styles.getCalibriLabelStyle()){
-            @Override
-            public void act(float delta) {
-                super.act(delta);
-                setText("Pénz: " + GameStage.matek.coins);
-            }
-        };
-        coins.setPosition(0,getViewport().getWorldHeight()-coins.getHeight());
         pause = new Pause(getViewport());
         arammero = new Arammero(this);
+        vizmero = new Vizmero(this);
+        penz = new Penz(this);
     }
 
     void clock()
@@ -69,14 +67,21 @@ public class HudStage extends MyStage {
         nagymutato.setPosition(ora.getX()+ora.getWidth()/2-2,ora.getY()+ora.getHeight()/2-nagymutato.getWidth()/2+2);
     }
 
+    void setPositions()
+    {
+        arammero.setPosition(pause.getX()-arammero.getWidth(),getViewport().getWorldHeight()-arammero.getHeight()-8);
+        vizmero.setPosition(5,getViewport().getWorldHeight()-vizmero.getHeight()-8);
+    }
+
     void addActors()
     {
         addActor(pause);
-        //addActor(coins);
         addActor(ora);
         addActor(kismutato);
         addActor(nagymutato);
         addActor(arammero);
+        addActor(vizmero);
+        addActor(penz);
     }
 
     void napszamlalo()

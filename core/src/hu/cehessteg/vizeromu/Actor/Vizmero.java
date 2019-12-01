@@ -5,12 +5,12 @@ import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyStage;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.OneSpriteStaticActor;
 import hu.cehessteg.vizeromu.Stage.GameStage;
 
-public class Arammero extends OneSpriteStaticActor {
+public class Vizmero extends OneSpriteStaticActor {
     private OneSpriteStaticActor bg;
     private OneSpriteStaticActor bgFade;
 
-    public Arammero(MyStage stage) {
-        super(Assets.manager.get(Assets.ARAMMERO));
+    public Vizmero(MyStage stage) {
+        super(Assets.manager.get(Assets.VIZMERO));
         setDebug(false);
         bgStuff(stage);
         bgFadeStuff(stage);
@@ -18,11 +18,11 @@ public class Arammero extends OneSpriteStaticActor {
 
     private void bgStuff(MyStage stage)
     {
-        bg = new OneSpriteStaticActor(Assets.manager.get(Assets.SLIDER_BG_GR));
+        bg = new OneSpriteStaticActor(Assets.manager.get(Assets.BLANK));
+        bg.setColor(255,255,0,1);
         bg.setDebug(false);
-        bg.setPosition(this.getX() + this.getWidth()*0.15f,this.getY());
-        bg.setSize(this.getWidth()*0.85f,this.getHeight());
-        bg.setRotation(-180);
+        bg.setPosition(this.getX(),this.getY());
+        bg.setSize(this.getWidth(),this.getHeight()*0.85f);
         stage.addActor(bg);
     }
 
@@ -30,8 +30,8 @@ public class Arammero extends OneSpriteStaticActor {
     {
         bgFade = new OneSpriteStaticActor(Assets.manager.get(Assets.BLANK));
         bgFade.setDebug(false);
-        bgFade.setPosition(this.getX() + this.getWidth()*0.15f,this.getY());
-        bgFade.setSize(this.getWidth()*0.85f,this.getHeight());
+        bgFade.setPosition(this.getX(),this.getY());
+        bgFade.setSize(this.getWidth(),this.getHeight()*0.85f);
         bgFade.setColor(0,0,0,1);
         bgFade.setRotation(-180);
         stage.addActor(bgFade);
@@ -40,13 +40,13 @@ public class Arammero extends OneSpriteStaticActor {
     @Override
     public void act(float delta) {
         super.act(delta);
-        //bgFade.setWidth(this.getWidth()*0.85f-(this.getWidth()*0.85f * (ide jön majd az áramtermelés nagysága 0 és 1 között));
+        bgFade.setHeight(this.getHeight()*0.85f-(this.getHeight()*0.85f * (GameStage.matek.getVizmennyiseg()/GameStage.matek.getMaxviz()*1.0f)));
     }
 
     @Override
     public void setPosition(float x, float y) {
         super.setPosition(x, y);
-        bg.setPosition(this.getX() + this.getWidth()*0.15f,this.getY());
-        bgFade.setPosition(this.getX() + this.getWidth()*0.15f,this.getY());
+        bg.setPosition(this.getX(),this.getY());
+        bgFade.setPosition(this.getX(),this.getY());
     }
 }

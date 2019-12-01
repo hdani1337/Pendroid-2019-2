@@ -29,7 +29,7 @@ public class Matek {
     int minviz = 1000; //gameover ha kevesebb
     int maxviz = 1100000; //gameover ha nagyobb
     int beviz = 100; //befolyó víz
-    int kiviz = 400; //azért ne legyen pont osztható a bevizzel(annyira azért ne legyen könnyű)
+    int kiviz = 40; //azért ne legyen pont osztható a bevizzel(annyira azért ne legyen könnyű)
     float time;
 
 

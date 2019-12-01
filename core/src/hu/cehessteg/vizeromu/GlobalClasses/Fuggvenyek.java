@@ -153,7 +153,7 @@ public class Fuggvenyek {
                 kifeleViz0.setPosition((float) (12.5 - Math.random()*2), (float) (10 + Math.random()*1.7));
                 kifeleViz0.getBody().applyForceToCenter(new Vector2(90000,-125000),false);
                 stage.addActor(kifeleViz0);
-                kifeleViz0.setZIndex(400);
+                kifeleViz0.setZIndex(800);
                 pElapsed0 = elapsedTime;
            }
            if (matek.getNyilasok()[1].isOpen && elapsedTime > pElapsed1 + 0.05f) {
@@ -163,7 +163,7 @@ public class Fuggvenyek {
                 kifeleViz1.setPosition((float) (17.5 - Math.random()*2), (float) (11 + Math.random()*2));
                 kifeleViz1.getBody().applyForceToCenter(new Vector2(90000,-125000),false);
                 stage.addActor(kifeleViz1);
-                kifeleViz1.setZIndex(400);
+                kifeleViz1.setZIndex(800);
                 pElapsed1 = elapsedTime;
            }
            if (matek.getNyilasok()[2].isOpen && elapsedTime > pElapsed2 + 0.05f) {
@@ -173,7 +173,7 @@ public class Fuggvenyek {
                 kifeleViz2.setPosition((float) (23.2 - Math.random()*2), (float) (12.1f + Math.random()*2));
                 kifeleViz2.getBody().applyForceToCenter(new Vector2(90000,-125000),false);
                 stage.addActor(kifeleViz2);
-                kifeleViz2.setZIndex(400);
+                kifeleViz2.setZIndex(800);
                 pElapsed2 = elapsedTime;
             }
             if (matek.getNyilasok()[3].isOpen && elapsedTime > pElapsed3 + 0.05f) {
@@ -183,7 +183,7 @@ public class Fuggvenyek {
                 kifeleViz3.setPosition((float) (28.3 - Math.random()*2), (float) (12.7f + Math.random()*2));
                 kifeleViz3.getBody().applyForceToCenter(new Vector2(90000,-125000),false);
                 stage.addActor(kifeleViz3);
-                kifeleViz3.setZIndex(400);
+                kifeleViz3.setZIndex(800);
                 pElapsed3 = elapsedTime;
             }
             if (matek.getNyilasok()[4].isOpen && elapsedTime > pElapsed4 + 0.05f) {
@@ -193,7 +193,7 @@ public class Fuggvenyek {
                 kifeleViz4.setPosition((float) (33.7 - Math.random()*2), (float) (13f + Math.random()*2));
                 kifeleViz4.getBody().applyForceToCenter(new Vector2(90000,-125000),false);
                 stage.addActor(kifeleViz4);
-                kifeleViz4.setZIndex(400);
+                kifeleViz4.setZIndex(800);
                 pElapsed4 = elapsedTime;
             }
         }
