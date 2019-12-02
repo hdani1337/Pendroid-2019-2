@@ -28,9 +28,11 @@ public class Matek {
     float patakVizmennyiseg = 0;
     int minviz = 1000; //gameover ha kevesebb
     int maxviz = 1100000; //gameover ha nagyobb
-    int beviz = 100; //befolyó víz
-    int kiviz = 40; //azért ne legyen pont osztható a bevizzel(annyira azért ne legyen könnyű)
+    int beviz = 18; //befolyó víz
+    int kiviz = 10; //azért ne legyen pont osztható a bevizzel(annyira azért ne legyen könnyű)
     float time;
+    float kimentviz = 0;
+    float termeltwatt = 0;
 
 
     boolean eso = false;
@@ -56,24 +58,19 @@ public class Matek {
         float y1 = 0;
         float y2 = 1;
         float dif = y2-y1;
-        float timedif = x1/x2;
+        float timedif = x1-x2;
         float asd = dif / timedif * kerttime;
         return asd;
     }
 
-    public void Opengate(){
-        for (int i = 0; i < getNyilasok().length; i++) {
-            if (getNyilasok()[i].isOpen()){continue;}
-            else{getNyilasok()[i].setOpen(true); break;}
-        }
+    public void Opengate(int wer){
+        getNyilasok()[wer].setOpen(true);
     }
 
-    public void Closegate(){
-        for (int i = 0; getNyilasok().length > i; i++) {
-            if (!getNyilasok()[i].isOpen()){continue;}
-            else{getNyilasok()[i].setOpen(false); break;}
+    public void Closegate(int wer){
+            getNyilasok()[wer].setOpen(false);
         }
-    }
+
 
     void opencounter() {
         int a = 0;
@@ -84,6 +81,14 @@ public class Matek {
     }
 
     float coinTime = 0;
+
+    float kimenoszamitas(){
+        float sum = 0;
+        for (int i = 0; i < getNyilasok().length; i++) {
+            if(getNyilasok()[i].isOpen) sum += getNyilasok()[i].lvl * kiviz;
+        }
+        return sum;
+    }
 
     public void step(float delta) {
         if (eso) {
@@ -96,16 +101,32 @@ public class Matek {
         }
         opencounter();
         vizmennyiseg += beviz;
-        vizmennyiseg -= kiviz * openek;
-        if(time > coinTime+(36*5)) {
+        vizmennyiseg -= kimenoszamitas();
+        kimentviz += kimenoszamitas();
+        if(time > coinTime+(36*60)) {
             coins += openek;
             coinTime = time;
+            termeltwatt += kimentviz/48;
+            kimentviz = 0;
+            coins += termeltwatt/3;
         }//5 másodpercenként annyi coint kap, ahány csap megvan nyitva, csak ideiglenesen van bent, hogy működjön a pénzszámláló
         if(patakVizmennyiseg < 225000)patakVizmennyiseg += kiviz * openek;
         if(patakVizmennyiseg >= beviz) patakVizmennyiseg -= beviz;//Mondjuk ami patakból kifolyik víz, azt vezetjük vissza a gáthoz
         time += delta;
         //gameover trigger
         if (vizmennyiseg <= minviz || vizmennyiseg >= maxviz) { gameover = true; }//gameover trigger
+    }
+
+    public void buysometing(int coins) {
+        Matek.coins -= coins;
+    }
+
+    public void jövedelem(int coins) {
+        Matek.coins += coins;
+    }
+
+    public void lvlupcso(int hanyadikat){
+        getNyilasok()[hanyadikat].lvlup();
     }
 
     public boolean isVolteso() {
