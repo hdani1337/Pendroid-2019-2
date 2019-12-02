@@ -1,6 +1,7 @@
 package hu.cehessteg.vizeromu.Stage;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -9,6 +10,7 @@ import hu.cehessteg.vizeromu.Actor.Ajto;
 import hu.cehessteg.vizeromu.Actor.CautionSign;
 import hu.cehessteg.vizeromu.Actor.Gomb;
 import hu.cehessteg.vizeromu.GlobalClasses.Assets;
+import hu.cehessteg.vizeromu.GlobalClasses.Fuggvenyek;
 import hu.cehessteg.vizeromu.GlobalClasses.Styles;
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyStage;
@@ -92,7 +94,7 @@ public class GameOverStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                game.setScreen(new GameScreen(game));
+                isContinueGame = true;
             }
         });
 
@@ -122,9 +124,51 @@ public class GameOverStage extends MyStage {
 
     int lastRecord = gameSave.getInteger("rekordNapok");
 
+    float alpha = 0;
+    boolean isContinueGame = false;
+
     @Override
     public void act(float delta) {
         super.act(delta);
+
+        if(ajto.isMoveIn())
+        {
+            for (Actor actor : this.getActors())
+            {
+                if(actor instanceof Gomb || actor instanceof MyLabel)
+                    actor.setColor(1,1,1,alpha);
+            }
+            if(alpha >= 0.0275) alpha -= 0.0275;
+            else  alpha = 0;
+        }
+        else
+        {
+            if(!isContinueGame) {
+                for (Actor actor : this.getActors()) {
+                    if (actor instanceof Gomb || actor instanceof MyLabel)
+                        actor.setColor(1, 1, 1, alpha);
+                    if (actor.getWidth() == getViewport().getWorldWidth() && actor.getHeight() == getViewport().getWorldHeight())
+                        actor.setColor(0, 0, 0, alpha / 2);
+                }
+                if (alpha < 1 - 0.0275) alpha += 0.0275;
+                else alpha = 1;
+            }
+            else
+            {
+                for (Actor actor : this.getActors()) {
+                    if (actor instanceof Gomb || actor instanceof MyLabel)
+                        actor.setColor(1, 1, 1, alpha);
+                    if (actor.getWidth() == getViewport().getWorldWidth() && actor.getHeight() == getViewport().getWorldHeight())
+                        actor.setColor(0, 0, 0, alpha / 2);
+                }
+                if (alpha > 0.0275) alpha -= 0.0275;
+                else {
+                    alpha = 0;
+                    game.setScreen(new GameScreen(game));
+                    isContinueGame = false;
+                }
+            }
+        }
         if(ajto.getX() >= getViewport().getWorldWidth()-ajto.getWidth()) {
             MenuScreen menuScreen = new MenuScreen(game);
             menuScreen.setJojjonCaution(false);

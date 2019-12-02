@@ -1,6 +1,7 @@
 package hu.cehessteg.vizeromu.Stage;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -75,10 +76,10 @@ public class PauseStage extends MyStage {
         addActor(also);
 
         menu.myLabel.setPosition(menu.getX()+menu.getWidth()/2-menu.myLabel.getWidth()/2,menu.getY()+menu.getHeight()/2-menu.myLabel.getHeight()/2);
-        menu.myLabel.setZIndex(continueGame.getZIndex()+1);
+        menu.myLabel.setZIndex(ajto.getZIndex()-2);
 
         continueGame.myLabel.setPosition(continueGame.getX()+continueGame.getWidth()/2-continueGame.myLabel.getWidth()/2,continueGame.getY()+continueGame.getHeight()/2-continueGame.myLabel.getHeight()/2);
-        continueGame.myLabel.setZIndex(continueGame.getZIndex()+1);
+        continueGame.myLabel.setZIndex(ajto.getZIndex()-2);
     }
 
     void addListeners()
@@ -87,11 +88,7 @@ public class PauseStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                GameStage.setGamePaused(false);
-                if(!OptionsStage.isMuted()) {
-                    GameStage.gameMusic.play();
-                    Fuggvenyek.rainSound.play();
-                }
+                isContinueGame = true;
             }
         });
 
@@ -119,13 +116,63 @@ public class PauseStage extends MyStage {
 
     }
 
+    float alpha = 0;
+    boolean isContinueGame = false;
+
     @Override
     public void act(float delta) {
         super.act(delta);
+        if(ajto.isMoveIn())
+        {
+            for (Actor actor : this.getActors())
+            {
+                if(actor instanceof Gomb || actor instanceof MyLabel)
+                    actor.setColor(1,1,1,alpha);
+            }
+            if(alpha >= 0.0275) alpha -= 0.0275;
+            else  alpha = 0;
+        }
+        else
+        {
+            if(!isContinueGame) {
+                for (Actor actor : this.getActors()) {
+                    if (actor instanceof Gomb || actor instanceof MyLabel)
+                        actor.setColor(1, 1, 1, alpha);
+                    if (actor.getWidth() == getViewport().getWorldWidth() && actor.getHeight() == getViewport().getWorldHeight())
+                        actor.setColor(0, 0, 0, alpha / 2);
+                }
+                if (alpha < 1 - 0.0275) alpha += 0.0275;
+                else alpha = 1;
+            }
+            else
+            {
+                for (Actor actor : this.getActors()) {
+                    if (actor instanceof Gomb || actor instanceof MyLabel)
+                        actor.setColor(1, 1, 1, alpha);
+                    if (actor.getWidth() == getViewport().getWorldWidth() && actor.getHeight() == getViewport().getWorldHeight())
+                        actor.setColor(0, 0, 0, alpha / 2);
+                }
+                if (alpha > 0.0275) alpha -= 0.0275;
+                else {
+                    alpha = 0;
+                    GameStage.setGamePaused(false);
+                    if(!OptionsStage.isMuted()) {
+                        GameStage.gameMusic.play();
+                        Fuggvenyek.rainSound.play();
+                    }
+                    isContinueGame = false;
+                }
+            }
+        }
+
         if(ajto.getX() >= getViewport().getWorldWidth()-ajto.getWidth()) {
             MenuScreen menuScreen = new MenuScreen(game);
             menuScreen.setJojjonCaution(false);
             game.setScreen(menuScreen);
         }
+    }
+
+    public void setAlpha(float alpha) {
+        this.alpha = alpha;
     }
 }

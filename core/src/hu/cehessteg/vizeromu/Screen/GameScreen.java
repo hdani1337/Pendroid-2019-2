@@ -114,6 +114,7 @@ public class GameScreen extends MyScreen {
                 inputMultiplexer.addProcessor(pauseStage);
                 inputMultiplexer.removeProcessor(hudStage);
                 inputMultiplexer.removeProcessor(gameStage);
+                pauseStage.setAlpha(0);
             }
             if(!OptionsStage.isMuted()) {
                 gameStage.gameMusic.pause();
