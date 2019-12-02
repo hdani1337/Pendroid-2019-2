@@ -40,7 +40,7 @@ public class Arammero extends OneSpriteStaticActor {
     @Override
     public void act(float delta) {
         super.act(delta);
-        //bgFade.setWidth(this.getWidth()*0.85f-(this.getWidth()*0.85f * (ide jön majd az áramtermelés nagysága 0 és 1 között));
+        bgFade.setWidth(this.getWidth()*0.85f-(this.getWidth()*0.85f * (GameStage.matek.aramPercent())));
     }
 
     @Override

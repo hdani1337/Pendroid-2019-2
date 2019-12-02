@@ -85,6 +85,7 @@ public class Assets {
     public static final AssetDescriptor<Texture> VIZMERO = new AssetDescriptor<Texture>("vizmero.png", Texture.class);
     public static final AssetDescriptor<Texture> BLANK = new AssetDescriptor<Texture>("colors/blank.png", Texture.class);
     public static final AssetDescriptor<Texture> COIN = new AssetDescriptor<Texture>("coin.png", Texture.class);
+    public static final AssetDescriptor<Texture> DESZKA = new AssetDescriptor<Texture>("deszka.png", Texture.class);
 
     public static final AssetDescriptor<Sound> AJTO_NYIT = new AssetDescriptor<Sound>("Hangok/AjtoNyito.mp3",Sound.class);
     public static final AssetDescriptor<Sound> AJTO_ZAR = new AssetDescriptor<Sound>("Hangok/AjtoZaro.mp3",Sound.class);
@@ -148,6 +149,7 @@ public class Assets {
         manager.load(VIZMERO);
         manager.load(BLANK);
         manager.load(COIN);
+        manager.load(DESZKA);
 
         manager.load(AJTO_NYIT);
         manager.load(AJTO_ZAR);

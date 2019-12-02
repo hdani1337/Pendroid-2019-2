@@ -21,6 +21,8 @@ import hu.cehessteg.vizeromu.ParentClasses.UI.MyLabel;
 import hu.cehessteg.vizeromu.Screen.GameScreen;
 import hu.cehessteg.vizeromu.Screen.MenuScreen;
 
+import static hu.cehessteg.vizeromu.Vizeromu.gameSave;
+
 public class PauseStage extends MyStage {
     MyLabel myLabel;
     Gomb continueGame;
@@ -97,6 +99,8 @@ public class PauseStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
+                gameSave.putInteger("coins", GameStage.matek.coins);
+                gameSave.flush();
                 ajto.setMove(true);
                 ajto.setMoveIn(true);
                 ajto.setMoveOut(false);

@@ -2,6 +2,9 @@ package hu.cehessteg.vizeromu.GlobalClasses;
 
 import java.util.Random;
 
+import hu.cehessteg.vizeromu.Stage.GameStage;
+import hu.cehessteg.vizeromu.Vizeromu;
+
 public class Matek {
     //if esik akkor percenként 50% esély rá hogy eláll következő checknél, ha nem akkor 1-2% esély hogy elkezd esni. Eső = + bemenő víz! készen
     //kell időt mérni készen
@@ -22,7 +25,7 @@ public class Matek {
     //árvízveszély a városra nézve
     //szárazság calc
 
-    public static int coins = 0;
+    public static int coins = Vizeromu.gameSave.getInteger("coins");
 
     float vizmennyiseg = 1000000; // 1misivel kezdünk;
     float patakVizmennyiseg = 0;
@@ -48,7 +51,17 @@ public class Matek {
             Kiomlonyilas res = new Kiomlonyilas();
             nyilasok[i] = res;
         }
+        nyilasokSetSavedLevels();
         time = 32000;
+    }
+
+    void nyilasokSetSavedLevels()
+    {
+        nyilasok[0].lvl = Vizeromu.gameSave.getInteger("csoLevel1");
+        nyilasok[1].lvl = Vizeromu.gameSave.getInteger("csoLevel2");
+        nyilasok[2].lvl = Vizeromu.gameSave.getInteger("csoLevel3");
+        nyilasok[3].lvl = Vizeromu.gameSave.getInteger("csoLevel4");
+        nyilasok[4].lvl = Vizeromu.gameSave.getInteger("csoLevel5");
     }
 
     float idonelertek(float kerttime){
@@ -90,30 +103,34 @@ public class Matek {
         return sum;
     }
 
-    public void step(float delta) {
-        if (eso) {
-            vizmennyiseg += 50;
-            if (!volteso) { volteso = true; } //animation trigger
-            else {
-                if (rnd.nextInt(2) == 1) { eso = false; }}} //eso elmegy 50% eséllyel.
-        else {
-            if (getS()== 0 && rnd.nextInt(100) <= 10) { eso = false; } //eso megered 10% eséllyel.
+    float maxOsszesKimeno(){
+        float sum = 0;
+        for (int i = 0; i < getNyilasok().length; i++) {
+            sum += getNyilasok()[i].lvl * kiviz;
         }
+        return sum;
+    }
+
+    public float aramPercent()
+    {
+        return kimenoszamitas()/maxOsszesKimeno();
+    }
+
+    public void step(float delta) {
+        if (getRain() > 0.05) vizmennyiseg += maxOsszesKimeno()-beviz; //Annyi víz esik be az esővel, mint amennyi az összes csapon kitud menni - az alapból befolyó vízmennyiség
         opencounter();
         vizmennyiseg += beviz;
         vizmennyiseg -= kimenoszamitas();
         kimentviz += kimenoszamitas();
         if(time > coinTime+(36*60)) {
-            coins += openek;
             coinTime = time;
-            termeltwatt += kimentviz/48;
+            termeltwatt += kimentviz / 48;
             kimentviz = 0;
-            coins += termeltwatt/3;
-        }//5 másodpercenként annyi coint kap, ahány csap megvan nyitva, csak ideiglenesen van bent, hogy működjön a pénzszámláló
+            coins += termeltwatt / 3;
+        }
         if(patakVizmennyiseg < 225000)patakVizmennyiseg += kiviz * openek;
         if(patakVizmennyiseg >= beviz) patakVizmennyiseg -= beviz;//Mondjuk ami patakból kifolyik víz, azt vezetjük vissza a gáthoz
         time += delta;
-        //gameover trigger
         if (vizmennyiseg <= minviz || vizmennyiseg >= maxviz) { gameover = true; }//gameover trigger
     }
 

@@ -24,6 +24,11 @@ public class Vizeromu extends MyGame {
 			gameSave.putBoolean("boot", true);
 			gameSave.putInteger("coins", 0);
 			gameSave.putInteger("rekordNapok", 0);
+			gameSave.putInteger("csoLevel1", 1);
+			gameSave.putInteger("csoLevel2", 1);
+			gameSave.putInteger("csoLevel3", 0);
+			gameSave.putInteger("csoLevel4", 0);
+			gameSave.putInteger("csoLevel5", 0);
 			gameSave.putBoolean("muted", false);
 			gameSave.flush();
 		}

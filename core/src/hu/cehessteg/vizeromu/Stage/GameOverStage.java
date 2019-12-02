@@ -19,6 +19,8 @@ import hu.cehessteg.vizeromu.Screen.GameScreen;
 import hu.cehessteg.vizeromu.Screen.MenuScreen;
 import hu.cehessteg.vizeromu.Vizeromu;
 
+import static hu.cehessteg.vizeromu.Vizeromu.gameSave;
+
 public class GameOverStage extends MyStage {
     MyLabel gameOver;
     Gomb restart;
@@ -98,6 +100,8 @@ public class GameOverStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
+                gameSave.putInteger("coins", GameStage.matek.coins);
+                gameSave.flush();
                 ajto.setMove(true);
                 ajto.setMoveIn(true);
                 ajto.setMoveOut(false);
@@ -116,7 +120,7 @@ public class GameOverStage extends MyStage {
 
     }
 
-    int lastRecord = Vizeromu.gameSave.getInteger("rekordNapok");
+    int lastRecord = gameSave.getInteger("rekordNapok");
 
     @Override
     public void act(float delta) {
@@ -131,11 +135,11 @@ public class GameOverStage extends MyStage {
             napok.setText(napokInt + " napot dolgoztál le sikeresen ebben a játékmenetben.");
         }
 
-        if(napokInt > Vizeromu.gameSave.getInteger("rekordNapok")) {
+        if(napokInt > gameSave.getInteger("rekordNapok")) {
             if(!napok.getText().equals(napokInt + " napot dolgoztál le sikeresen ebben a játékmenetben,\nezzel megdöntve a rekordodat, ami " + lastRecord + " volt.")) {
                 napok.setText(napokInt + " napot dolgoztál le sikeresen ebben a játékmenetben,\nezzel megdöntve a rekordodat, ami " + lastRecord + " volt.");
-                Vizeromu.gameSave.putInteger("rekordNapok", napokInt);
-                Vizeromu.gameSave.flush();
+                gameSave.putInteger("rekordNapok", napokInt);
+                gameSave.flush();
             }
         }
     }
