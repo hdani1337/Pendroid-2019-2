@@ -110,7 +110,7 @@ public class InfoStage extends MyStage {
         daniLabelTitle.setPosition((daniLabel.getX()+daniLabel.getWidth()/2)-daniLabelTitle.getWidth()/2,daniLabel.getY()-35);
         davidLabelTitle.setPosition((davidLabel.getX()+davidLabel.getWidth()/2)-davidLabelTitle.getWidth()/2,davidLabel.getY()-35);
 
-        back.setPosition(getViewport().getWorldWidth()*0.66f + back.getWidth()/2,getViewport().getWorldHeight()*0.1f);
+        back.setPosition(getViewport().getWorldWidth()-back.getWidth()-getViewport().getWorldHeight()*0.045f,getViewport().getWorldHeight()*0.045f);
         back.myLabel.setPosition(back.getX()+back.getWidth()/2-back.myLabel.getWidth()/2,back.getY()+back.getHeight()/2-back.myLabel.getHeight()/2);
 
         infoText.setPosition(getViewport().getWorldWidth()/2-infoText.getWidth()/1.66f,getViewport().getWorldHeight()*0.035f);

@@ -40,7 +40,10 @@ public class Vizmero extends OneSpriteStaticActor {
     @Override
     public void act(float delta) {
         super.act(delta);
-        bgFade.setHeight(this.getHeight()*0.85f-(this.getHeight()*0.85f * (GameStage.matek.getVizmennyiseg()/GameStage.matek.getMaxviz()*1.0f)));
+        //bgFade.setHeight(this.getHeight()*0.85f-(this.getHeight()*0.85f * (GameStage.matek.getVizmennyiseg()/GameStage.matek.getMaxviz()*1.0f)));
+        if(bgFade.getHeight() > (this.getHeight()*0.85f-(this.getHeight()*0.85f * (GameStage.matek.getVizmennyiseg()/GameStage.matek.getMaxviz()*1.0f)))+2) bgFade.setHeight(bgFade.getHeight()-4);
+        else if(bgFade.getHeight() < (this.getHeight()*0.85f-(this.getHeight()*0.85f * (GameStage.matek.getVizmennyiseg()/GameStage.matek.getMaxviz()*1.0f)))-2) bgFade.setHeight(bgFade.getHeight()+4);
+        else bgFade.setHeight((this.getHeight()*0.85f-(this.getHeight()*0.85f * (GameStage.matek.getVizmennyiseg()/GameStage.matek.getMaxviz()*1.0f))));
     }
 
     @Override

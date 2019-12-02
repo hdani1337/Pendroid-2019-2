@@ -66,8 +66,14 @@ public class GameStage extends MyStage {
             @Override
             public void act(float delta) {
                 super.act(delta);
-                setHeight((matek.getVizmennyiseg()/matek.getMaxviz())*20);
-                setWidth((matek.getVizmennyiseg()/matek.getMaxviz())*75);
+                if(!still) {
+                    setHeight((matek.getVizmennyiseg() / matek.getMaxviz()) * 20);
+                    setWidth((matek.getVizmennyiseg() / matek.getMaxviz()) * 75);
+                }
+                else {
+                    viz.setHeight((1000000/1100000.0f)*20);
+                    viz.setWidth((1000000/1100000.0f)*75);
+                }
                 setX(17-(getWidth()/2));
                 setY(16.46f-(getHeight()/2));
             }
@@ -140,8 +146,6 @@ public class GameStage extends MyStage {
             matek.step(delta * 36*6*10);
             MenuScreen.demoElapsed += delta * 36*6;
             Fuggvenyek.rainSound.stop();
-            viz.setHeight((1000000/1100000.0f)*20);
-            viz.setWidth((1000000/1100000.0f)*75);
         }
     }
 

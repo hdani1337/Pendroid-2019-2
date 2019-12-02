@@ -42,7 +42,7 @@ public class OptionsStage extends MyStage {
 
     void setPositions()
     {
-        menu.setPosition(getViewport().getWorldWidth()*0.66f+menu.getWidth()/2,getViewport().getWorldHeight()*0.1f);
+        menu.setPosition(getViewport().getWorldWidth()-menu.getWidth()-getViewport().getWorldHeight()*0.045f,getViewport().getWorldHeight()*0.045f);
 
         mute.setSize(mute.getWidth()*1.5f,mute.getHeight()*1.5f);
         mute.setPosition(getViewport().getWorldWidth()/2-mute.getWidth()/2,getViewport().getWorldHeight()/2);

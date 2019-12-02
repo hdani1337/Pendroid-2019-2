@@ -27,12 +27,12 @@ public class Matek {
 
     public static int coins = Vizeromu.gameSave.getInteger("coins");
 
-    float vizmennyiseg = 1000000; // 1misivel kezdünk;
+    float vizmennyiseg = 800000; // 800 ezerrel kezdünk;
     float patakVizmennyiseg = 0;
     int minviz = 1000; //gameover ha kevesebb
     int maxviz = 1100000; //gameover ha nagyobb
-    int beviz = 18; //befolyó víz
-    int kiviz = 10; //azért ne legyen pont osztható a bevizzel(annyira azért ne legyen könnyű)
+    int beviz = 36; //befolyó víz
+    int kiviz = 20; //azért ne legyen pont osztható a bevizzel(annyira azért ne legyen könnyű)
     float time;
     float kimentviz = 0;
     float termeltwatt = 0;
@@ -52,7 +52,7 @@ public class Matek {
             nyilasok[i] = res;
         }
         nyilasokSetSavedLevels();
-        time = 32000;
+        time = 115200;//Másnap reggel 8 óra, hogy ne egyből essen az eső
     }
 
     void nyilasokSetSavedLevels()
@@ -117,7 +117,7 @@ public class Matek {
     }
 
     public void step(float delta) {
-        if (getRain() > 0.05) vizmennyiseg += maxOsszesKimeno()-beviz; //Annyi víz esik be az esővel, mint amennyi az összes csapon kitud menni - az alapból befolyó vízmennyiség
+        if (getRain() > 0.05) vizmennyiseg += maxOsszesKimeno()*0.75-beviz; //Annyi víz esik be az esővel, mint amennyi az összes csapon kitud menni - az alapból befolyó vízmennyiség
         opencounter();
         vizmennyiseg += beviz;
         vizmennyiseg -= kimenoszamitas();
@@ -127,6 +127,7 @@ public class Matek {
             termeltwatt += kimentviz / 48;
             kimentviz = 0;
             coins += termeltwatt / 3;
+            termeltwatt = 0;
         }
         if(patakVizmennyiseg < 225000)patakVizmennyiseg += kiviz * openek;
         if(patakVizmennyiseg >= beviz) patakVizmennyiseg -= beviz;//Mondjuk ami patakból kifolyik víz, azt vezetjük vissza a gáthoz

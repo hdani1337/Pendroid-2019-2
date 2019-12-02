@@ -71,7 +71,7 @@ public class MenuStage extends MyStage {
         exit = new Gomb("Kilépés",this);
         info = new Gomb("Információ",this);
         options = new Gomb("Beállítások",this);
-        shop = new Gomb("Bolt",this);
+        shop = new Gomb("Fejlesztés",this);
         kacsa = new Kacsa();
         dark = new OneSpriteStaticActor(Assets.manager.get(Assets.BLUE_TEXTURE));
         dark.setTouchable(null);
