@@ -78,7 +78,7 @@ public class Assets {
     public static final AssetDescriptor<Texture> GREEN_CIRC = new AssetDescriptor<Texture>("colors/greenCircle.png", Texture.class);
     public static final AssetDescriptor<Texture> PAUSE = new AssetDescriptor<Texture>("icons/pauseTemp.png", Texture.class);
     public static final AssetDescriptor<Texture> GOMB = new AssetDescriptor<Texture>("gomb.png", Texture.class);
-    public static final AssetDescriptor<Texture> ORA = new AssetDescriptor<Texture>("Images/clock.png", Texture.class);
+    public static final AssetDescriptor<Texture> ORA = new AssetDescriptor<Texture>("Images/Clock.png", Texture.class);
     public static final AssetDescriptor<Texture> MUTATO = new AssetDescriptor<Texture>("Images/mutato.png", Texture.class);
     public static final AssetDescriptor<Texture> KACSA = new AssetDescriptor<Texture>("Images/kacsa.png", Texture.class);
     public static final AssetDescriptor<Texture> ARAMMERO = new AssetDescriptor<Texture>("arammero.png", Texture.class);
