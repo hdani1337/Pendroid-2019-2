@@ -111,20 +111,28 @@ public class Matek {
         return sum;
     }
 
+    float aramPercentCsokk = 0.3f;
+
     public float aramPercent()
     {
-        return kimenoszamitas()/maxOsszesKimeno();
+        if((vizmennyiseg/maxviz) < 0.3) {
+            if(aramPercentCsokk > 0.001) aramPercentCsokk-=0.001;
+            else aramPercentCsokk = 0;
+            return (kimenoszamitas() / maxOsszesKimeno()) * (aramPercentCsokk + (vizmennyiseg / maxviz)/2);
+        }
+        return (kimenoszamitas()/maxOsszesKimeno()) * (0.3f + (vizmennyiseg/maxviz));
     }
 
     public void step(float delta) {
-        if (getRain() > 0.05) vizmennyiseg += maxOsszesKimeno()*0.75-beviz; //Annyi víz esik be az esővel, mint amennyi az összes csapon kitud menni - az alapból befolyó vízmennyiség
+        if (getRain() > 0.05) vizmennyiseg += maxOsszesKimeno()*0.7-beviz; //Annyi víz esik be az esővel, mint amennyi az összes csapon kitud menni - az alapból befolyó vízmennyiség
         opencounter();
+        beviz = (int)(maxOsszesKimeno()*0.05);
         vizmennyiseg += beviz;
         vizmennyiseg -= kimenoszamitas();
         kimentviz += kimenoszamitas();
         if(time > coinTime+(36*60)) {
             coinTime = time;
-            termeltwatt += kimentviz / 48;
+            termeltwatt += (kimentviz / 48)*aramPercent();
             kimentviz = 0;
             coins += termeltwatt / 3;
             termeltwatt = 0;
