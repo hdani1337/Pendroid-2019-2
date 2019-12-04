@@ -25,8 +25,8 @@ abstract public class MyStage extends Stage implements InitableInterface {
     protected float elapsedTime = 0;
     protected static int ZIndexAutoInc = 1;
 
-    public MyStage(Viewport viewport, Batch batch, MyGame game) {
-        super(viewport, batch);
+    public MyStage(Viewport viewport, MyGame game) {
+        super(viewport);
         this.game = game;
         setCameraResetToCenterOfScreen();
         init();

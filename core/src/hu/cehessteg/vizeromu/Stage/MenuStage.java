@@ -49,8 +49,8 @@ public class MenuStage extends MyStage {
 
     OneSpriteStaticActor dark;
 
-    public MenuStage(Viewport viewport, Batch batch, MyGame game) {
-        super(viewport, batch, game);
+    public MenuStage(Viewport viewport, MyGame game) {
+        super(viewport, game);
         assignment();
         setPositions();
         addListeners();

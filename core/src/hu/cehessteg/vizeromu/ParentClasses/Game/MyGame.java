@@ -3,6 +3,8 @@ package hu.cehessteg.vizeromu.ParentClasses.Game;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyScreen;
 
 import java.lang.reflect.InvocationTargetException;
@@ -26,8 +28,14 @@ abstract public class MyGame extends Game {
 	}
 */
 
+    public SpriteBatch getSpriteBatch() {
+        return spriteBatch;
+    }
+    protected SpriteBatch spriteBatch;
+
     @Override
     public void create() {
+        spriteBatch = new SpriteBatch();
         Gdx.input.setCatchBackKey(true);
         Gdx.input.setCatchMenuKey(true);
     }

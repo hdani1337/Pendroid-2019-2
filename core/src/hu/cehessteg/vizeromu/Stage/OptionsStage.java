@@ -24,8 +24,8 @@ public class OptionsStage extends MyStage {
 
     Gomb mute;
 
-    public OptionsStage(Viewport viewport, Batch batch, MyGame game) {
-        super(viewport, batch, game);
+    public OptionsStage(Viewport viewport, MyGame game) {
+        super(viewport, game);
         assignment();
         setPositions();
         addActors();

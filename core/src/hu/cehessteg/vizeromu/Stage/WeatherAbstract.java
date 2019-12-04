@@ -20,8 +20,8 @@ public abstract class WeatherAbstract extends MyStage {
 
 
 
-    public WeatherAbstract(Viewport viewport, Batch batch, MyGame game) {
-        super(viewport, batch, game);
+    public WeatherAbstract(Viewport viewport, MyGame game) {
+        super(viewport, game);
     }
 
     /**

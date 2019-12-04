@@ -32,8 +32,8 @@ public class WeatherForeGround extends WeatherAbstract {
     private float lastFogTime = 0;
 
 
-    public WeatherForeGround(Viewport viewport, Batch batch, MyGame game) {
-        super(viewport, batch, game);
+    public WeatherForeGround(Viewport viewport, MyGame game) {
+        super(viewport, game);
         addActor(night = new OneSpriteStaticActor(WeatherForeGround.manager.get(NIGHT_TEXTURE)));
         night.setSize(getWidth(), getHeight());
         night.setDebug(false);

@@ -38,12 +38,12 @@ public class GameScreen extends MyScreen {
 
     public GameScreen(MyGame game) {
         super(game);
-        gameStage = new GameStage(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20.0f),spriteBatch,game);
-        weatherForeGround = new WeatherForeGround(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20.0f),spriteBatch,game);
-        weatherBackground = new WeatherBackground(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20.0f),spriteBatch,game);
-        gameOverStage = new GameOverStage(new FitViewport(keparanySzelesvaszonra(),720),spriteBatch,game);
-        pauseStage = new PauseStage(new FitViewport(keparanySzelesvaszonra(),720),spriteBatch,game);
-        hudStage = new HudStage(new FitViewport(keparanySzelesvaszonra(),720),spriteBatch,game);
+        gameStage = new GameStage(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20.0f), game);
+        weatherForeGround = new WeatherForeGround(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20.0f),game);
+        weatherBackground = new WeatherBackground(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20.0f),game);
+        gameOverStage = new GameOverStage(new FitViewport(keparanySzelesvaszonra(),720),game);
+        pauseStage = new PauseStage(new FitViewport(keparanySzelesvaszonra(),720),game);
+        hudStage = new HudStage(new FitViewport(keparanySzelesvaszonra(),720),game);
         gameStage.setStill(false);
 
         gameStage.gameMusic.setLooping(true);

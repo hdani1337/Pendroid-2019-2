@@ -14,15 +14,11 @@ import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
  */
 abstract public class MyScreen implements Screen, InitableInterface {
 
-    protected SpriteBatch spriteBatch = new SpriteBatch();
+
 
     public float r=0,g=0,b=0;
 
     public final MyGame game;
-
-    public SpriteBatch getSpriteBatch() {
-        return spriteBatch;
-    }
 
     public MyScreen(MyGame game) {
         this.game = game;

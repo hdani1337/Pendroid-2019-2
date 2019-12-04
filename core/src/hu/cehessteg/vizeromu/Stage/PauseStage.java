@@ -33,8 +33,8 @@ public class PauseStage extends MyStage {
     CautionSign also;
     Ajto ajto;
 
-    public PauseStage(Viewport viewport, Batch batch, MyGame game) {
-        super(viewport, batch, game);
+    public PauseStage(Viewport viewport, MyGame game) {
+        super(viewport, game);
         assignment();
         setPositions();
         addListeners();

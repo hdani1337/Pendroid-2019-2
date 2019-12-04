@@ -41,7 +41,7 @@ public class LoadingScreen extends MyScreen {
         csanyActor.setPosition(Gdx.graphics.getWidth()/2-csanyActor.getWidth()/2,Gdx.graphics.getHeight()/2-csanyActor.getHeight()/2);
         pendroidActor.setPosition(Gdx.graphics.getWidth()/2-pendroidActor.getWidth()/2,Gdx.graphics.getHeight()/2-pendroidActor.getHeight()/2);
 
-        spriteBatch.begin();
+        game.getSpriteBatch().begin();
 
         logoActor.sprite.setAlpha(0);
         csanyActor.sprite.setAlpha(0);
@@ -75,11 +75,11 @@ public class LoadingScreen extends MyScreen {
 
         if(pElapsedTime > 6 && Assets.manager.update()) game.setScreen(new MenuScreen(game));
 
-        logoActor.draw(spriteBatch,1);
-        csanyActor.draw(spriteBatch,1);
-        pendroidActor.draw(spriteBatch,1);
+        logoActor.draw(game.getSpriteBatch(),1);
+        csanyActor.draw(game.getSpriteBatch(),1);
+        pendroidActor.draw(game.getSpriteBatch(),1);
 
-        spriteBatch.end();
+        game.getSpriteBatch().end();
     }
 
     @Override

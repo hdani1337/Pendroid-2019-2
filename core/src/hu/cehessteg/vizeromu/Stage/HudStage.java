@@ -28,8 +28,8 @@ public class HudStage extends MyStage {
     int napok = 0;
     private boolean napokNov = true;
 
-    public HudStage(Viewport viewport, Batch batch, MyGame game) {
-        super(viewport, batch, game);
+    public HudStage(Viewport viewport, MyGame game) {
+        super(viewport, game);
         assignment();
         clock();
         setPositions();

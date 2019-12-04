@@ -46,8 +46,8 @@ public class GameStage extends MyStage {
 
     public static Music gameMusic;
 
-    public GameStage(Viewport viewport, Batch batch, MyGame game) {
-        super(viewport, batch, game);
+    public GameStage(Viewport viewport, MyGame game) {
+        super(viewport, game);
         isGamePaused = false;
         assignment();
         addActors();

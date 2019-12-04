@@ -34,8 +34,8 @@ public class GameOverStage extends MyStage {
     MyLabel napok;
     int napokInt = 0;
 
-    public GameOverStage(Viewport viewport, Batch batch, final MyGame game) {
-        super(viewport, batch, game);
+    public GameOverStage(Viewport viewport, final MyGame game) {
+        super(viewport, game);
         assignment();
         setPositions();
         addActors();

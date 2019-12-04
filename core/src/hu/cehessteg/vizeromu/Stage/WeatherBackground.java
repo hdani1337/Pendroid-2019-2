@@ -137,8 +137,8 @@ public class WeatherBackground extends WeatherAbstract {
     private SkyActor skyActor;
     private SunActor sunActor;
 
-    public WeatherBackground(Viewport viewport, Batch batch, MyGame game) {
-        super(viewport, batch, game);
+    public WeatherBackground(Viewport viewport, MyGame game) {
+        super(viewport, game);
         skyActor = new SkyActor(getWidth(), getWidth());
         sunActor = new SunActor(getWidth() / 2, (getWidth() / 16 * 9) / 2);
         sunActor.setX(getWidth() / 2 - sunActor.getWidth() / 2);

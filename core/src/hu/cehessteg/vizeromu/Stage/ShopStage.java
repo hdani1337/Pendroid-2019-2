@@ -33,8 +33,8 @@ public class ShopStage extends MyStage {
     ArrayList<MyLabel> szintekLabel = new ArrayList<MyLabel>();
     ArrayList<Gomb> gombok = new ArrayList<Gomb>();
 
-    public ShopStage(Viewport viewport, Batch batch, MyGame game) {
-        super(viewport, batch, game);
+    public ShopStage(Viewport viewport, MyGame game) {
+        super(viewport, game);
         assignment();
         setPositions();
         addActors();

@@ -38,8 +38,8 @@ public class InfoStage extends MyStage {
 
     boolean mehetvissza;
 
-    public InfoStage(Viewport viewport, Batch batch, MyGame game) {
-        super(viewport, batch, game);
+    public InfoStage(Viewport viewport, MyGame game) {
+        super(viewport, game);
         assignment();
         labelStuff();
         setPositions();

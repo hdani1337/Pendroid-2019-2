@@ -30,13 +30,13 @@ public class MenuScreen extends MyScreen {
 
     public MenuScreen(MyGame game) {
         super(game);
-        menuStage = new MenuStage(new FitViewport(keparanySzelesvaszonra(),720),spriteBatch,game);
-        infoStage = new InfoStage(new FitViewport(keparanySzelesvaszonra(),720),spriteBatch,game);
-        optionsStage = new OptionsStage(new FitViewport(keparanySzelesvaszonra(),720),spriteBatch,game);
-        shopStage = new ShopStage(new FitViewport(keparanySzelesvaszonra(),720),spriteBatch,game);
+        menuStage = new MenuStage(new FitViewport(keparanySzelesvaszonra(),720),game);
+        infoStage = new InfoStage(new FitViewport(keparanySzelesvaszonra(),720),game);
+        optionsStage = new OptionsStage(new FitViewport(keparanySzelesvaszonra(),720),game);
+        shopStage = new ShopStage(new FitViewport(keparanySzelesvaszonra(),720),game);
 
-        gameStage = new GameStage(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20),spriteBatch,game);
-        weatherBackground = new WeatherBackground(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20.0f),spriteBatch,game);
+        gameStage = new GameStage(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20),game);
+        weatherBackground = new WeatherBackground(new FitViewport(keparanySzelesvaszonra()/20.0f,720/20.0f),game);
 
         gameStage.gameMusic.stop();
 
