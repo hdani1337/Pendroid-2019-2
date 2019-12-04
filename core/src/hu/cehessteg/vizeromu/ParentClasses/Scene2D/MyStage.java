@@ -3,7 +3,6 @@ package hu.cehessteg.vizeromu.ParentClasses.Scene2D;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -32,7 +31,28 @@ abstract public class MyStage extends Stage implements InitableInterface {
         init();
     }
 
-    public void addBackEventStackListener()    {
+    public interface BackButtonListener {
+        public void backKeyDown();
+    }
+
+    public void addBackButtonListener(final BackButtonListener backButton)    {
+        addListener(new InputListener() {
+
+            @Override
+            public boolean keyDown(InputEvent event, int keycode) {
+                if(keycode== Input.Keys.ESCAPE) {
+                    backButton.backKeyDown();
+                }
+                if(keycode== Input.Keys.BACK) {
+                    backButton.backKeyDown();
+                }
+                return true;
+            }
+        });
+    }
+
+
+    public void addBackButtonScreenBackByStackPopListener()    {
         addListener(new InputListener() {
 
             @Override

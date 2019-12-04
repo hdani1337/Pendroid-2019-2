@@ -67,6 +67,33 @@ abstract public class MyGame extends Game {
         }
     }
 
+    public interface ScreenInit{
+        public void init(MyScreen scr);
+    }
+
+    public void setScreenBackByStackPop(ScreenInit init){
+        if (backButtonStack.size()>1){
+            try {
+                MyScreen scr = (MyScreen) backButtonStack.pop().getConstructor(MyGame.class).newInstance(this);
+                init.init(scr);
+                setScreen(scr,false);
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        }
+        else
+        {
+            Gdx.app.exit();
+        }
+    }
+
+
 
     public void setScreen(Screen screen, boolean pushToStack) {
         Screen prevScreen = getScreen();

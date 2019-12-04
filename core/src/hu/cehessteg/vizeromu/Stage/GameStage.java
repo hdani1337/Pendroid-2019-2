@@ -52,6 +52,12 @@ public class GameStage extends MyStage {
         assignment();
         addActors();
         fuggvenyekNull();
+        addBackButtonListener(new BackButtonListener() {
+            @Override
+            public void backKeyDown() {
+                setGamePaused(true);
+            }
+        });
     }
 
     void assignment()

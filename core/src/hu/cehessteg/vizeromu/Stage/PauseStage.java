@@ -15,6 +15,7 @@ import hu.cehessteg.vizeromu.GlobalClasses.Assets;
 import hu.cehessteg.vizeromu.GlobalClasses.Fuggvenyek;
 import hu.cehessteg.vizeromu.GlobalClasses.Styles;
 import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
+import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyScreen;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyStage;
 import hu.cehessteg.vizeromu.ParentClasses.Scene2D.OneSpriteStaticActor;
 import hu.cehessteg.vizeromu.ParentClasses.UI.MyButton;
@@ -39,6 +40,12 @@ public class PauseStage extends MyStage {
         setPositions();
         addListeners();
         addActors();
+        addBackButtonListener(new BackButtonListener() {
+            @Override
+            public void backKeyDown() {
+                leaveGame();
+            }
+        });
     }
 
     void assignment()
@@ -82,6 +89,21 @@ public class PauseStage extends MyStage {
         continueGame.myLabel.setZIndex(ajto.getZIndex()-2);
     }
 
+
+    void leaveGame(){
+        gameSave.putInteger("coins", GameStage.matek.coins);
+        gameSave.flush();
+        ajto.setMove(true);
+        ajto.setMoveIn(true);
+        ajto.setMoveOut(false);
+        felso.setMove(true);
+        also.setMove(true);
+        felso.setMoveDown(true);
+        also.setMoveDown(true);
+        felso.setMoveUp(false);
+        also.setMoveUp(false);
+    }
+
     void addListeners()
     {
         continueGame.addListener(new ClickListener(){
@@ -96,17 +118,7 @@ public class PauseStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                gameSave.putInteger("coins", GameStage.matek.coins);
-                gameSave.flush();
-                ajto.setMove(true);
-                ajto.setMoveIn(true);
-                ajto.setMoveOut(false);
-                felso.setMove(true);
-                also.setMove(true);
-                felso.setMoveDown(true);
-                also.setMoveDown(true);
-                felso.setMoveUp(false);
-                also.setMoveUp(false);
+               leaveGame();
             }
         });
     }
@@ -166,9 +178,18 @@ public class PauseStage extends MyStage {
         }
 
         if(ajto.getX() >= getViewport().getWorldWidth()-ajto.getWidth()) {
-            MenuScreen menuScreen = new MenuScreen(game);
-            menuScreen.setJojjonCaution(false);
-            game.setScreen(menuScreen);
+            //MenuScreen menuScreen = new MenuScreen(game);
+            //menuScreen.setJojjonCaution(false);
+            //game.setScreen(menuScreen);
+            game.setScreenBackByStackPop(new MyGame.ScreenInit() {
+                @Override
+                public void init(MyScreen scr) {
+                    if (scr instanceof MenuScreen) {
+                        ((MenuScreen) scr).setJojjonCaution(false);
+                    }
+                }
+            });
+
         }
     }
 

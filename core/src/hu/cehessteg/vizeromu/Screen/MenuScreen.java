@@ -47,6 +47,7 @@ public class MenuScreen extends MyScreen {
             gameStage.gameMusic.stop();
         }
         else menuStage.menuMusic.stop();
+        menuStage.addBackButtonScreenBackByStackPopListener();
     }
 
     @Override
