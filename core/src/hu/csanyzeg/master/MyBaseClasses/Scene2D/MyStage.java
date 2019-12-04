@@ -35,8 +35,9 @@ abstract public class MyStage extends Stage implements InitableInterface {
         public void backKeyDown();
     }
 
-    public void addBackButtonListener(final BackButtonListener backButton)    {
-        addListener(new InputListener() {
+    public InputListener addBackButtonListener(final BackButtonListener backButton)    {
+        InputListener inputListener;
+        addListener(inputListener = new InputListener() {
 
             @Override
             public boolean keyDown(InputEvent event, int keycode) {
@@ -49,16 +50,28 @@ abstract public class MyStage extends Stage implements InitableInterface {
                 return true;
             }
         });
+        return  inputListener;
     }
 
 
+    protected InputListener backButtonScreenBackByStackPopListener = null;
+
     public void addBackButtonScreenBackByStackPopListener()    {
-        addBackButtonListener(new BackButtonListener() {
-            @Override
-            public void backKeyDown() {
-                game.setScreenBackByStackPop();
-            }
-        });
+        if (backButtonScreenBackByStackPopListener == null) {
+            backButtonScreenBackByStackPopListener = addBackButtonListener(new BackButtonListener() {
+                @Override
+                public void backKeyDown() {
+                    game.setScreenBackByStackPop();
+                }
+            });
+        }
+    }
+
+    public void removeBackButtonScreenBackByStackPopListener() {
+        if (backButtonScreenBackByStackPopListener == null) return;
+
+        removeListener(backButtonScreenBackByStackPopListener);
+        backButtonScreenBackByStackPopListener = null;
     }
 
     public MyGame getGame() {

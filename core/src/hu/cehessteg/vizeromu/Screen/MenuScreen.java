@@ -12,6 +12,7 @@ import hu.cehessteg.vizeromu.Stage.MenuStage;
 import hu.cehessteg.vizeromu.Stage.OptionsStage;
 import hu.cehessteg.vizeromu.Stage.ShopStage;
 import hu.cehessteg.vizeromu.Stage.WeatherBackground;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.MyStage;
 
 import static hu.cehessteg.vizeromu.Stage.GameStage.matek;
 import static hu.cehessteg.vizeromu.Vizeromu.keparanySzelesvaszonra;
@@ -47,7 +48,6 @@ public class MenuScreen extends MyScreen {
             gameStage.gameMusic.stop();
         }
         else menuStage.menuMusic.stop();
-        menuStage.addBackButtonScreenBackByStackPopListener();
     }
 
     @Override
@@ -78,18 +78,21 @@ public class MenuScreen extends MyScreen {
     void backToMenuFromAnotherStage()
     {
         if(infoStage.isMehetvissza()) {
+            menuStage.addBackButtonScreenBackByStackPopListener();
             menuStage.setMehetVissza(true);
             menuStage.setJojjonCaution(true);
             infoStage.setMehetvissza(false);
         }
 
         if(optionsStage.isMehetVissza()) {
+            menuStage.addBackButtonScreenBackByStackPopListener();
             menuStage.setMehetVissza(true);
             menuStage.setJojjonCaution(true);
             optionsStage.setMehetVissza(false);
         }
 
         if(shopStage.isMehetVissza()) {
+            menuStage.addBackButtonScreenBackByStackPopListener();
             menuStage.setMehetVissza(true);
             menuStage.setJojjonCaution(true);
             shopStage.setMehetVissza(false);

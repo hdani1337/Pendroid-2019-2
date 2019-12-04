@@ -53,6 +53,7 @@ public class MenuStage extends MyStage {
         setPositions();
         addListeners();
         addActors();
+        addBackButtonScreenBackByStackPopListener();
     }
 
     void assignment()
@@ -120,6 +121,7 @@ public class MenuStage extends MyStage {
                 drawInfo = false;
                 drawOptions = false;
                 drawShop = false;
+                removeBackButtonScreenBackByStackPopListener();
             }
         });
 
@@ -136,6 +138,7 @@ public class MenuStage extends MyStage {
                 drawOptions = false;
                 drawGame = false;
                 drawShop = false;
+                removeBackButtonScreenBackByStackPopListener();
             }
         });
 
@@ -152,6 +155,7 @@ public class MenuStage extends MyStage {
                 drawGame = false;
                 drawInfo = false;
                 drawShop = false;
+                removeBackButtonScreenBackByStackPopListener();
             }
         });
 
@@ -168,6 +172,7 @@ public class MenuStage extends MyStage {
                 drawGame = false;
                 drawInfo = false;
                 drawShop = true;
+                removeBackButtonScreenBackByStackPopListener();
             }
         });
 
@@ -185,6 +190,7 @@ public class MenuStage extends MyStage {
                 drawInfo = false;
                 drawShop = false;
                 willExit = true;
+                removeBackButtonScreenBackByStackPopListener();
             }
         });
 

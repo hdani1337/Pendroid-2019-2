@@ -44,6 +44,14 @@ public class InfoStage extends MyStage {
         addListeners();
         addActors();
         mehetvissza = false;
+
+        addBackButtonListener(new BackButtonListener() {
+            @Override
+            public void backKeyDown() {
+                setMehetvissza(true);
+            }
+        });
+
     }
 
     void assignment()
