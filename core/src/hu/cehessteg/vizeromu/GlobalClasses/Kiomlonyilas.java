@@ -2,7 +2,7 @@ package hu.cehessteg.vizeromu.GlobalClasses;
 
 public class Kiomlonyilas {
     public boolean isOpen;
-    public int lvl = 1;
+    public int lvl = 0;
 
     public Kiomlonyilas() {
 

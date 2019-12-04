@@ -130,11 +130,11 @@ public class Matek {
         vizmennyiseg += beviz;
         vizmennyiseg -= kimenoszamitas();
         kimentviz += kimenoszamitas();
-        if(time > coinTime+(36*60)) {
+        if(time > coinTime+(35*60)) {
             coinTime = time;
             termeltwatt += (kimentviz / 48)*aramPercent();
             kimentviz = 0;
-            coins += termeltwatt / 3;
+            coins += termeltwatt / 6;
             termeltwatt = 0;
         }
         if(patakVizmennyiseg < 225000)patakVizmennyiseg += kiviz * openek;
