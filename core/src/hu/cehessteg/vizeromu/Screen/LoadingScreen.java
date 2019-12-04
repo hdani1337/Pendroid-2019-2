@@ -4,9 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 import hu.cehessteg.vizeromu.GlobalClasses.Assets;
-import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
-import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyScreen;
-import hu.cehessteg.vizeromu.ParentClasses.Scene2D.OneSpriteStaticActor;
+import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.MyScreen;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
 
 public class LoadingScreen extends MyScreen {
     public LoadingScreen(MyGame game) {

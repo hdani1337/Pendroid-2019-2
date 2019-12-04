@@ -1,4 +1,4 @@
-package hu.cehessteg.vizeromu.ParentClasses.Box2dWorld;
+package hu.csanyzeg.master.MyBaseClasses.Box2dWorld;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.Vector2;

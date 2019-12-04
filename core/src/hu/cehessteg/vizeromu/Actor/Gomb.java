@@ -2,9 +2,9 @@ package hu.cehessteg.vizeromu.Actor;
 
 import hu.cehessteg.vizeromu.GlobalClasses.Assets;
 import hu.cehessteg.vizeromu.GlobalClasses.Styles;
-import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyStage;
-import hu.cehessteg.vizeromu.ParentClasses.Scene2D.OneSpriteStaticActor;
-import hu.cehessteg.vizeromu.ParentClasses.UI.MyLabel;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.MyStage;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
+import hu.csanyzeg.master.MyBaseClasses.UI.MyLabel;
 
 public class Gomb extends OneSpriteStaticActor {
     public MyLabel myLabel;

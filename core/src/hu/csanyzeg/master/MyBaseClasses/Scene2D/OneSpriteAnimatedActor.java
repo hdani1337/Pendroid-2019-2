@@ -1,10 +1,14 @@
-package hu.cehessteg.vizeromu.ParentClasses.Scene2D;
+package hu.csanyzeg.master.MyBaseClasses.Scene2D;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
-public class AnimatedOffsetSprite extends OffsetSprite {
+/**
+ * Created by tuskeb on 2016. 09. 30..
+ */
+public class OneSpriteAnimatedActor extends OneSpriteActor {
 
-    protected float elapsedTime = 0;
     protected final TextureAtlas textureAtlas;
     protected float fps = 30;
     protected boolean running = true;
@@ -14,20 +18,36 @@ public class AnimatedOffsetSprite extends OffsetSprite {
     private int actualFrame = 0;
     private int prevFrame = 0;
 
-    public AnimatedOffsetSprite(TextureAtlas textureAtlas, float xOffset, float yOffset) {
-        super(textureAtlas.getRegions().get(0).getTexture(), xOffset, yOffset);
-        this.textureAtlas = textureAtlas;
+
+    public boolean isLooping() {
+        return looping;
     }
 
-    public AnimatedOffsetSprite(TextureAtlas textureAtlas, float xOffset, float yOffset, float width, float height) {
-        super(textureAtlas.getRegions().get(0).getTexture(), xOffset, yOffset, width, height);
-        this.textureAtlas = textureAtlas;
+    public void setLooping(boolean looping) {
+        this.looping = looping;
     }
 
+    public int getActualFrame() {
+        return actualFrame;
+    }
 
+    public OneSpriteAnimatedActor(String file) {
+        super(null);
+        textureAtlas = new TextureAtlas(Gdx.files.internal(file));
+        sprite = new Sprite(textureAtlas.getRegions().get(0).getTexture());
+        init();
+    }
 
+    public OneSpriteAnimatedActor(TextureAtlas textureAtlas) {
+        super(null);
+        this.textureAtlas = textureAtlas;
+        sprite = new Sprite(textureAtlas.getRegions().get(0).getTexture());
+        init();
+    }
 
+    @Override
     public void init() {
+        super.init();
         setSize(textureAtlas.getRegions().get(0).getRegionWidth(), textureAtlas.getRegions().get(0).getRegionHeight());
     }
 
@@ -39,10 +59,9 @@ public class AnimatedOffsetSprite extends OffsetSprite {
         this.fps = fps;
     }
 
-
-
+    @Override
     public void act(float delta) {
-        elapsedTime += delta;
+        super.act(delta);
         if (running) {
             animationTime+=delta;
             int actualFrame=((int) (animationTime * fps)) % textureAtlas.getRegions().size;
@@ -63,8 +82,7 @@ public class AnimatedOffsetSprite extends OffsetSprite {
 
     public void setFrame(int frame)
     {
-        if(textureAtlas == null) return;
-        this.setRegion(textureAtlas.getRegions().get(frame % textureAtlas.getRegions().size));
+        sprite.setRegion(textureAtlas.getRegions().get(frame % textureAtlas.getRegions().size));
     }
 
     public void setFramePercent(float percent) {
@@ -90,5 +108,21 @@ public class AnimatedOffsetSprite extends OffsetSprite {
         return textureAtlas;
     }
 
+    @Override
+    protected void positionChanged() {
+        super.positionChanged();
+        setFrame(((int) (elapsedTime * fps)));
+    }
 
+    @Override
+    protected void rotationChanged() {
+        super.rotationChanged();
+        setFrame(((int) (elapsedTime * fps)));
+    }
+
+    @Override
+    protected void sizeChanged() {
+        super.sizeChanged();
+        setFrame(((int) (elapsedTime * fps)));
+    }
 }

@@ -1,13 +1,13 @@
-package hu.cehessteg.vizeromu.ParentClasses.Scene2D;
+package hu.csanyzeg.master.MyBaseClasses.Scene2D;
 
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import hu.cehessteg.vizeromu.ParentClasses.Game.InitableInterface;
-import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
+
+import hu.csanyzeg.master.MyBaseClasses.Game.InitableInterface;
+import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 
 /**
  * Created by tuskeb on 2016. 09. 30..

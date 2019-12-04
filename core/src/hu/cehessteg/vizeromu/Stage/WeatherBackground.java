@@ -3,18 +3,17 @@ package hu.cehessteg.vizeromu.Stage;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.Random;
 
 import hu.cehessteg.vizeromu.GlobalClasses.Assets;
-import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
-import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MultiSpriteActor;
-import hu.cehessteg.vizeromu.ParentClasses.Scene2D.OffsetSprite;
-import hu.cehessteg.vizeromu.ParentClasses.Scene2D.OneSpriteActor;
-import hu.cehessteg.vizeromu.ParentClasses.Scene2D.OneSpriteStaticActor;
+import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.MultiSpriteActor;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.OffsetSprite;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteActor;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
 
 public class WeatherBackground extends WeatherAbstract {
     private static AssetManager manager = null;

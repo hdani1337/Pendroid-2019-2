@@ -1,15 +1,9 @@
 package hu.cehessteg.vizeromu.Stage;
 
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
-import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MultiSpriteActor;
-import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyStage;
+import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.MyStage;
 
 public abstract class WeatherAbstract extends MyStage {
     private final static int sunset = 6 * 3600;

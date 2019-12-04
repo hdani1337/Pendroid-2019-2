@@ -2,7 +2,6 @@ package hu.cehessteg.vizeromu.Stage;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -14,11 +13,10 @@ import hu.cehessteg.vizeromu.Actor.Gomb;
 import hu.cehessteg.vizeromu.Actor.Kacsa;
 import hu.cehessteg.vizeromu.GlobalClasses.Assets;
 import hu.cehessteg.vizeromu.GlobalClasses.Styles;
-import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
-import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyStage;
-import hu.cehessteg.vizeromu.ParentClasses.Scene2D.OneSpriteStaticActor;
-import hu.cehessteg.vizeromu.ParentClasses.UI.MyButton;
-import hu.cehessteg.vizeromu.ParentClasses.UI.MyLabel;
+import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.MyStage;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
+import hu.csanyzeg.master.MyBaseClasses.UI.MyLabel;
 import hu.cehessteg.vizeromu.Screen.GameScreen;
 
 public class MenuStage extends MyStage {

@@ -4,7 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import hu.cehessteg.vizeromu.GlobalClasses.Assets;
-import hu.cehessteg.vizeromu.ParentClasses.Scene2D.OneSpriteStaticActor;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
 import hu.cehessteg.vizeromu.Stage.GameStage;
 
 public class Gat extends OneSpriteStaticActor {

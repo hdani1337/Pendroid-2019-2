@@ -1,7 +1,7 @@
-package hu.cehessteg.vizeromu.ParentClasses.UI;
+package hu.csanyzeg.master.MyBaseClasses.UI;
 
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import hu.cehessteg.vizeromu.ParentClasses.Game.InitableInterface;
+import hu.csanyzeg.master.MyBaseClasses.Game.InitableInterface;
 
 /**
  * Created by tuskeb on 2016. 09. 30..

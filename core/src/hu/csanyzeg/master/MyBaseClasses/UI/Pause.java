@@ -1,11 +1,11 @@
-package hu.cehessteg.vizeromu.ParentClasses.UI;
+package hu.csanyzeg.master.MyBaseClasses.UI;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import hu.cehessteg.vizeromu.GlobalClasses.Assets;
-import hu.cehessteg.vizeromu.ParentClasses.Scene2D.OneSpriteStaticActor;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
 import hu.cehessteg.vizeromu.Stage.GameStage;
 
 public class Pause extends OneSpriteStaticActor {

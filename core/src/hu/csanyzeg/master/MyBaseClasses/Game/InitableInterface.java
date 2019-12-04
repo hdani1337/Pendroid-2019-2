@@ -1,4 +1,4 @@
-package hu.cehessteg.vizeromu.ParentClasses.Game;
+package hu.csanyzeg.master.MyBaseClasses.Game;
 
 /**
  * Created by tuskeb on 2016. 10. 29..

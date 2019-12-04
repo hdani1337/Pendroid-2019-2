@@ -1,12 +1,11 @@
-package hu.cehessteg.vizeromu.ParentClasses.Game;
+package hu.csanyzeg.master.MyBaseClasses.Game;
 
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyScreen;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.MyScreen;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Stack;

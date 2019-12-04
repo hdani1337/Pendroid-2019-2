@@ -1,12 +1,11 @@
 package hu.cehessteg.vizeromu.Actor;
 
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import hu.cehessteg.vizeromu.GlobalClasses.Assets;
-import hu.cehessteg.vizeromu.ParentClasses.Scene2D.OneSpriteStaticActor;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
 import hu.cehessteg.vizeromu.Stage.OptionsStage;
 
 public class Ajto extends OneSpriteStaticActor {

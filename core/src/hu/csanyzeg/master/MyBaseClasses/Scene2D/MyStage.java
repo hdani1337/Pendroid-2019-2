@@ -1,4 +1,4 @@
-package hu.cehessteg.vizeromu.ParentClasses.Scene2D;
+package hu.csanyzeg.master.MyBaseClasses.Scene2D;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Camera;
@@ -9,8 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import hu.cehessteg.vizeromu.ParentClasses.Game.InitableInterface;
-import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
+import hu.csanyzeg.master.MyBaseClasses.Game.InitableInterface;
+import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 
 import java.util.ArrayList;
 import java.util.Comparator;

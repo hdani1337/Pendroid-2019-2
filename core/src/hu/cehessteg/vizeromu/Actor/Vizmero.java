@@ -3,8 +3,8 @@ package hu.cehessteg.vizeromu.Actor;
 import com.badlogic.gdx.graphics.Color;
 
 import hu.cehessteg.vizeromu.GlobalClasses.Assets;
-import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyStage;
-import hu.cehessteg.vizeromu.ParentClasses.Scene2D.OneSpriteStaticActor;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.MyStage;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
 import hu.cehessteg.vizeromu.Stage.GameStage;
 
 public class Vizmero extends OneSpriteStaticActor {

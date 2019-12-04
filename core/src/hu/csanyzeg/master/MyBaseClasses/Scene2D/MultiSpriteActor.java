@@ -1,9 +1,9 @@
-package hu.cehessteg.vizeromu.ParentClasses.Scene2D;
+package hu.csanyzeg.master.MyBaseClasses.Scene2D;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import hu.cehessteg.vizeromu.ParentClasses.Game.InitableInterface;
+import hu.csanyzeg.master.MyBaseClasses.Game.InitableInterface;
 
 import java.util.Collection;
 import java.util.HashMap;

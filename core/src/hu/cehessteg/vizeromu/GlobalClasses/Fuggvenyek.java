@@ -6,19 +6,13 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
-import java.util.Random;
-
 import hu.cehessteg.vizeromu.Actor.KifeleVizcsepp;
 import hu.cehessteg.vizeromu.Actor.Viz;
 import hu.cehessteg.vizeromu.Actor.Vizcsepp;
-import hu.cehessteg.vizeromu.ParentClasses.Box2dWorld.WorldActorGroup;
-import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyStage;
+import hu.csanyzeg.master.MyBaseClasses.Box2dWorld.WorldActorGroup;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.MyStage;
 import hu.cehessteg.vizeromu.Stage.GameStage;
 import hu.cehessteg.vizeromu.Stage.OptionsStage;
-import hu.cehessteg.vizeromu.Vizeromu;
-
-import static hu.cehessteg.vizeromu.Stage.GameStage.isGamePaused;
-import static hu.cehessteg.vizeromu.Stage.GameStage.matek;
 
 public class Fuggvenyek {
     public static void fuggvenyekNull()

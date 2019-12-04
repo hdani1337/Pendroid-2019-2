@@ -6,9 +6,9 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 
 import hu.cehessteg.vizeromu.GlobalClasses.Assets;
-import hu.cehessteg.vizeromu.ParentClasses.Box2dWorld.WorldActorGroup;
-import hu.cehessteg.vizeromu.ParentClasses.Scene2D.OneSpriteStaticActor;
-import hu.cehessteg.vizeromu.ParentClasses.Scene2D.ShapeType;
+import hu.csanyzeg.master.MyBaseClasses.Box2dWorld.WorldActorGroup;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.ShapeType;
 
 public class KifeleVizcsepp extends WorldActorGroup {
     public KifeleVizcsepp(World world) {

@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 
 import hu.cehessteg.vizeromu.GlobalClasses.Assets;
-import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
+import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 import hu.cehessteg.vizeromu.Screen.LoadingScreen;
 import hu.cehessteg.vizeromu.Stage.OptionsStage;
 

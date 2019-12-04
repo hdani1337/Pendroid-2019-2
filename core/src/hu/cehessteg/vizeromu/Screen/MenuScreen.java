@@ -4,8 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
-import hu.cehessteg.vizeromu.ParentClasses.Game.MyGame;
-import hu.cehessteg.vizeromu.ParentClasses.Scene2D.MyScreen;
+import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.MyScreen;
 import hu.cehessteg.vizeromu.Stage.GameStage;
 import hu.cehessteg.vizeromu.Stage.InfoStage;
 import hu.cehessteg.vizeromu.Stage.MenuStage;
