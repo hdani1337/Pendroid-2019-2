@@ -53,17 +53,10 @@ abstract public class MyStage extends Stage implements InitableInterface {
 
 
     public void addBackButtonScreenBackByStackPopListener()    {
-        addListener(new InputListener() {
-
+        addBackButtonListener(new BackButtonListener() {
             @Override
-            public boolean keyDown(InputEvent event, int keycode) {
-                if(keycode== Input.Keys.ESCAPE) {
-                    game.setScreenBackByStackPop();
-                }
-                if(keycode== Input.Keys.BACK) {
-                    game.setScreenBackByStackPop();
-                }
-                return true;
+            public void backKeyDown() {
+                game.setScreenBackByStackPop();
             }
         });
     }

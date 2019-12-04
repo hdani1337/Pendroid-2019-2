@@ -1,5 +1,6 @@
 package hu.cehessteg.vizeromu.ParentClasses.Game;
 
+import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -48,23 +49,7 @@ abstract public class MyGame extends Game {
     }
 
     public void setScreenBackByStackPop(){
-        if (backButtonStack.size()>1){
-            try {
-                setScreen((MyScreen) backButtonStack.pop().getConstructor(MyGame.class).newInstance(this),false);
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (NoSuchMethodException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            }
-        }
-        else
-        {
-            Gdx.app.exit();
-        }
+        setScreenBackByStackPop(null);
     }
 
     public interface ScreenInit{
@@ -75,7 +60,9 @@ abstract public class MyGame extends Game {
         if (backButtonStack.size()>1){
             try {
                 MyScreen scr = (MyScreen) backButtonStack.pop().getConstructor(MyGame.class).newInstance(this);
-                init.init(scr);
+                if (init != null) {
+                    init.init(scr);
+                }
                 setScreen(scr,false);
             } catch (InstantiationException e) {
                 e.printStackTrace();
