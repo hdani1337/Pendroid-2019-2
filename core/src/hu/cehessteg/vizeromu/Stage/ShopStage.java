@@ -140,15 +140,15 @@ public class ShopStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                if(Matek.coins >= GameStage.matek.getNyilasok()[0].lvl * 200 + 1000)
+                if(Matek.coins >= GameStage.matek.getNyilasok()[0].lvl * 500 + 2000)
                 {
                     if(GameStage.matek.getNyilasok()[0].lvl == 0) {
                         deszkak.get(0).remove();
                         addActor(szintekLabel.get(0));
                     }
                     if(GameStage.matek.getNyilasok()[0].lvl < 25) {
+                        GameStage.matek.buysometing(GameStage.matek.getNyilasok()[0].lvl * 500 + 2000);
                         GameStage.matek.lvlupcso(0);
-                        GameStage.matek.buysometing(GameStage.matek.getNyilasok()[0].lvl * 200 + 1000);
                         gameSave.putInteger("csoLevel1", gameSave.getInteger("csoLevel1") + 1);
                         gameSave.flush();
                     }
@@ -168,8 +168,8 @@ public class ShopStage extends MyStage {
                         addActor(szintekLabel.get(1));
                     }
                     if(GameStage.matek.getNyilasok()[1].lvl < 25) {
-                        GameStage.matek.lvlupcso(1);
                         GameStage.matek.buysometing(GameStage.matek.getNyilasok()[1].lvl * 500 + 2000);
+                        GameStage.matek.lvlupcso(1);
                         gameSave.putInteger("csoLevel2", gameSave.getInteger("csoLevel2") + 1);
                         gameSave.flush();
                     }
@@ -189,8 +189,8 @@ public class ShopStage extends MyStage {
                         addActor(szintekLabel.get(2));
                     }
                     if(GameStage.matek.getNyilasok()[2].lvl < 25) {
-                        GameStage.matek.lvlupcso(2);
                         GameStage.matek.buysometing(GameStage.matek.getNyilasok()[2].lvl * 500 + 2000);
+                        GameStage.matek.lvlupcso(2);
                         gameSave.putInteger("csoLevel3", gameSave.getInteger("csoLevel3") + 1);
                         gameSave.flush();
                     }
@@ -203,17 +203,18 @@ public class ShopStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                if(Matek.coins >= GameStage.matek.getNyilasok()[3].lvl * 500 + 2000)
+                if(Matek.coins >= (GameStage.matek.getNyilasok()[3].lvl * 500) + 2000)
                 {
                     if(GameStage.matek.getNyilasok()[3].lvl == 0) {
                         deszkak.get(3).remove();
                         addActor(szintekLabel.get(3));
                     }
-                    if(GameStage.matek.getNyilasok()[3].lvl < 25) {
-                    GameStage.matek.lvlupcso(3);
-                    GameStage.matek.buysometing(GameStage.matek.getNyilasok()[3].lvl * 500 + 2000);
-                    gameSave.putInteger("csoLevel4", gameSave.getInteger("csoLevel4") + 1);
-                    gameSave.flush();
+                    if(GameStage.matek.getNyilasok()[3].lvl < 25)
+                    {
+                        GameStage.matek.buysometing((GameStage.matek.getNyilasok()[3].lvl * 500) + 2000);
+                        GameStage.matek.lvlupcso(3);
+                        gameSave.putInteger("csoLevel4", gameSave.getInteger("csoLevel4") + 1);
+                        gameSave.flush();
                     }
                 }
             }
@@ -231,8 +232,8 @@ public class ShopStage extends MyStage {
                         addActor(szintekLabel.get(4));
                     }
                     if(GameStage.matek.getNyilasok()[4].lvl < 25) {
-                        GameStage.matek.lvlupcso(4);
                         GameStage.matek.buysometing(GameStage.matek.getNyilasok()[4].lvl * 500 + 2000);
+                        GameStage.matek.lvlupcso(4);
                         gameSave.putInteger("csoLevel5", gameSave.getInteger("csoLevel5") + 1);
                         gameSave.flush();
                     }
