@@ -94,6 +94,7 @@ public class Assets {
     public static final AssetDescriptor<Sound> AJTO_NYIT = new AssetDescriptor<Sound>("Hangok/AjtoNyito.mp3",Sound.class);
     public static final AssetDescriptor<Sound> AJTO_ZAR = new AssetDescriptor<Sound>("Hangok/AjtoZaro.mp3",Sound.class);
     public static final AssetDescriptor<Sound> NYIKORGAS = new AssetDescriptor<Sound>("Hangok/Nyikorgas.mp3",Sound.class);
+    public static final AssetDescriptor<Sound> KACSASOUND = new AssetDescriptor<Sound>("Hangok/kacsa.mp3",Sound.class);
 
     public static final AssetDescriptor<Music> ESO = new AssetDescriptor<Music>("Hangok/RainDrops.mp3",Music.class);
     public static final AssetDescriptor<Music> GAME_MUSIC = new AssetDescriptor<Music>("Hangok/GameMusic.mp3",Music.class);
@@ -162,6 +163,7 @@ public class Assets {
         manager.load(AJTO_NYIT);
         manager.load(AJTO_ZAR);
         manager.load(NYIKORGAS);
+        manager.load(KACSASOUND);
         manager.load(ESO);
 
         manager.load(GAME_MUSIC);
