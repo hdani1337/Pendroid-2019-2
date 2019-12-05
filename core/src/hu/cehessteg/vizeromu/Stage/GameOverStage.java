@@ -28,6 +28,7 @@ public class GameOverStage extends MyStage {
     CautionSign also;
     Ajto ajto;
     MyLabel napok;
+    OneSpriteStaticActor frozenClock;
     int napokInt = 0;
 
     public GameOverStage(Viewport viewport, final MyGame game) {
@@ -40,6 +41,8 @@ public class GameOverStage extends MyStage {
 
     void assignment()
     {
+        frozenClock = new OneSpriteStaticActor(Assets.manager.get(Assets.FAGYOTTORA));
+        frozenClock.setDebug(false);
         gameOver = new MyLabel("Vége a játéknak!", Styles.getCalibriLabelStyle());
         restart = new Gomb("Újraindítás", this);
         menu = new Gomb("Kilépés",this);
@@ -54,6 +57,8 @@ public class GameOverStage extends MyStage {
 
     void setPositions()
     {
+        frozenClock.setSize(frozenClock.getWidth()/2,frozenClock.getHeight()/2);
+        frozenClock.setPosition(getViewport().getWorldWidth()-frozenClock.getWidth(),0);
         gameOver.setAlignment(0);
         gameOver.setPosition(getViewport().getWorldWidth()/2-gameOver.getWidth()/2,getViewport().getWorldHeight()/2+gameOver.getHeight()*2.5f);
         restart.setPosition(getViewport().getWorldWidth()/2-restart.getWidth()/2,getViewport().getWorldHeight()/2);
@@ -65,6 +70,7 @@ public class GameOverStage extends MyStage {
 
     void addActors()
     {
+        addActor(frozenClock);
         addActor(background);
         addActor(gameOver);
         addActor(restart);
@@ -146,6 +152,7 @@ public class GameOverStage extends MyStage {
                     if (actor.getWidth() == getViewport().getWorldWidth() && actor.getHeight() == getViewport().getWorldHeight())
                         actor.setColor(0, 0, 0, alpha / 2);
                 }
+                frozenClock.setColor(1,1,1,alpha);
                 if (alpha < 1 - 0.0275) alpha += 0.0275;
                 else alpha = 1;
             }
@@ -157,6 +164,7 @@ public class GameOverStage extends MyStage {
                     if (actor.getWidth() == getViewport().getWorldWidth() && actor.getHeight() == getViewport().getWorldHeight())
                         actor.setColor(0, 0, 0, alpha / 2);
                 }
+                frozenClock.setColor(1,1,1,alpha);
                 if (alpha > 0.0275) alpha -= 0.0275;
                 else {
                     alpha = 0;

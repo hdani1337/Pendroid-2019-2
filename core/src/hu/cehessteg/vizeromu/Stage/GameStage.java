@@ -39,6 +39,7 @@ public class GameStage extends MyStage {
     Gat.gatListenes otodikNyilas;
 
     public static Music gameMusic;
+    private int simulationSpeed = 60;
 
     public GameStage(Viewport viewport, MyGame game) {
         super(viewport, game);
@@ -139,7 +140,7 @@ public class GameStage extends MyStage {
         super.act(delta);
         if (!still) {
             worldThread(delta, kifolyoWorld, esoWorld);
-            matek.step(delta * 36*6*10);
+            matek.step(delta * 36*simulationSpeed);
             vizcseppek(esoWorld, kifolyoWorld, this, matek, elapsedTime, viz, patak);
             if(alpha < 1) setAlphaForGatListeners();
         } else {
@@ -162,6 +163,14 @@ public class GameStage extends MyStage {
 
     public static void setGamePaused(boolean gamePaused) {
         isGamePaused = gamePaused;
+    }
+
+    public int getSimulationSpeed() {
+        return simulationSpeed;
+    }
+
+    public void setSimulationSpeed(int simulationSpeed) {
+        this.simulationSpeed = simulationSpeed;
     }
 
     float alpha = 0;

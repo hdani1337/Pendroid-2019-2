@@ -1,5 +1,7 @@
 package hu.cehessteg.vizeromu.Stage;
 
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import hu.cehessteg.vizeromu.Actor.Arammero;
@@ -17,17 +19,22 @@ public class HudStage extends MyStage {
     OneSpriteStaticActor kismutato;
     OneSpriteStaticActor nagymutato;
 
+    OneSpriteStaticActor speedup;
+    OneSpriteStaticActor speeddown;
+
     Penz penz;
     Arammero arammero;
     Vizmero vizmero;
 
     int napok = 0;
     private boolean napokNov = true;
+    private int simulationSpeed = 60;
 
     public HudStage(Viewport viewport, MyGame game) {
         super(viewport, game);
         assignment();
         clock();
+        speed();
         setPositions();
         addActors();
     }
@@ -38,6 +45,33 @@ public class HudStage extends MyStage {
         arammero = new Arammero(this);
         vizmero = new Vizmero(this);
         penz = new Penz(this);
+    }
+
+    void speed()
+    {
+        speedup = new OneSpriteStaticActor(Assets.manager.get(Assets.SPEEDU));
+        speedup.setDebug(false);
+
+        speeddown = new OneSpriteStaticActor(Assets.manager.get(Assets.SPEEDD));
+        speeddown.setDebug(false);
+
+        speedup.addListener(new ClickListener()
+        {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                if(simulationSpeed < 120) simulationSpeed += 1;
+            }
+        });
+
+        speeddown.addListener(new ClickListener()
+        {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                if(simulationSpeed > 1) simulationSpeed -= 1;
+            }
+        });
     }
 
     void clock()
@@ -65,7 +99,7 @@ public class HudStage extends MyStage {
 
     void setPositions()
     {
-        arammero.setPosition(pause.getX()-arammero.getWidth(),getViewport().getWorldHeight()-arammero.getHeight()-8);
+        arammero.setPosition(pause.getX()-arammero.getWidth(),getViewport().getWorldHeight()-arammero.getHeight()-11);
         vizmero.setScale(0.85f);
         vizmero.setPosition(15,getViewport().getWorldHeight()-vizmero.getHeight()-15);
     }
@@ -79,6 +113,8 @@ public class HudStage extends MyStage {
         addActor(arammero);
         addActor(vizmero);
         addActor(penz);
+        /*addActor(speeddown);
+        addActor(speedup);*/
     }
 
     void napszamlalo()
@@ -107,5 +143,9 @@ public class HudStage extends MyStage {
 
     public int getNapok() {
         return napok;
+    }
+
+    public int getSimulationSpeed() {
+        return simulationSpeed;
     }
 }

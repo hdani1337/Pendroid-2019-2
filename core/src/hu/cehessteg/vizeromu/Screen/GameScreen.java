@@ -83,6 +83,7 @@ public class GameScreen extends MyScreen {
 
         ifGameOver(delta);
         ifPaused(delta);
+        simulation();
     }
 
     void ifGameOver(float delta)
@@ -124,5 +125,10 @@ public class GameScreen extends MyScreen {
             if(inputMultiplexer.getProcessors().contains(pauseStage,true))
                 inputMultiplexer.removeProcessor(pauseStage);
         }
+    }
+
+    void simulation()
+    {
+        if(gameStage.getSimulationSpeed() != hudStage.getSimulationSpeed()) gameStage.setSimulationSpeed(hudStage.getSimulationSpeed());
     }
 }
