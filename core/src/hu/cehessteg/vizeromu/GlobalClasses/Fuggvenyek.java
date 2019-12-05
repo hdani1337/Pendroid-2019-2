@@ -27,9 +27,11 @@ public class Fuggvenyek {
 
     static float deltaTime;
     public static Music rainSound;
+    static int simulation;
 
-    public static void worldThread(float delta, final World kifolyoWorld, final World esoWorld) {
+    public static void worldThread(float delta, final World kifolyoWorld, final World esoWorld, int simulationSpeed) {
         deltaTime = delta;
+        simulation = simulationSpeed;
         rainSound = Assets.manager.get(Assets.ESO);
         rainSound.setLooping(true);
         Runnable kifolyas = new Runnable() {
@@ -61,7 +63,7 @@ public class Fuggvenyek {
         private static synchronized void addVizcsepp(World world, MyStage stage, Matek matek, float elapsedTime, Viz viz)
         {
             if (matek.getRain() > 0.05) {
-                if (elapsedTime > pElapsedEso + (1 - matek.getRain()) /* && matek.isVolteso()*/) {
+                if (elapsedTime > pElapsedEso + (1 - matek.getRain())/* && matek.isVolteso()*/) {
                     for (int i = 0; i < 1 + matek.getRain() * 3; i++) {
                         WorldActorGroup eso = new Vizcsepp(world);
                         if (eso == null) return;
@@ -140,7 +142,7 @@ public class Fuggvenyek {
 
         private static synchronized void addKifeleVizcsepp(World world, MyStage stage, Matek matek, float elapsedTime)
         {
-           if (matek.getNyilasok()[0].isOpen && elapsedTime > pElapsed0 + 0.05f) {
+           if (matek.getNyilasok()[0].isOpen && elapsedTime > pElapsed0 + (4.5f/simulation)) {
                 WorldActorGroup kifeleViz0 = new KifeleVizcsepp(world);
                 if(kifeleViz0 == null) return;
                 kifeleViz0.addToWorld();
@@ -150,7 +152,7 @@ public class Fuggvenyek {
                 kifeleViz0.setZIndex(800);
                 pElapsed0 = elapsedTime;
            }
-           if (matek.getNyilasok()[1].isOpen && elapsedTime > pElapsed1 + 0.05f) {
+           if (matek.getNyilasok()[1].isOpen && elapsedTime > pElapsed1 + (4.5f/simulation)) {
                 WorldActorGroup kifeleViz1 = new KifeleVizcsepp(world);
                 if(kifeleViz1 == null) return;
                 kifeleViz1.addToWorld();
@@ -160,7 +162,7 @@ public class Fuggvenyek {
                 kifeleViz1.setZIndex(800);
                 pElapsed1 = elapsedTime;
            }
-           if (matek.getNyilasok()[2].isOpen && elapsedTime > pElapsed2 + 0.05f) {
+           if (matek.getNyilasok()[2].isOpen && elapsedTime > pElapsed2 + (4.5f/simulation)) {
                 WorldActorGroup kifeleViz2 = new KifeleVizcsepp(world);
                 if(kifeleViz2 == null) return;
                 kifeleViz2.addToWorld();
@@ -170,7 +172,7 @@ public class Fuggvenyek {
                 kifeleViz2.setZIndex(800);
                 pElapsed2 = elapsedTime;
             }
-            if (matek.getNyilasok()[3].isOpen && elapsedTime > pElapsed3 + 0.05f) {
+            if (matek.getNyilasok()[3].isOpen && elapsedTime > pElapsed3 + (4.5f/simulation)) {
                 WorldActorGroup kifeleViz3 = new KifeleVizcsepp(world);
                 if(kifeleViz3 == null) return;
                 kifeleViz3.addToWorld();
@@ -180,7 +182,7 @@ public class Fuggvenyek {
                 kifeleViz3.setZIndex(800);
                 pElapsed3 = elapsedTime;
             }
-            if (matek.getNyilasok()[4].isOpen && elapsedTime > pElapsed4 + 0.05f) {
+            if (matek.getNyilasok()[4].isOpen && elapsedTime > pElapsed4 + (4.5f/simulation)) {
                 WorldActorGroup kifeleViz4 = new KifeleVizcsepp(world);
                 if(kifeleViz4 == null) return;
                 kifeleViz4.addToWorld();

@@ -139,7 +139,7 @@ public class GameStage extends MyStage {
     public void act(float delta) {
         super.act(delta);
         if (!still) {
-            worldThread(delta*(simulationSpeed/60.0f), kifolyoWorld, esoWorld);
+            worldThread(delta*(simulationSpeed/60.0f), kifolyoWorld, esoWorld, simulationSpeed);
             matek.step(delta * 36*simulationSpeed, simulationSpeed);
             vizcseppek(esoWorld, kifolyoWorld, this, matek, elapsedTime, viz, patak);
             if(alpha < 1) setAlphaForGatListeners();
