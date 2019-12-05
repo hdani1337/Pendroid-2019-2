@@ -30,4 +30,14 @@ public class Kacsa extends OneSpriteStaticActor {
         setRotation(getRotation() + rotation);
         if(getRotation() > 5 || getRotation() < -5) rotation *= -1;
     }
+
+    float kacsaX = 0.02f;
+
+    public void move(Viz patak, int simulationSpeed)
+    {
+        if(sprite.getTexture() != Assets.manager.get(Assets.KACSASIMA)) sprite.setTexture(Assets.manager.get(Assets.KACSASIMA));
+        setY(patak.getY() + patak.getHeight()/1.6f - getHeight()/2);
+        if(patak.getX() < getX() && patak.getX() + patak.getWidth() > getX() + getWidth()) setX(getX() + kacsaX * (simulationSpeed/60.0f));
+        if(getX() < 7.5 || getX() > 56) kacsaX *= -1;
+    }
 }

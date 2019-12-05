@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import hu.cehessteg.vizeromu.Actor.Gat;
 import hu.cehessteg.vizeromu.Actor.Hegy;
+import hu.cehessteg.vizeromu.Actor.Kacsa;
 import hu.cehessteg.vizeromu.Actor.Viz;
 import hu.cehessteg.vizeromu.GlobalClasses.Assets;
 import hu.cehessteg.vizeromu.GlobalClasses.Fuggvenyek;
@@ -31,6 +32,7 @@ public class GameStage extends MyStage {
     Hegy hegy1;
     Hegy hegy2;
     Hegy hegy3;
+    Kacsa kacsa;
 
     Gat.gatListenes elsoNyilas;
     Gat.gatListenes masodikNyilas;
@@ -104,6 +106,10 @@ public class GameStage extends MyStage {
         negyedikNyilas = new Gat.gatListenes((byte) 4);
         otodikNyilas = new Gat.gatListenes((byte) 5);
 
+        kacsa = new Kacsa();
+        kacsa.setSize(kacsa.getWidth()/30,kacsa.getHeight()/30);
+        kacsa.setPosition(patak.getX() + patak.getWidth()/2 - kacsa.getWidth()/2, patak.getY() + patak.getHeight()/1.6f - kacsa.getHeight()/2);
+
         gameMusic = Assets.manager.get(Assets.GAME_MUSIC);
     }
 
@@ -112,6 +118,7 @@ public class GameStage extends MyStage {
         addActor(viz);
         addActor(gat);
         addActor(patak);
+        addActor(kacsa);
         addActor(hegy1);
         addActor(hegy2);
         addActor(hegy3);
@@ -142,6 +149,7 @@ public class GameStage extends MyStage {
             worldThread(delta*(simulationSpeed/60.0f), kifolyoWorld, esoWorld, simulationSpeed);
             matek.step(delta * 36*simulationSpeed, simulationSpeed);
             vizcseppek(esoWorld, kifolyoWorld, this, matek, elapsedTime, viz, patak);
+            kacsa.move(patak, simulationSpeed);
             if(alpha < 1) setAlphaForGatListeners();
         } else {
             matek.step(delta * 36*simulationSpeed, simulationSpeed);
