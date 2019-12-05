@@ -106,6 +106,7 @@ public class GameOverStage extends MyStage {
                 super.clicked(event, x, y);
                 gameSave.putInteger("coins", GameStage.matek.coins);
                 gameSave.flush();
+                MenuScreen.demoElapsed = 0;
                 ajto.setMove(true);
                 ajto.setMoveIn(true);
                 ajto.setMoveOut(false);

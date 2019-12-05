@@ -145,7 +145,7 @@ public class GameStage extends MyStage {
             if(alpha < 1) setAlphaForGatListeners();
         } else {
             matek.step(delta * 36*simulationSpeed, simulationSpeed);
-            MenuScreen.demoElapsed += delta * 36*6*simulationSpeed;
+            MenuScreen.demoElapsed += delta * 36*simulationSpeed;
             Fuggvenyek.rainSound.stop();
         }
     }

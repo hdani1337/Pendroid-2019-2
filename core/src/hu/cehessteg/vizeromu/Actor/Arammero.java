@@ -41,9 +41,19 @@ public class Arammero extends OneSpriteStaticActor {
     public void act(float delta) {
         super.act(delta);
         //bgFade.setWidth(this.getWidth()*0.85f-(this.getWidth()*0.85f * (GameStage.matek.aramPercent())));
-        if(bgFade.getWidth() > (this.getWidth()*0.85f-(this.getWidth()*0.85f * (GameStage.matek.aramPercent())))+2) bgFade.setWidth(bgFade.getWidth()-4);
-        else if(bgFade.getWidth() < (this.getWidth()*0.85f-(this.getWidth()*0.85f * (GameStage.matek.aramPercent())))-2) bgFade.setWidth(bgFade.getWidth()+4);
-        else bgFade.setWidth((this.getWidth()*0.85f-(this.getWidth()*0.85f * (GameStage.matek.aramPercent()))));
+        bgFade.sprite.setAlpha(this.sprite.getColor().a);
+        if(bgFade.sprite.getColor().a <= 0.995) {
+            bg.sprite.setAlpha(0);
+        }
+        else {
+            bg.sprite.setAlpha(1);
+            if (bgFade.getWidth() > (this.getWidth() * 0.85f - (this.getWidth() * 0.85f * (GameStage.matek.aramPercent()))) + 2)
+                bgFade.setWidth(bgFade.getWidth() - 4);
+            else if (bgFade.getWidth() < (this.getWidth() * 0.85f - (this.getWidth() * 0.85f * (GameStage.matek.aramPercent()))) - 2)
+                bgFade.setWidth(bgFade.getWidth() + 4);
+            else
+                bgFade.setWidth((this.getWidth() * 0.85f - (this.getWidth() * 0.85f * (GameStage.matek.aramPercent()))));
+        }
     }
 
     @Override

@@ -43,12 +43,18 @@ public class Vizmero extends OneSpriteStaticActor {
     public void act(float delta) {
         super.act(delta);
         //bgFade.setHeight(this.getHeight()*0.85f-(this.getHeight()*0.85f * (GameStage.matek.getVizmennyiseg()/GameStage.matek.getMaxviz()*1.0f)));
-        if(bgFade.getHeight() > (this.getHeight()*0.85f-(this.getHeight()*0.85f * (GameStage.matek.getVizmennyiseg()/GameStage.matek.getMaxviz()*1.0f)))+2) bgFade.setHeight(bgFade.getHeight()-4);
-        else if(bgFade.getHeight() < (this.getHeight()*0.85f-(this.getHeight()*0.85f * (GameStage.matek.getVizmennyiseg()/GameStage.matek.getMaxviz()*1.0f)))-2) bgFade.setHeight(bgFade.getHeight()+4);
-        else bgFade.setHeight((this.getHeight()*0.85f-(this.getHeight()*0.85f * (GameStage.matek.getVizmennyiseg()/GameStage.matek.getMaxviz()*1.0f))));
+        bgFade.sprite.setAlpha(this.sprite.getColor().a);
+        if(bgFade.sprite.getColor().a <= 0.995) {
+            bg.sprite.setAlpha(0);
+        }
+        else {
+            if(bgFade.getHeight() > (this.getHeight()*0.85f-(this.getHeight()*0.85f * (GameStage.matek.getVizmennyiseg()/GameStage.matek.getMaxviz()*1.0f)))+2) bgFade.setHeight(bgFade.getHeight()-4);
+            else if(bgFade.getHeight() < (this.getHeight()*0.85f-(this.getHeight()*0.85f * (GameStage.matek.getVizmennyiseg()/GameStage.matek.getMaxviz()*1.0f)))-2) bgFade.setHeight(bgFade.getHeight()+4);
+            else bgFade.setHeight((this.getHeight()*0.85f-(this.getHeight()*0.85f * (GameStage.matek.getVizmennyiseg()/GameStage.matek.getMaxviz()*1.0f))));
 
-        if((GameStage.matek.getVizmennyiseg()/GameStage.matek.getMaxviz()*1.0f) > 0.9f || (GameStage.matek.getVizmennyiseg()/GameStage.matek.getMaxviz()*1.0f) < 0.2f) bg.sprite.setColor(Color.RED);
-        else bg.setColor(255, 255, 0, 1);
+            if((GameStage.matek.getVizmennyiseg()/GameStage.matek.getMaxviz()*1.0f) > 0.9f || (GameStage.matek.getVizmennyiseg()/GameStage.matek.getMaxviz()*1.0f) < 0.2f) bg.sprite.setColor(Color.RED);
+            else bg.setColor(255, 255, 0, 1);
+        }
     }
 
     @Override

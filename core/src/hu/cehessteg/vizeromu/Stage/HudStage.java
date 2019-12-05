@@ -29,6 +29,7 @@ public class HudStage extends MyStage {
     int napok = 0;
     private boolean napokNov = true;
     private int simulationSpeed = 60;
+    float alpha;
 
     public HudStage(Viewport viewport, MyGame game) {
         super(viewport, game);
@@ -41,6 +42,7 @@ public class HudStage extends MyStage {
 
     void assignment()
     {
+        alpha = 0;
         pause = new Pause(getViewport());
         arammero = new Arammero(this);
         vizmero = new Vizmero(this);
@@ -113,6 +115,16 @@ public class HudStage extends MyStage {
 
     void addActors()
     {
+        vizmero.sprite.setAlpha(0);
+        arammero.sprite.setAlpha(0);
+        ora.sprite.setAlpha(0);
+        kismutato.sprite.setAlpha(0);
+        nagymutato.sprite.setAlpha(0);
+        pause.sprite.setAlpha(0);
+        speeddown.sprite.setAlpha(0);
+        speedup.sprite.setAlpha(0);
+        penz.sprite.setAlpha(0);
+
         addActor(pause);
         addActor(ora);
         addActor(kismutato);
@@ -135,6 +147,22 @@ public class HudStage extends MyStage {
         else if(GameStage.matek.getH() % 24 != 0 && !napokNov) napokNov = true;
     }
 
+    void hudFadeIn()
+    {
+        if(alpha < 0.99) alpha += 0.02;
+        else alpha = 1;
+
+        vizmero.sprite.setAlpha(alpha);
+        arammero.sprite.setAlpha(alpha);
+        ora.sprite.setAlpha(alpha);
+        kismutato.sprite.setAlpha(alpha);
+        nagymutato.sprite.setAlpha(alpha);
+        pause.sprite.setAlpha(alpha);
+        speeddown.sprite.setAlpha(alpha);
+        speedup.sprite.setAlpha(alpha);
+        penz.sprite.setAlpha(alpha);
+    }
+
     @Override
     public void init() {
 
@@ -143,6 +171,7 @@ public class HudStage extends MyStage {
     @Override
     public void act(float delta) {
         super.act(delta);
+        hudFadeIn();
         nagymutato.setRotation(-(360/60)*GameStage.matek.getM());
         kismutato.setRotation(-(360/12)*GameStage.matek.getH()-(360/12/60.0f)*GameStage.matek.getM());
         napszamlalo();

@@ -79,6 +79,7 @@ public class MenuScreen extends MyScreen {
     {
         if(infoStage.isMehetvissza()) {
             menuStage.addBackButtonScreenBackByStackPopListener();
+            demoElapsed = 0;
             menuStage.setMehetVissza(true);
             menuStage.setJojjonCaution(true);
             infoStage.setMehetvissza(false);
@@ -86,6 +87,7 @@ public class MenuScreen extends MyScreen {
 
         if(optionsStage.isMehetVissza()) {
             menuStage.addBackButtonScreenBackByStackPopListener();
+            demoElapsed = 0;
             menuStage.setMehetVissza(true);
             menuStage.setJojjonCaution(true);
             optionsStage.setMehetVissza(false);
@@ -93,6 +95,7 @@ public class MenuScreen extends MyScreen {
 
         if(shopStage.isMehetVissza()) {
             menuStage.addBackButtonScreenBackByStackPopListener();
+            demoElapsed = 0;
             menuStage.setMehetVissza(true);
             menuStage.setJojjonCaution(true);
             shopStage.setMehetVissza(false);
