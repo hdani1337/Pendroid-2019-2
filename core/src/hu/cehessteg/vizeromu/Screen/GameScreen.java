@@ -96,6 +96,8 @@ public class GameScreen extends MyScreen {
             }
             if(!OptionsStage.isMuted()) gameStage.gameMusic.pause();
             if(gameOverStage.getNapokInt() != hudStage.getNapok()) gameOverStage.setNapokInt(hudStage.getNapok());
+            Fuggvenyek.rainSound.setVolume(0);
+            Fuggvenyek.rainSound.stop();
             gameOverStage.act(delta);
             gameOverStage.draw();
         }
@@ -114,6 +116,8 @@ public class GameScreen extends MyScreen {
                 gameStage.gameMusic.pause();
                 Fuggvenyek.rainSound.pause();
             }
+            Fuggvenyek.rainSound.setVolume(0);
+            Fuggvenyek.rainSound.stop();
             pauseStage.act(delta);
             pauseStage.draw();
         }

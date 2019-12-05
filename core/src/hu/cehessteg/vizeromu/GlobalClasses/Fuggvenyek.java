@@ -75,7 +75,8 @@ public class Fuggvenyek {
                         pElapsedEso = elapsedTime;
                     }
                 }
-                if(!rainSound.isPlaying() && !OptionsStage.isMuted()) rainSound.play();
+                if(!rainSound.isPlaying() && !OptionsStage.isMuted() && !GameStage.isGamePaused() && !GameStage.matek.isGameover()) rainSound.play();
+                rainSound.setVolume(matek.getRain());
             }
             else if(rainSound.isPlaying()) rainSound.stop();
         }
