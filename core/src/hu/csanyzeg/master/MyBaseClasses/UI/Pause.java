@@ -11,7 +11,7 @@ import hu.cehessteg.vizeromu.Stage.GameStage;
 public class Pause extends OneSpriteStaticActor {
     public Pause(Viewport viewport) {
         super(Assets.manager.get(Assets.PAUSE));
-        setSize(5*20,5*20);
+        setSize(4*20,4*20);
         setDebug(false);
         setPosition(viewport.getWorldWidth()-this.getWidth(),viewport.getWorldHeight()-this.getHeight());
         addListener(new ClickListener()

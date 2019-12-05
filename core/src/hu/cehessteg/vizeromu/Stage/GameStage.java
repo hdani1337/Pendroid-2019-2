@@ -139,13 +139,13 @@ public class GameStage extends MyStage {
     public void act(float delta) {
         super.act(delta);
         if (!still) {
-            worldThread(delta, kifolyoWorld, esoWorld);
-            matek.step(delta * 36*simulationSpeed);
+            worldThread(delta*(simulationSpeed/60.0f), kifolyoWorld, esoWorld);
+            matek.step(delta * 36*simulationSpeed, simulationSpeed);
             vizcseppek(esoWorld, kifolyoWorld, this, matek, elapsedTime, viz, patak);
             if(alpha < 1) setAlphaForGatListeners();
         } else {
-            matek.step(delta * 36*6*10);
-            MenuScreen.demoElapsed += delta * 36*6;
+            matek.step(delta * 36*simulationSpeed, simulationSpeed);
+            MenuScreen.demoElapsed += delta * 36*6*simulationSpeed;
             Fuggvenyek.rainSound.stop();
         }
     }

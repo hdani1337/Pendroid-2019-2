@@ -116,20 +116,20 @@ public class Matek {
     public float aramPercent()
     {
         if((vizmennyiseg/maxviz) < 0.3) {
-            if(aramPercentCsokk > 0.001) aramPercentCsokk-=0.001;
+            if(aramPercentCsokk > 0.01) aramPercentCsokk-=0.01;
             else aramPercentCsokk = 0;
-            return (kimenoszamitas() / maxOsszesKimeno()) * (aramPercentCsokk + (vizmennyiseg / maxviz)/2);
+            return (kimenoszamitas() / maxOsszesKimeno()) * (aramPercentCsokk);
         }
         return (kimenoszamitas()/maxOsszesKimeno()) * (0.3f + (vizmennyiseg/maxviz));
     }
 
-    public void step(float delta) {
+    public void step(float delta, int simulationSpeed) {
         if (getRain() > 0.05) vizmennyiseg += maxOsszesKimeno()*0.7-beviz; //Annyi víz esik be az esővel, mint amennyi az összes csapon kitud menni - az alapból befolyó vízmennyiség
         opencounter();
-        beviz = (int)(maxOsszesKimeno()*0.05);
+        beviz = (int)((maxOsszesKimeno()*0.05) * (simulationSpeed/60.0f));//60 az alapértelmezett sebesség
         vizmennyiseg += beviz;
-        vizmennyiseg -= kimenoszamitas();
-        kimentviz += kimenoszamitas();
+        vizmennyiseg -= kimenoszamitas() * (simulationSpeed/60.0f);
+        kimentviz += kimenoszamitas() * (simulationSpeed/60.0f);
         if(time > coinTime+(35*60)) {
             coinTime = time;
             termeltwatt += (kimentviz / 48)*aramPercent();
@@ -137,7 +137,7 @@ public class Matek {
             coins += termeltwatt / 6;
             termeltwatt = 0;
         }
-        if(patakVizmennyiseg < 225000)patakVizmennyiseg += kiviz * openek;
+        if(patakVizmennyiseg < 225000)patakVizmennyiseg += kimenoszamitas() * (simulationSpeed/60.0f);
         if(patakVizmennyiseg >= beviz) patakVizmennyiseg -= beviz;//Mondjuk ami patakból kifolyik víz, azt vezetjük vissza a gáthoz
         time += delta;
         if (vizmennyiseg <= minviz || vizmennyiseg >= maxviz) { gameover = true; }//gameover trigger

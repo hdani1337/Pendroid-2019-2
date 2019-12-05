@@ -81,14 +81,14 @@ public class Assets {
     public static final AssetDescriptor<Texture> SPEEDU = new AssetDescriptor<Texture>("icons/speedup.jpg", Texture.class);
     public static final AssetDescriptor<Texture> FAGYOTTORA = new AssetDescriptor<Texture>("Images/frozenclock.png", Texture.class);
     public static final AssetDescriptor<Texture> GOMB = new AssetDescriptor<Texture>("icons/gomb.png", Texture.class);
-    public static final AssetDescriptor<Texture> ORA = new AssetDescriptor<Texture>("Images/Clock.png", Texture.class);
+    public static final AssetDescriptor<Texture> ORA = new AssetDescriptor<Texture>("Images/clock.png", Texture.class);
     public static final AssetDescriptor<Texture> MUTATO = new AssetDescriptor<Texture>("Images/mutato.png", Texture.class);
     public static final AssetDescriptor<Texture> KACSA = new AssetDescriptor<Texture>("Images/kacsa.png", Texture.class);
     public static final AssetDescriptor<Texture> ARAMMERO = new AssetDescriptor<Texture>("icons/arammero.png", Texture.class);
     public static final AssetDescriptor<Texture> VIZMERO = new AssetDescriptor<Texture>("icons/vizmero.png", Texture.class);
     public static final AssetDescriptor<Texture> BLANK = new AssetDescriptor<Texture>("colors/blank.png", Texture.class);
     public static final AssetDescriptor<Texture> COIN = new AssetDescriptor<Texture>("icons/coin.png", Texture.class);
-    public static final AssetDescriptor<Texture> DESZKA = new AssetDescriptor<Texture>("images/deszka.png", Texture.class);
+    public static final AssetDescriptor<Texture> DESZKA = new AssetDescriptor<Texture>("Images/deszka.png", Texture.class);
     public static final AssetDescriptor<Texture> LYUK = new AssetDescriptor<Texture>("icons/lyuk.png", Texture.class);
 
     public static final AssetDescriptor<Sound> AJTO_NYIT = new AssetDescriptor<Sound>("Hangok/AjtoNyito.mp3",Sound.class);

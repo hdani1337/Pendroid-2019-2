@@ -55,12 +55,18 @@ public class HudStage extends MyStage {
         speeddown = new OneSpriteStaticActor(Assets.manager.get(Assets.SPEEDD));
         speeddown.setDebug(false);
 
+        speeddown.setSize(pause.getWidth(),pause.getHeight());
+        speedup.setSize(pause.getWidth(),pause.getHeight());
+
+        speedup.setPosition(getViewport().getWorldWidth()-speedup.getWidth(),getViewport().getWorldHeight()/2+25);
+        speeddown.setPosition(speedup.getX(),speedup.getY()-speeddown.getHeight()-10);
+
         speedup.addListener(new ClickListener()
         {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                if(simulationSpeed < 120) simulationSpeed += 1;
+                if(simulationSpeed < 360) simulationSpeed += 12;
             }
         });
 
@@ -69,7 +75,8 @@ public class HudStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                if(simulationSpeed > 1) simulationSpeed -= 1;
+                if(simulationSpeed > 12) simulationSpeed -= 12;
+                else simulationSpeed = 6;
             }
         });
     }
@@ -113,8 +120,8 @@ public class HudStage extends MyStage {
         addActor(arammero);
         addActor(vizmero);
         addActor(penz);
-        /*addActor(speeddown);
-        addActor(speedup);*/
+        addActor(speeddown);
+        addActor(speedup);
     }
 
     void napszamlalo()
