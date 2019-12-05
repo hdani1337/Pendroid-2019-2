@@ -126,7 +126,7 @@ public class Matek {
     public void step(float delta, int simulationSpeed) {
         if (getRain() > 0.05) vizmennyiseg += maxOsszesKimeno()*0.7-beviz; //Annyi víz esik be az esővel, mint amennyi az összes csapon kitud menni - az alapból befolyó vízmennyiség
         opencounter();
-        beviz = (int)((maxOsszesKimeno()*0.05) * (simulationSpeed/60.0f));//60 az alapértelmezett sebesség
+        beviz = (int)((maxOsszesKimeno()*0.075) * (simulationSpeed/60.0f));//60 az alapértelmezett sebesség
         vizmennyiseg += beviz;
         vizmennyiseg -= kimenoszamitas() * (simulationSpeed/60.0f);
         kimentviz += kimenoszamitas() * (simulationSpeed/60.0f);

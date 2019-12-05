@@ -68,7 +68,7 @@ public class HudStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                if(simulationSpeed < 360) simulationSpeed += 12;
+                if(simulationSpeed < 480) simulationSpeed += 12;
             }
         });
 
@@ -77,8 +77,8 @@ public class HudStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                if(simulationSpeed > 12) simulationSpeed -= 12;
-                else simulationSpeed = 6;
+                if(simulationSpeed > 36) simulationSpeed -= 12;
+                else simulationSpeed = 30;
             }
         });
     }
