@@ -186,30 +186,11 @@ public class PauseStage extends MyStage {
         }
 
         if(ajto.getX() >= getViewport().getWorldWidth()-ajto.getWidth()) {
-            final MenuScreen menuScreen = new MenuScreen(game);
-            //menuScreen.setJojjonCaution(false);
-            //game.setScreen(menuScreen);
-            try {
-                game.setScreenBackByStackPop(new MyGame.ScreenInit() {
-                    @Override
-                    public void init(MyScreen scr) {
-                        if (scr instanceof MenuScreen) {
-                            ((MenuScreen) scr).setJojjonCaution(false);
-                        }
-                        else
-                        {
-                            menuScreen.setJojjonCaution(false);
-                            game.setScreen(menuScreen);
-                        }
-                    }
-                });
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-                menuScreen.setJojjonCaution(false);
-                game.setScreen(menuScreen);
-            }
+            MenuScreen menuScreen = new MenuScreen(game);
+            menuScreen.setJojjonCaution(false);
+            game.setScreen(menuScreen, false);
+            //Muszáj mindig új screent csinálnom, mert ha stackről állítom vissza, akkor sokszor nem lép vissza a menuscreenre, hanem újraindítja a játékot
+            //Az új screent nem rakom stackre
         }
     }
 

@@ -180,7 +180,7 @@ public class GameOverStage extends MyStage {
         if(ajto.getX() >= getViewport().getWorldWidth()-ajto.getWidth()) {
             MenuScreen menuScreen = new MenuScreen(game);
             menuScreen.setJojjonCaution(false);
-            game.setScreen(menuScreen);
+            game.setScreen(menuScreen, false);
         }
 
         if(!napok.getText().equals(napokInt + " napot dolgoztál le sikeresen ebben a játékmenetben.")) {
