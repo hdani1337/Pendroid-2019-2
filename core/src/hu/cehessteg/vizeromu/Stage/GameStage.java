@@ -12,6 +12,7 @@ import hu.cehessteg.vizeromu.Actor.Viz;
 import hu.cehessteg.vizeromu.GlobalClasses.Assets;
 import hu.cehessteg.vizeromu.GlobalClasses.Fuggvenyek;
 import hu.cehessteg.vizeromu.GlobalClasses.Matek;
+import hu.cehessteg.vizeromu.Vizeromu;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.MyStage;
 import hu.cehessteg.vizeromu.Screen.MenuScreen;
@@ -74,8 +75,15 @@ public class GameStage extends MyStage {
                     setWidth((matek.getVizmennyiseg() / matek.getMaxviz()) * 75);
                 }
                 else {
-                    viz.setHeight((1000000/1100000.0f)*20);
-                    viz.setWidth((1000000/1100000.0f)*75);
+                    if(Vizeromu.gameSave.getFloat("vizmennyiseg") == 0) {
+                        viz.setHeight((1000000 / 1100000.0f) * 20);
+                        viz.setWidth((1000000 / 1100000.0f) * 75);
+                    }
+                    else
+                    {
+                        viz.setHeight((Vizeromu.gameSave.getFloat("vizmennyiseg") / 1100000.0f) * 20);
+                        viz.setWidth((Vizeromu.gameSave.getFloat("vizmennyiseg") / 1100000.0f) * 75);
+                    }
                 }
                 setX(17-(getWidth()/2));
                 setY(16.46f-(getHeight()/2));
