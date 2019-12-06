@@ -36,6 +36,7 @@ public class Matek {
     float time;
     float kimentviz = 0;
     float termeltwatt = 0;
+    public boolean still = false;
 
 
     boolean eso = false;
@@ -132,7 +133,7 @@ public class Matek {
         vizmennyiseg += beviz;
         vizmennyiseg -= kimenoszamitas() * (simulationSpeed/60.0f);
         kimentviz += kimenoszamitas() * (simulationSpeed/60.0f);
-        if(time > coinTime+(35*60)) {
+        if(time > coinTime+(35*60) && !still) {
             coinTime = time;
             termeltwatt += (kimentviz / 48)*aramPercent();
             kimentviz = 0;
