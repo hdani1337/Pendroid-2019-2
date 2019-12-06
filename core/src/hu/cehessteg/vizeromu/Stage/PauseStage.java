@@ -92,6 +92,10 @@ public class PauseStage extends MyStage {
 
 
     void leaveGame(){
+        for (int i = 0; i < GameStage.matek.getNyilasok().length; i++)
+        {
+            gameSave.putBoolean("csoOpen" + (i+1), GameStage.matek.getNyilasok()[i].isOpen);
+        }
         gameSave.putInteger("coins", GameStage.matek.coins);
         gameSave.flush();
         ajto.setMove(true);
@@ -181,18 +185,25 @@ public class PauseStage extends MyStage {
         }
 
         if(ajto.getX() >= getViewport().getWorldWidth()-ajto.getWidth()) {
-            //MenuScreen menuScreen = new MenuScreen(game);
+            MenuScreen menuScreen = new MenuScreen(game);
             //menuScreen.setJojjonCaution(false);
             //game.setScreen(menuScreen);
-            game.setScreenBackByStackPop(new MyGame.ScreenInit() {
-                @Override
-                public void init(MyScreen scr) {
-                    if (scr instanceof MenuScreen) {
-                        ((MenuScreen) scr).setJojjonCaution(false);
+            try {
+                game.setScreenBackByStackPop(new MyGame.ScreenInit() {
+                    @Override
+                    public void init(MyScreen scr) {
+                        if (scr instanceof MenuScreen) {
+                            ((MenuScreen) scr).setJojjonCaution(false);
+                        }
                     }
-                }
-            });
-
+                });
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+                menuScreen.setJojjonCaution(false);
+                game.setScreen(menuScreen);
+            }
         }
     }
 

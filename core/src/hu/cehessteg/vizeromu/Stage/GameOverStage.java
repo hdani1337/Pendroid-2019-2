@@ -53,6 +53,8 @@ public class GameOverStage extends MyStage {
         felso = new CautionSign((byte)2,getViewport());
         also = new CautionSign((byte)1,getViewport());
         ajto = new Ajto(getViewport());
+        for (int i = 0; i < GameStage.matek.getNyilasok().length; i++) gameSave.putBoolean("csoOpen" + (i+1),false);
+        gameSave.flush();
     }
 
     void setPositions()

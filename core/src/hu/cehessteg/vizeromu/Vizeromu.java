@@ -30,6 +30,11 @@ public class Vizeromu extends MyGame {
 			gameSave.putInteger("csoLevel3", 0);
 			gameSave.putInteger("csoLevel4", 0);
 			gameSave.putInteger("csoLevel5", 0);
+			gameSave.putBoolean("csoOpen1", false);
+			gameSave.putBoolean("csoOpen2", false);
+			gameSave.putBoolean("csoOpen3", false);
+			gameSave.putBoolean("csoOpen4", false);
+			gameSave.putBoolean("csoOpen5", false);
 			gameSave.putBoolean("muted", false);
 			gameSave.flush();
 		}

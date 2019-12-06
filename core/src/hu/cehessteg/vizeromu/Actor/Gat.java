@@ -22,6 +22,7 @@ public class Gat extends OneSpriteStaticActor {
 
         public gatListenes(final byte id) {
             super(Assets.manager.get(Assets.RED_CIRC));
+            if (GameStage.matek.getNyilasok()[id-1].isOpen) this.sprite.setTexture(Assets.manager.get(Assets.GREEN_CIRC));
             setDebug(false);
             this.id = id;
             if(id == 1) setRotation(5);
@@ -33,63 +34,15 @@ public class Gat extends OneSpriteStaticActor {
                 public void clicked(InputEvent event, float x, float y) {
                     super.clicked(event, x, y);
                     setZIndex(5000);
-                    if(id == 1) {
-                        if(GameStage.matek.getNyilasok()[0].lvl > 0) {
-                            if (GameStage.matek.getNyilasok()[0].isOpen) {
-                                GameStage.matek.getNyilasok()[0].setOpen(false);
+                        if(GameStage.matek.getNyilasok()[id-1].lvl > 0) {
+                            if (GameStage.matek.getNyilasok()[id-1].isOpen) {
+                                GameStage.matek.getNyilasok()[id-1].setOpen(false);
                                 sprite.setTexture(Assets.manager.get(Assets.RED_CIRC));
                             } else {
-                                GameStage.matek.getNyilasok()[0].setOpen(true);
+                                GameStage.matek.getNyilasok()[id-1].setOpen(true);
                                 sprite.setTexture(Assets.manager.get(Assets.GREEN_CIRC));
                             }
                         }
-                    }
-                    else if(id == 2) {
-                        if(GameStage.matek.getNyilasok()[1].lvl > 0) {
-                            if (GameStage.matek.getNyilasok()[1].isOpen) {
-                                GameStage.matek.getNyilasok()[1].setOpen(false);
-                                sprite.setTexture(Assets.manager.get(Assets.RED_CIRC));
-                            } else {
-                                GameStage.matek.getNyilasok()[1].setOpen(true);
-                                sprite.setTexture(Assets.manager.get(Assets.GREEN_CIRC));
-                            }
-                        }
-                    }
-                    else if(id == 3) {
-                        if(GameStage.matek.getNyilasok()[2].lvl > 0) {
-                            if (GameStage.matek.getNyilasok()[2].isOpen) {
-                                GameStage.matek.getNyilasok()[2].setOpen(false);
-                                sprite.setTexture(Assets.manager.get(Assets.RED_CIRC));
-                            } else {
-                                GameStage.matek.getNyilasok()[2].setOpen(true);
-                                sprite.setTexture(Assets.manager.get(Assets.GREEN_CIRC));
-                            }
-                        }
-                    }
-                    else if(id == 4) {
-                        if(GameStage.matek.getNyilasok()[3].lvl > 0) {
-                            if (GameStage.matek.getNyilasok()[3].isOpen) {
-                                GameStage.matek.getNyilasok()[3].setOpen(false);
-                                sprite.setTexture(Assets.manager.get(Assets.RED_CIRC));
-                            } else {
-                                GameStage.matek.getNyilasok()[3].setOpen(true);
-                                sprite.setTexture(Assets.manager.get(Assets.GREEN_CIRC));
-                            }
-                        }
-                    }
-                    else if(id == 5) {
-                        if(GameStage.matek.getNyilasok()[4].lvl > 0) {
-                            if(GameStage.matek.getNyilasok()[4].isOpen) {
-                                GameStage.matek.getNyilasok()[4].setOpen(false);
-                                sprite.setTexture(Assets.manager.get(Assets.RED_CIRC));
-                            }
-                            else
-                            {
-                                GameStage.matek.getNyilasok()[4].setOpen(true);
-                                sprite.setTexture(Assets.manager.get(Assets.GREEN_CIRC));
-                            }
-                        }
-                    }
                 }
             });
 
