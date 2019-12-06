@@ -52,6 +52,7 @@ public class Matek {
             nyilasok[i] = res;
             nyilasok[i].setOpen(Vizeromu.gameSave.getBoolean("csoOpen" + (i+1)));
         }
+        if(Vizeromu.gameSave.getFloat("vizmennyiseg") != 0) this.vizmennyiseg = Vizeromu.gameSave.getFloat("vizmennyiseg");
         nyilasokSetSavedLevels();
         time = 115200;//Másnap reggel 8 óra, hogy ne egyből essen az eső
     }

@@ -35,6 +35,7 @@ public class Vizeromu extends MyGame {
 			gameSave.putBoolean("csoOpen3", false);
 			gameSave.putBoolean("csoOpen4", false);
 			gameSave.putBoolean("csoOpen5", false);
+			gameSave.putFloat("vizmennyiseg", 0);
 			gameSave.putBoolean("muted", false);
 			gameSave.flush();
 		}

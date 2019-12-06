@@ -96,6 +96,7 @@ public class PauseStage extends MyStage {
         {
             gameSave.putBoolean("csoOpen" + (i+1), GameStage.matek.getNyilasok()[i].isOpen);
         }
+        gameSave.putFloat("vizmennyiseg", GameStage.matek.getVizmennyiseg());
         gameSave.putInteger("coins", GameStage.matek.coins);
         gameSave.flush();
         ajto.setMove(true);
@@ -185,7 +186,7 @@ public class PauseStage extends MyStage {
         }
 
         if(ajto.getX() >= getViewport().getWorldWidth()-ajto.getWidth()) {
-            MenuScreen menuScreen = new MenuScreen(game);
+            final MenuScreen menuScreen = new MenuScreen(game);
             //menuScreen.setJojjonCaution(false);
             //game.setScreen(menuScreen);
             try {
@@ -194,6 +195,11 @@ public class PauseStage extends MyStage {
                     public void init(MyScreen scr) {
                         if (scr instanceof MenuScreen) {
                             ((MenuScreen) scr).setJojjonCaution(false);
+                        }
+                        else
+                        {
+                            menuScreen.setJojjonCaution(false);
+                            game.setScreen(menuScreen);
                         }
                     }
                 });

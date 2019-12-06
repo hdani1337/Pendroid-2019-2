@@ -141,7 +141,7 @@ public class MenuScreen extends MyScreen {
 
     public void setJojjonCaution(boolean jojjonCaution) {
         this.jojjonCaution = jojjonCaution;
-        menuStage.setJojjonCaution(this.jojjonCaution);
         menuStage.drawGame = false;
+        menuStage.setJojjonCaution(this.jojjonCaution);
     }
 }
