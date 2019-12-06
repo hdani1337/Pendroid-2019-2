@@ -31,7 +31,7 @@ public class MenuStage extends MyStage {
     MyLabel title;
     Kacsa kacsa;
 
-    boolean drawGame = false;
+    public boolean drawGame = false;
     boolean drawInfo = false;
     boolean drawOptions = false;
     boolean drawShop = false;
